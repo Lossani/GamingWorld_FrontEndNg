@@ -1,0 +1,54 @@
+<div id="LoginGrid">
+    <div class="login-grid-tile" *ngIf={}>
+        <img src="/assets/loginImage.png" alt="login Image" style="height: 80vh;">
+    </div>
+    <div class="login-grid-tile">
+        <mat-card class="login-card card-secondary-background">
+            <mat-card-header style="justify-content: center;">
+                <mat-card-title>
+                    <div style="color: white;">
+                        GAMING WORLD
+                    </div>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-card-content>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input type="password" matInput>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <p>
+                    <button mat-raised-button color="primary" class="full-length-button">
+                        Login
+                    </button>
+                </p>
+                <p>
+                    <button mat-raised-button class="full-length-button discord-button">
+                        Login with Discord
+                    </button>
+                </p>
+                <p>
+                    <button mat-raised-button class="full-length-button youtube-button">
+                        Login with Youtube
+                    </button>
+                </p>
+            </mat-card-actions>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-card-actions>
+                <button mat-raised-button class="full-length-button" color="primary">
+                    Sign up
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

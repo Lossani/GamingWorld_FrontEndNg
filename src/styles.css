@@ -1,4 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root{
+    --a-color: #000000;
+    --b-color: #2D3142;
+    --c-color: #4F5D75;
+    --d-color: #BFC0C0;
+    --e-color: #FFFFFF;
+    --card-primary-color: #232D5C;
+    --card-secondary-color: #36468F;
+    --card-light-color: #95A2DB;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    background-color: var(--c-color);
+}
+
+.a-background-color {
+    background-color: var(--a-color);
+}
+
+.c-background-color {
+    background-color: var(--c-color);
+}
+
+.card-primary-background {
+    background-color: var(--card-primary-color);
+}
+
+.card-secondary-background {
+    background-color: var(--card-secondary-color);
+}
+
+
+.discord-button {
+    background-color: #7289DA;
+    color: #FFFFFF;
+}
+
+.youtube-button {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
