@@ -17,8 +17,10 @@ export class NewsPageComponent implements OnInit {
   ngOnInit(): void {
     this.newsService.getTopNews()
       .subscribe(topHeadline => {
-        console.log(topHeadline);
+        let articles = topHeadline.articles
+          .filter(({urlToImage, description}) => (urlToImage && description));
         this.TopHeadlines = topHeadline;
+        this.TopHeadlines.articles = articles;
         this.headlinesLoaded = true;
       });
   }
