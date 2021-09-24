@@ -44,3 +44,11 @@ body {
     background-color: #FF0000;
     color: #FFFFFF;
 }
+
+.full-length-button {
+    width: 100%;
+}
+
+.form-field{
+    width: 100%;
+}

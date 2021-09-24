@@ -12,14 +12,6 @@
     justify-content: center;
 }
 
-.full-length-button {
-    width: 100%;
-}
-
-.form-field{
-    width: 100%;
-}
-
 .login-card {
     width: 300px;
     padding: 4rem;
@@ -28,7 +20,8 @@
 @media (max-width: 950px) {
     #LoginGrid{
         margin: 0;
-        width: 80vw;
+        padding: 0;
+        width: 100vw;
         min-height: 100vh;
         display: grid;
         grid-template-columns: 1fr;

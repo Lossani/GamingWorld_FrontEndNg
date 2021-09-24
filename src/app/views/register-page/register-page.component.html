@@ -1,0 +1,51 @@
+<div id="RegisterContainer">
+    <mat-card style="width: 400px;" class="card-secondary-background">
+        <mat-card-header>
+            <mat-card-title>
+                Sign Up
+            </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br>
+        <form [formGroup]="registerForm">
+            <mat-card-content>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput id="name" formControlName="name" required>
+                    <mat-error *ngIf="registerForm.controls.name.invalid">Complete the field with valid informations</mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput id="lastName" formControlName="lastName" required>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput id="email" formControlName="email" required>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput id="username" formControlName="username" required>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput id="password" formControlName="password" required>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="fill" require>
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput id="confirmPassword" formControlName="confirmPassword" required>
+                    <mat-error *ngIf="registerForm.value.password != registerForm.value.confirmPassword">
+                        You have to input the same Password!
+                    </mat-error>
+                </mat-form-field>
+            </mat-card-content>
+        </form>
+        <mat-card-actions>
+            <button mat-raised-button (click)="register()" color="primary">
+                Register
+            </button>
+            <button routerLink="" mat-raised-button color="warn">
+                Cancel
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
