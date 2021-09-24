@@ -25,4 +25,21 @@ export class NewsPageComponent implements OnInit {
       });
   }
 
+  findNews(theme: string): void{
+    this.headlinesLoaded = false;
+    this.newsService.getQuery(theme)
+      .subscribe(Articles => {
+        console.log(Articles);
+        let articles = Articles.articles
+          .filter(({urlToImage, description}) => (urlToImage && description));
+        this.TopHeadlines = Articles;
+        this.TopHeadlines.articles = articles;
+        this.headlinesLoaded = true;
+      });
+  }
+
+  scrollToTheTop(): void{
+    window.scroll(0,0);
+  }
+
 }

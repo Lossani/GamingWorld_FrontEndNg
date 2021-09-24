@@ -21,5 +21,11 @@ export interface topHeadlines{
 }
 
 export interface allArticles{
-    
+
+}
+
+export interface ListOfArticles{
+  status: string,
+  totalResults: number,
+  articles: article[],
 }
