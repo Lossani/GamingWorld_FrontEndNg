@@ -9,13 +9,15 @@ import { NavbarComponent } from './componets/navbar/navbar.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewsPageComponent } from './views/news-page/news-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    NewsPageComponent
   ],
   imports: [
     BrowserModule,
