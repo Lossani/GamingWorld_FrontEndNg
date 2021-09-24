@@ -1,6 +1,13 @@
 .navbar-separator {
   height: 3.5rem;
 }
+.credit-card-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: scale(3);
+  padding: 0.5rem 0;
+}
 
 #HomeContainer {
   display: grid;
