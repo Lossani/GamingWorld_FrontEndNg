@@ -1,0 +1,14 @@
+.navbar-separator {
+    height: 3.5rem;
+}
+
+#NewsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 5rem;
+}
+
+.main-new {
+    grid-column: 1 / 3;
+}

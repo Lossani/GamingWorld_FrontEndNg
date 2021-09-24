@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { NavbarComponent } from './componets/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsPageComponent } from './views/news-page/news-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NewsCardComponent } from './components/news-card/news-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { NewsPageComponent } from './views/news-page/news-page.component';
     NavbarComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    NewsCardComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { NewsPageComponent } from './views/news-page/news-page.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

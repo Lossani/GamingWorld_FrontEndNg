@@ -1,0 +1,19 @@
+<mat-card *ngIf="article">
+    <mat-card-header>
+        <mat-card-title>
+            {{article.title}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            from {{article.source.name}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <img mat-card-image [src]="article.urlToImage" alt="">
+        <p>
+            {{article.description}}
+        </p>
+        <p>
+            <a [href]="article.url">More Info</a>
+        </p>
+    </mat-card-content>
+</mat-card>
