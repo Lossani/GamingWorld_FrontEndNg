@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTreeModule} from "@angular/material/tree";
 import { MatListModule } from "@angular/material/list";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import { MatListModule } from "@angular/material/list";
     MatProgressSpinnerModule,
     MatTreeModule,
     MatListModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }

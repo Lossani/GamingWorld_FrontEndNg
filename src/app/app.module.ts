@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsPageComponent } from './views/news-page/news-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsCardComponent } from './components/news-card/news-card.component';
+import { PremiumInformationDialogComponent } from './components/dialogs/premium-information-dialog/premium-information-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
     LoginPageComponent,
     RegisterPageComponent,
     NewsPageComponent,
-    NewsCardComponent
+    NewsCardComponent,
+    PremiumInformationDialogComponent,
+
   ],
   imports: [
     BrowserModule,

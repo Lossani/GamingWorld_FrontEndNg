@@ -46,12 +46,14 @@
           Become a premium member and get access to exclusive tools to find
         users with the same competitive level and interest than you for just 5$.
         </p>
-        <mat-icon class="credit-card-icon">
-          credit_card
-        </mat-icon>
+        <div style="width: 100%; display: flex; justify-content: center;">
+          <mat-icon class="credit-card-icon">
+            credit_card
+          </mat-icon>
+        </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" class="full-length-button">More Information</button>
+        <button mat-raised-button color="primary" (click)="openPremiumInfoDialog()" class="full-length-button">More Information</button>
       </mat-card-actions>
     </mat-card>
   </div>

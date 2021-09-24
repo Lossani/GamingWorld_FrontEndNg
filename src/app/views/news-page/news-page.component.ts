@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { topHeadlines } from 'src/app/entities/news-entity';
 import { NewsService } from 'src/app/services/news-service.service';
+import {MatDialog} from "@angular/material/dialog";
+import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
 
 @Component({
   selector: 'app-news-page',
@@ -12,7 +14,8 @@ export class NewsPageComponent implements OnInit {
   headlinesLoaded: boolean = false;
   TopHeadlines!: topHeadlines;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newsService.getTopNews()
@@ -40,6 +43,10 @@ export class NewsPageComponent implements OnInit {
 
   scrollToTheTop(): void{
     window.scroll(0,0);
+  }
+
+  openPremiumInfoDialog(): void{
+    const dialogRef = this.dialog.open(PremiumInformationDialogComponent);
   }
 
 }

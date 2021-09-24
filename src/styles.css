@@ -21,6 +21,9 @@ body {
 .a-background-color {
     background-color: var(--a-color);
 }
+.b-background-color {
+  background-color: var(--b-color);
+}
 
 .c-background-color {
     background-color: var(--c-color);
