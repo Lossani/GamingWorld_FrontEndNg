@@ -3,6 +3,7 @@ import { topHeadlines } from 'src/app/entities/news-entity';
 import { NewsService } from 'src/app/services/news-service.service';
 import {MatDialog} from "@angular/material/dialog";
 import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
+import { TopGames } from 'src/app/entities/twitch-global-stats.entity';
 
 @Component({
   selector: 'app-news-page',
@@ -13,6 +14,7 @@ export class NewsPageComponent implements OnInit {
 
   headlinesLoaded: boolean = false;
   TopHeadlines!: topHeadlines;
+  TopGames!: TopGames;
 
   constructor(private newsService: NewsService,
               public dialog: MatDialog) { }
@@ -25,6 +27,11 @@ export class NewsPageComponent implements OnInit {
         this.TopHeadlines = topHeadline;
         this.TopHeadlines.articles = articles;
         this.headlinesLoaded = true;
+      });
+    this.newsService.getTwitchTopGames()
+      .subscribe(topGames => {
+        this.TopGames = topGames;
+        console.log(this.TopGames);
       });
   }
 

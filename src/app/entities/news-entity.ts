@@ -1,4 +1,4 @@
-export interface source{
+export interface source {
     id: string,
     name: string
 }
@@ -14,18 +14,18 @@ export interface article {
     content: string
 }
 
-export interface topHeadlines{
+export interface topHeadlines {
     status: string,
     totalResults: number,
     articles: article[],
 }
 
-export interface allArticles{
+export interface allArticles {
 
 }
 
-export interface ListOfArticles{
-  status: string,
-  totalResults: number,
-  articles: article[],
+export interface ListOfArticles {
+    status: string,
+    totalResults: number,
+    articles: article[],
 }

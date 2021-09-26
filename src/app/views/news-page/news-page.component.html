@@ -25,7 +25,7 @@
 
   <div id="NewsContainer" *ngIf="headlinesLoaded">
     <app-news-card *ngFor="let article of TopHeadlines.articles; index as i" [class]="i == 0 ? 'main-new':''"
-                   [article]="article"></app-news-card>
+                  [article]="article"></app-news-card>
   </div>
   <div>
     <mat-card style="margin-bottom: 1rem;">
@@ -34,6 +34,13 @@
           Popular Twitch Themes
         </mat-card-title>
       </mat-card-header>
+      <mat-card-content *ngIf="TopGames">
+        <mat-list>
+          <app-twitch-bubble 
+            *ngFor="let game of TopGames.data"
+            [twitchGame]="game"></app-twitch-bubble>
+        </mat-list>
+      </mat-card-content>
     </mat-card>
     <mat-card>
       <mat-card-header>

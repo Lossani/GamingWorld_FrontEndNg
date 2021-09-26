@@ -13,6 +13,7 @@ import { NewsPageComponent } from './views/news-page/news-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { PremiumInformationDialogComponent } from './components/dialogs/premium-information-dialog/premium-information-dialog.component';
+import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PremiumInformationDialogComponent } from './components/dialogs/premium-
     NewsPageComponent,
     NewsCardComponent,
     PremiumInformationDialogComponent,
+    TwitchBubbleComponent,
 
   ],
   imports: [
