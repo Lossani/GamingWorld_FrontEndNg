@@ -11,9 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTreeModule} from "@angular/material/tree";
+import { MatTreeModule } from "@angular/material/tree";
 import { MatListModule } from "@angular/material/list";
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [],
@@ -34,6 +36,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatTreeModule,
     MatListModule,
     MatDialogModule,
+    MatMenuModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }

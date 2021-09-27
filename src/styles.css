@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-:root{
+:root {
     --a-color: #000000;
     --b-color: #2D3142;
     --c-color: #4F5D75;
@@ -11,8 +11,18 @@
     --card-light-color: #95A2DB;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.navbar-separator {
+    height: 3.5rem;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 body {
     background-color: var(--c-color);
@@ -21,8 +31,9 @@ body {
 .a-background-color {
     background-color: var(--a-color);
 }
+
 .b-background-color {
-  background-color: var(--b-color);
+    background-color: var(--b-color);
 }
 
 .c-background-color {
@@ -36,7 +47,6 @@ body {
 .card-secondary-background {
     background-color: var(--card-secondary-color);
 }
-
 
 .discord-button {
     background-color: #7289DA;
@@ -52,6 +62,6 @@ body {
     width: 100%;
 }
 
-.form-field{
+.form-field {
     width: 100%;
 }
