@@ -15,6 +15,8 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
 import { PremiumInformationDialogComponent } from './components/dialogs/premium-information-dialog/premium-information-dialog.component';
 import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.component';
 import { ProfilePageComponent } from './views/profile-page/profile-page.component';
+import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
+import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ProfilePageComponent } from './views/profile-page/profile-page.componen
     PremiumInformationDialogComponent,
     TwitchBubbleComponent,
     ProfilePageComponent,
+    ConfirmDeleteDialogComponent,
+    CreateGameExperienceDialogComponent,
 
   ],
   imports: [
