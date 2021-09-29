@@ -20,6 +20,7 @@ export class NewsPageComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    sessionStorage.setItem("user", "1");
     this.newsService.getTopNews()
       .subscribe(topHeadline => {
         let articles = topHeadline.articles

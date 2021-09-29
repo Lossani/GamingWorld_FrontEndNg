@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import { GameExperience, User, UserGame } from 'src/app/entities/user-entity';
+import { User, UserGame } from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -13,12 +14,18 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class ProfilePageComponent implements OnInit {
 
+  // Codigo Obtenido por el route param
+  profileCode!: number;
+  // Datos basicos de Usuario
   usuario!: User;
+  // variable que guarda los nombres de las columnas que se van a mostrar
   displayedExperienceColumns: string[] = ["name", "experienceLevel", "actions"];
+  // Juegos donde tiene experiencia
   gameExperiences!: UserGame[];
 
   constructor(private profileService: ProfileService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private route: ActivatedRoute) { }
 
   getGameExperiences(id: number) {
     this.profileService.getExperiencedGames(id)
@@ -32,11 +39,14 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profileService.getProfileById(1)
-      .subscribe(User => {
-        this.usuario = User;
-      });
-    this.getGameExperiences(1);
+    this.route.params.subscribe(data => {
+      this.profileCode = data.profileCode;
+      this.profileService.getProfileById(this.profileCode)
+        .subscribe(User => {
+          this.usuario = User;
+        });
+        this.getGameExperiences(this.profileCode);
+    });
   }
 
   toggleEditMode(element: UserGame): void{
@@ -71,7 +81,7 @@ export class ProfilePageComponent implements OnInit {
 
   openAddGameDialog(): void {
     const addToList = () => {
-      this.getGameExperiences(1);
+      this.getGameExperiences(this.profileCode);
     }
     const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
       data: {

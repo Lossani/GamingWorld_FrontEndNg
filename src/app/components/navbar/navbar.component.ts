@@ -8,15 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  
+  user?: string;
 
   @Input()
   public isInNews: boolean = false;
 
   searchQuery = new FormControl('');
 
-  constructor(public router: Router) { }
 
+  constructor(public router: Router) {
+  }
+  
   ngOnInit(): void {
+    const aux = sessionStorage.getItem('user');
+    this.user = aux || "-1";
   }
 
 }
