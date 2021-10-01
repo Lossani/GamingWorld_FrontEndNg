@@ -1,0 +1,12 @@
+#RegisterContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

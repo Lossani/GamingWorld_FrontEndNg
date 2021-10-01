@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>
+    Create Game Experience
+</h2>
+<mat-dialog-content>
+    <form style="display: flex; flex-direction: column;" [formGroup]="formGroup">
+        <mat-form-field class="form-field" *ngIf="games" appearance="fill">
+            <mat-label>Game</mat-label>
+            <mat-select formControlName="gameId" required>
+                    <mat-option *ngFor="let game of games" [value]="game.id">
+                        {{game.nombre}}
+                    </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Experience Level</mat-label>
+            <input matInput type="number"
+                appearance="fill"
+                formControlName="experienceLevel"
+                min="1"
+                max="10" required/>
+        </mat-form-field>
+        <div style="display: flex; width: 100%; justify-content: space-evenly;">
+            <button mat-raised-button color="primary" type="submit" (click)="submit()">Create</button>
+            <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+        </div>
+    </form>
+</mat-dialog-content>

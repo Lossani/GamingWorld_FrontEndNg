@@ -1,0 +1,42 @@
+
+.credit-card-icon {
+  transform: scale(3);
+  padding: 0.5rem 0;
+}
+
+#HomeContainer {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  padding: 0 5rem;
+  gap: 10px;
+}
+
+#NewsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.main-new {
+  grid-column: 1 / 3;
+}
+
+#ToTheTop {
+  position: fixed;
+  z-index: 100;
+  top: 90vh;
+  right: 2vw;
+}
+
+@media (max-width: 720px) {
+  #HomeContainer {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  #NewsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

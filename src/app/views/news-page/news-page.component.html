@@ -1,0 +1,73 @@
+<app-navbar [isInNews]="true"></app-navbar>
+<div class="navbar-separator"></div>
+
+<div id="HomeContainer">
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Filter By
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-action-list>
+          <button mat-list-item (click)="findNews('videogames')">VideoGames</button>
+          <button mat-list-item (click)="findNews('steam')">Steam</button>
+          <button mat-list-item (click)="findNews('twitch')">Twitch</button>
+        </mat-action-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div style="display: flex; justify-content: center; align-items: center;" *ngIf="!headlinesLoaded">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div id="NewsContainer" *ngIf="headlinesLoaded">
+    <app-news-card *ngFor="let article of TopHeadlines.articles; index as i" [class]="i == 0 ? 'main-new':''"
+                  [article]="article"></app-news-card>
+  </div>
+  <div>
+    <mat-card style="margin-bottom: 1rem;">
+      <mat-card-header>
+        <mat-card-title>
+          Popular Twitch Themes
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="TopGames">
+        <mat-list>
+          <app-twitch-bubble 
+            *ngFor="let game of TopGames.data"
+            [twitchGame]="game"></app-twitch-bubble>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Support GamingWorld
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p style="padding-bottom: 5vh">
+          Become a premium member and get access to exclusive tools to find
+        users with the same competitive level and interest than you for just 5$.
+        </p>
+        <div style="width: 100%; display: flex; justify-content: center;">
+          <mat-icon class="credit-card-icon">
+            credit_card
+          </mat-icon>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="openPremiumInfoDialog()" class="full-length-button">More Information</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<button
+  mat-fab color="primary"
+  Id="ToTheTop"
+  (click)="scrollToTheTop()">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>

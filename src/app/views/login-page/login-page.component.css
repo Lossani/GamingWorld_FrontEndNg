@@ -1,0 +1,37 @@
+#LoginGrid{
+    padding: 0 10vw;
+    width: 80vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.login-grid-tile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 300px;
+    padding: 4rem;
+}
+
+@media (max-width: 950px) {
+    #LoginGrid{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .login-grid-tile{
+        margin-top: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}
