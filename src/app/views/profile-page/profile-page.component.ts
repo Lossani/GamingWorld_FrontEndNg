@@ -52,9 +52,7 @@ export class ProfilePageComponent implements OnInit {
           tournament.nombreFormController = new FormControl(tournament.nombre);
           tournament.puestoFormController = new FormControl(tournament.puesto);
           return tournament;
-
         });
-        console.log(this.tournaments);
       });
   }
 
@@ -138,7 +136,7 @@ export class ProfilePageComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
       data: {
-        userId: 1,
+        userId: this.profileCode,
         next: addToList
       }
     });
@@ -146,11 +144,11 @@ export class ProfilePageComponent implements OnInit {
 
   openAddTournamentDialog(): void {
     const addToList = () => {
-      this.getGameExperiences(this.profileCode);
+      this.getTournaments(this.profileCode);
     }
     const dialogRef = this.dialog.open(CreateTournamentDialogComponent, {
       data: {
-        userId: 1,
+        userId: this.profileCode,
         next: addToList
       }
     });

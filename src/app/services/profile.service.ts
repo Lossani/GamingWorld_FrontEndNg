@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {Competencia, GameExperience, User, UserGame} from '../entities/user-entity';
+import {Competencia, GameExperience, User, UserCompetencia, UserGame} from '../entities/user-entity';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,6 @@ export class ProfileService {
 
 
   deleteGameExperience(id: number): Observable<any>{
-    console.log("delete");
     const url = `${this.URL}/game-experiences/${id}`;
     return this.Http.delete(url);
   }
@@ -61,6 +60,16 @@ export class ProfileService {
   getTournaments(userId: number): Observable<Competencia[]> {
     const url = `${this.URL}/competencias?usuarioId=${userId}`;
     return this.Http.get<Competencia[]>(url);
+  }
+
+  postTournament(tournament: UserCompetencia, userId: number): Observable<Competencia> {
+    const url = `${this.URL}/competencias`;
+    return this.Http.post<Competencia>(url, {
+      usuarioId: userId,
+      nombre: tournament.nombre,
+      date: tournament.date,
+      puesto: tournament.puesto
+    });
   }
 
   deleteTournament(id: number): Observable<any>{

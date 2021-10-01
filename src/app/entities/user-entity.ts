@@ -16,6 +16,12 @@ export interface UserGame {
     experienceFormController: FormControl
 }
 
+export interface UserCompetencia {
+    nombre: string,
+    date: string,
+    puesto: string
+}
+
 export interface Competencia {
     id: number,
     nombre: string,
