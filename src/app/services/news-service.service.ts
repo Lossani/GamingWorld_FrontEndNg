@@ -9,19 +9,16 @@ import { TopGames } from '../entities/twitch-global-stats.entity';
 })
 export class NewsService {
 
-  private URL = "https://newsapi.org/v2/";
   private TwitchURL = "https://aos-twitch-api.herokuapp.com/";
 
   constructor(private http: HttpClient) { }
 
   getTopNews(): Observable<topHeadlines> {
-    let query = "top-headlines?country=us&category=technology&apiKey=ba7a180f03ee4e3b9594cbeec69ce73c";
-    return this.http.get<topHeadlines>(this.URL + query);
+    return this.http.get<topHeadlines>(`${this.TwitchURL}news/top-headlines`);
   }
 
   getQuery(value: string): Observable<ListOfArticles> {
-    let query = `everything?q=${value}&language=en&apiKey=ba7a180f03ee4e3b9594cbeec69ce73c`;
-    return this.http.get<ListOfArticles>(this.URL + query);
+    return this.http.get<ListOfArticles>(`${this.TwitchURL}news/find?=${value}`);
   }
 
   getTwitchTopGames(): Observable<TopGames> {
