@@ -75,8 +75,13 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  toggleEditMode(element: UserGame): void{
-    element.editMode = !element.editMode;
+  toggleEditMode(element: any): void{
+    try{
+      element.editMode = !element.editMode;
+    } catch (e){
+      return;
+    }
+
   }
 
   deleteExperienceInGame(element: UserGame): void{
@@ -92,6 +97,16 @@ export class ProfilePageComponent implements OnInit {
         this.toggleEditMode(element);
       });
   }
+
+  saveChangedTournament(element: Competencia): void {
+    this.profileService.putTournament(element, 1)
+      .subscribe(res => {
+        element.puesto = res.puesto
+        this.toggleEditMode(element);
+      });
+  }
+
+
 
   openDeleteConfirmDialog(element: UserGame): void{
     const confirmFunction = () => {

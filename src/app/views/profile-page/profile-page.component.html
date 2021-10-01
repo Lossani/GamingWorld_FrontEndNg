@@ -100,7 +100,7 @@
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-raised-button color="primary"
-                      (click)="toggleEditMode(element)">
+                      (click)="element.editMode ? saveChangedTournament(element) : toggleEditMode(element)">
                       {{element.editMode ? "Save" : "Edit"}}
                     </button>
                     <button

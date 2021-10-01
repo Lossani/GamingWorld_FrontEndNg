@@ -40,6 +40,17 @@ export class ProfileService {
     });
   }
 
+  putTournament(element: Competencia, usuarioId: number): Observable<Competencia> {
+    const url = `http://localhost:3000/competencias/${element.id}`;
+    return this.Http.put<Competencia>(url, {
+      userId: usuarioId,
+      nombre: element.nombreFormController.value,
+      date: element.date,
+      puesto: element.puestoFormController.value
+    });
+  }
+
+
   deleteGameExperience(id: number): Observable<any>{
     console.log("delete");
     const url = `http://localhost:3000/game-experiences/${id}`;
