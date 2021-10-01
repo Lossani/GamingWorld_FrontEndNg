@@ -58,7 +58,7 @@
                 <br>
                 <div class="section-title">
                     <h2 class="center">Tournaments</h2>
-                    <button mat-button color="primary">Add Tournament</button>
+                    <button mat-button color="primary" (click)="openAddTournamentDialog()">Add Tournament</button>
                 </div>
                 <mat-divider></mat-divider>
               <table mat-table *ngIf="tournaments" [dataSource]="tournaments">

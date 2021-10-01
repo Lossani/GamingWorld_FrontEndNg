@@ -18,6 +18,8 @@ import { ProfilePageComponent } from './views/profile-page/profile-page.componen
 import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
 import {Component} from '@angular/core';
+import {CreateTournamentDialogComponent} from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
+
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {Component} from '@angular/core';
     ProfilePageComponent,
     ConfirmDeleteDialogComponent,
     CreateGameExperienceDialogComponent,
+    CreateTournamentDialogComponent,
 
 
   ],
@@ -44,7 +47,8 @@ import {Component} from '@angular/core';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

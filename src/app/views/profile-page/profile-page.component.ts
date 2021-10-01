@@ -6,6 +6,7 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
 import {Competencia, User, UserGame} from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
+import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -136,6 +137,18 @@ export class ProfilePageComponent implements OnInit {
       this.getGameExperiences(this.profileCode);
     }
     const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
+      data: {
+        userId: 1,
+        next: addToList
+      }
+    });
+  }
+
+  openAddTournamentDialog(): void {
+    const addToList = () => {
+      this.getGameExperiences(this.profileCode);
+    }
+    const dialogRef = this.dialog.open(CreateTournamentDialogComponent, {
       data: {
         userId: 1,
         next: addToList
