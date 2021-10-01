@@ -20,7 +20,10 @@ export interface Competencia {
     id: number,
     nombre: string,
     date: string,
-    puesto: string
+    puesto: string,
+    editMode: boolean,
+    nombreFormController: FormControl,
+    puestoFormController: FormControl
 }
 
 export interface User {

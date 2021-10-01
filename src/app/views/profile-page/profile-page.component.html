@@ -16,6 +16,7 @@
                     <button mat-button color="primary" (click)="openAddGameDialog()">Add Game</button>
                 </div>
                 <mat-divider></mat-divider>
+
                 <table mat-table *ngIf="gameExperiences" [dataSource]="gameExperiences">
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef>Game</th>
@@ -29,7 +30,6 @@
                             </ng-container>
                             <ng-container *ngIf="element.editMode">
                                 <mat-form-field>
-                                    <mat-label>Experience</mat-label>
                                     <input matInput type="number" max=10 min="1" [formControl]="element.experienceFormController" />
                                 </mat-form-field>
                             </ng-container>
@@ -38,14 +38,14 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let element">
-                            <button 
-                                mat-raised-button color="primary" 
+                            <button
+                                mat-raised-button color="primary"
                                 (click)="element.editMode ? saveChangedExperience(element) : toggleEditMode(element)">
                                 {{element.editMode ? "Save" : "Edit"}}
                             </button>
                             |
-                            <button 
-                                mat-raised-button 
+                            <button
+                                mat-raised-button
                                 color="warn"
                                 (click)="element.editMode ? toggleEditMode(element) : openDeleteConfirmDialog(element)">
                                 {{element.editMode ? "Cancel" : "Delete"}}
@@ -61,6 +61,60 @@
                     <button mat-button color="primary">Add Tournament</button>
                 </div>
                 <mat-divider></mat-divider>
+              <table mat-table *ngIf="tournaments" [dataSource]="tournaments">
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Tournament</th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="!element.editMode">
+                      {{element.nombre}}
+                    </ng-container >
+                    <ng-container *ngIf="element.editMode">
+                      <mat-form-field>
+
+                        <input matInput type="text" [formControl]="element.nombreFormController" />
+                      </mat-form-field>
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <td mat-cell *matCellDef="let element">
+                      {{element.date}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef>Position</th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="!element.editMode">
+                      {{element.puesto}}
+                    </ng-container >
+                    <ng-container *ngIf="element.editMode">
+                      <mat-form-field>
+                        <input matInput type="text" [formControl]="element.puestoFormController" />
+                      </mat-form-field>
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button
+                      mat-raised-button color="primary"
+                      (click)="toggleEditMode(element)">
+                      {{element.editMode ? "Save" : "Edit"}}
+                    </button>
+                    |
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      (click)="openDeleteConfirmDialog(element)">
+                      {{element.editMode ? "Cancel" : "Delete"}}
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedTournamentColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedTournamentColumns;"></tr>
+              </table>
             </div>
         </mat-card-content>
     </mat-card>

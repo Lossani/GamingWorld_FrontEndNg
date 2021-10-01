@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import { User, UserGame } from 'src/app/entities/user-entity';
+import {Competencia, User, UserGame} from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -21,7 +21,12 @@ export class ProfilePageComponent implements OnInit {
   // variable que guarda los nombres de las columnas que se van a mostrar
   displayedExperienceColumns: string[] = ["name", "experienceLevel", "actions"];
   // Juegos donde tiene experiencia
+  displayedTournamentColumns: string[] = ["name", "date", "position", "actions"];
+  // variable que guarda los nombres de los torneos que se van a mostrar
+
+
   gameExperiences!: UserGame[];
+  tournaments!: Competencia[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
@@ -38,6 +43,20 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
+  getTournaments(id: number){
+    this.profileService.getTournaments(id)
+      .subscribe(Tournaments => {
+        this.tournaments = Tournaments.map(tournament => {
+          tournament.editMode = false;
+          tournament.nombreFormController = new FormControl(tournament.nombre);
+          tournament.puestoFormController = new FormControl(tournament.puesto);
+          return tournament;
+
+        });
+        console.log(this.tournaments);
+      });
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(data => {
       this.profileCode = data.profileCode;
@@ -46,6 +65,7 @@ export class ProfilePageComponent implements OnInit {
           this.usuario = User;
         });
         this.getGameExperiences(this.profileCode);
+        this.getTournaments(this.profileCode);
     });
   }
 
