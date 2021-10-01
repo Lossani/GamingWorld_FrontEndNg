@@ -18,7 +18,7 @@ export class NewsService {
   }
 
   getQuery(value: string): Observable<ListOfArticles> {
-    return this.http.get<ListOfArticles>(`${this.TwitchURL}news/find?=${value}`);
+    return this.http.get<ListOfArticles>(`${this.TwitchURL}news/find?theme=${value}`);
   }
 
   getTwitchTopGames(): Observable<TopGames> {
