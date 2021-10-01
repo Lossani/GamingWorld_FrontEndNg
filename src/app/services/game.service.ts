@@ -8,7 +8,7 @@ import { Game } from '../entities/game-entity';
 })
 export class GameService {
 
-  URL = "http://localhost:3000/games";
+  URL = "https://json-test-server.herokuapp.com/games";
 
   constructor(private Http: HttpClient) { }
 

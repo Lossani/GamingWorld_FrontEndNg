@@ -8,7 +8,8 @@ import {Competencia, GameExperience, User, UserGame} from '../entities/user-enti
 })
 export class ProfileService {
 
-  private profileUrl = "http://localhost:3000/usuarios/";
+  private profileUrl = "https://json-test-server.herokuapp.com/usuarios/";
+  private URL = "https://json-test-server.herokuapp.com";
 
   constructor(private Http: HttpClient) { }
 
@@ -18,12 +19,12 @@ export class ProfileService {
   }
 
   getExperiencedGames(id: number): Observable<UserGame[]> {
-    const url = `http://localhost:3000/game-experiences?usuarioId=${id}&_expand=game`;
+    const url = `${this.URL}/game-experiences?usuarioId=${id}&_expand=game`;
     return this.Http.get<UserGame[]>(url);
   }
 
   postGameExperience(gameExperience: GameExperience): Observable<GameExperience> {
-    const url = `http://localhost:3000/game-experiences`;
+    const url = `${this.URL}/game-experiences`;
     return this.Http.post<GameExperience>(url, {
       experienceLevel: gameExperience.experienceLevel,
       gameId: gameExperience.gameId,
@@ -32,7 +33,7 @@ export class ProfileService {
   }
 
   putGameExperience(element: UserGame, usuarioId: number): Observable<UserGame> {
-    const url = `http://localhost:3000/game-experiences/${element.id}`;
+    const url = `${this.URL}/game-experiences/${element.id}`;
     return this.Http.put<UserGame>(url, {
       experienceLevel: element.experienceFormController.value,
       gameId: element.game.id,
@@ -41,7 +42,7 @@ export class ProfileService {
   }
 
   putTournament(element: Competencia, usuarioId: number): Observable<Competencia> {
-    const url = `http://localhost:3000/competencias/${element.id}`;
+    const url = `${this.URL}/competencias/${element.id}`;
     return this.Http.put<Competencia>(url, {
       userId: usuarioId,
       nombre: element.nombreFormController.value,
@@ -53,18 +54,18 @@ export class ProfileService {
 
   deleteGameExperience(id: number): Observable<any>{
     console.log("delete");
-    const url = `http://localhost:3000/game-experiences/${id}`;
+    const url = `${this.URL}/game-experiences/${id}`;
     return this.Http.delete(url);
   }
 
   getTournaments(userId: number): Observable<Competencia[]> {
-    const url = `http://localhost:3000/competencias?usuarioId=${userId}`;
+    const url = `${this.URL}/competencias?usuarioId=${userId}`;
     return this.Http.get<Competencia[]>(url);
   }
 
   deleteTournament(id: number): Observable<any>{
     console.log("delete");
-    const url = `http://localhost:3000/competencias/${id}`;
+    const url = `${this.URL}/competencias/${id}`;
     return this.Http.delete(url);
   }
 
