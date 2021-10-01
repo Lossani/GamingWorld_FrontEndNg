@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -20,9 +20,9 @@ export class CreateGameExperienceDialogComponent implements OnInit {
 
   games!: Game[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) private matData: any,
+  constructor(private matData: MatDialog,
     private gameService: GameService,
-    private profileService: ProfileService) { }
+    private profileService: ProfileService, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit(): void {
     this.gameService.getGames().subscribe(resGames => {
@@ -31,14 +31,18 @@ export class CreateGameExperienceDialogComponent implements OnInit {
   }
 
   submit() {
+    if (!this.formGroup.valid)
+      return;
+
     let gameExperience: GameExperience = {
       gameId: this.formGroup.controls.gameId.value,
       experienceLevel: this.formGroup.controls.experienceLevel.value,
-      usuarioId: this.matData.userId
+      usuarioId: this.data.userId
     };
     this.profileService.postGameExperience(gameExperience)
       .subscribe(val => {
-        this.matData.next();
+        this.data.next();
+        this.matData.closeAll();
       });
   }
 

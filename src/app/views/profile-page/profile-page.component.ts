@@ -13,6 +13,7 @@ import {CreateTournamentDialogComponent} from "../../components/dialogs/create-t
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.css']
 })
+
 export class ProfilePageComponent implements OnInit {
 
   // Codigo Obtenido por el route param

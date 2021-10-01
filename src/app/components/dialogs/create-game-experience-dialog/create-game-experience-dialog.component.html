@@ -13,14 +13,14 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <mat-label>Experience Level</mat-label>
-            <input matInput type="number" 
-                appearance="fill" 
+            <input matInput type="number"
+                appearance="fill"
                 formControlName="experienceLevel"
                 min="1"
                 max="10" required/>
         </mat-form-field>
         <div style="display: flex; width: 100%; justify-content: space-evenly;">
-            <button mat-raised-button color="primary" (click)="submit()" mat-dialog-close>Create</button>
+            <button mat-raised-button color="primary" type="submit" (click)="submit()">Create</button>
             <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
         </div>
     </form>

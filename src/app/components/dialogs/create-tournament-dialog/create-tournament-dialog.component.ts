@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -21,20 +21,25 @@ export class CreateTournamentDialogComponent implements OnInit {
 
   games!: Game[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) private matData: any,
-    private profileService: ProfileService) { }
+  constructor(private matData: MatDialog,
+    private profileService: ProfileService, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit(): void {
   }
 
   submit() {
+    if (!this.formGroup.valid)
+      return;
+
     let newTournamente: UserCompetencia = {
       nombre: this.formGroup.controls.nombre.value,
       date: (new Date(this.formGroup.controls.date.value)).toISOString().split('T')[0],
       puesto: this.formGroup.controls.puesto.value
     }
-    this.profileService.postTournament(newTournamente, this.matData.userId).subscribe(res => {
-      this.matData.next();
+
+    this.profileService.postTournament(newTournamente, this.data.userId).subscribe(res => {
+      this.data.next();
+      this.matData.closeAll();
     });
   }
 
