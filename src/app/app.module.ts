@@ -17,9 +17,11 @@ import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.
 import { ProfilePageComponent } from './views/profile-page/profile-page.component';
 import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
+import {Component} from '@angular/core';
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -32,6 +34,7 @@ import { CreateGameExperienceDialogComponent } from './components/dialogs/create
     ProfilePageComponent,
     ConfirmDeleteDialogComponent,
     CreateGameExperienceDialogComponent,
+
 
   ],
   imports: [
