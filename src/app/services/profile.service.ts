@@ -51,5 +51,11 @@ export class ProfileService {
     return this.Http.get<Competencia[]>(url);
   }
 
+  deleteTournament(id: number): Observable<any>{
+    console.log("delete");
+    const url = `http://localhost:3000/competencias/${id}`;
+    return this.Http.delete(url);
+  }
+
 }
 

@@ -103,11 +103,10 @@
                       (click)="toggleEditMode(element)">
                       {{element.editMode ? "Save" : "Edit"}}
                     </button>
-                    |
                     <button
                       mat-raised-button
                       color="warn"
-                      (click)="openDeleteConfirmDialog(element)">
+                      (click)="openDeleteConfirmTournamentDialog(element)">
                       {{element.editMode ? "Cancel" : "Delete"}}
                     </button>
                   </td>

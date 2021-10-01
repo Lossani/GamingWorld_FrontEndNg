@@ -57,6 +57,12 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
+  deleteTournament(element: Competencia): void{
+    this.profileService.deleteTournament(element.id).subscribe(val => {
+      this.tournaments = this.tournaments.filter(elem => (elem.id != element.id));
+    });
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(data => {
       this.profileCode = data.profileCode;
@@ -94,6 +100,17 @@ export class ProfilePageComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
         action: "Delete Game Experience",
+        confirmFunction: confirmFunction
+      }
+    })
+  }
+  openDeleteConfirmTournamentDialog(element: Competencia): void{
+    const confirmFunction = () => {
+      this.deleteTournament(element);
+    }
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        action: "Delete Tournament",
         confirmFunction: confirmFunction
       }
     })
