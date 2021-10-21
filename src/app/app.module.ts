@@ -21,6 +21,7 @@ import {Component} from '@angular/core';
 import {CreateTournamentDialogComponent} from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 import { TournamentPageComponent } from './views/tournament-page/tournament-page.component';
 import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
+import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
 
 
 
@@ -41,6 +42,7 @@ import { TournamentCardComponent } from './components/tournament-card/tournament
     CreateTournamentDialogComponent,
     TournamentPageComponent,
     TournamentCardComponent,
+    ConfirmSigninTournamentComponent,
 
 
   ],

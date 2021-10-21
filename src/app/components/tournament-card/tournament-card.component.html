@@ -8,6 +8,9 @@
         {{tournament.description}}
     </mat-card-content>
     <mat-card-actions>
-        <button class="full-length-button" mat-raised-button color="primary">Sign into the Tournament</button>
+        <button class="full-length-button" 
+            mat-raised-button 
+            color="primary"
+            (click)="openConfirmRegistration()">Sign into the Tournament</button>
     </mat-card-actions>
 </mat-card>

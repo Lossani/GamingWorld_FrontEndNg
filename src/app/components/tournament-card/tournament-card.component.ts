@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Tournament } from 'src/app/entities/tournament-entity';
+import { ConfirmSigninTournamentComponent } from '../dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
 
 @Component({
   selector: 'app-tournament-card',
@@ -11,9 +13,16 @@ export class TournamentCardComponent implements OnInit {
   @Input()
   tournament?: Tournament;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  openConfirmRegistration() {
+    const dialogRef = this.dialog.open(ConfirmSigninTournamentComponent, {
+      data: {
+        title: this.tournament?.title
+      }
+    });
+  }
 }
