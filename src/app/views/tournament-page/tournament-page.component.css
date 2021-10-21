@@ -1,0 +1,12 @@
+#PrincipalContainer {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    padding: 0 5rem;
+    gap: 10px;
+}
+
+#TournamentsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}

@@ -19,6 +19,8 @@ import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delet
 import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
 import {Component} from '@angular/core';
 import {CreateTournamentDialogComponent} from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
+import { TournamentPageComponent } from './views/tournament-page/tournament-page.component';
+import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
 
 
 
@@ -37,6 +39,8 @@ import {CreateTournamentDialogComponent} from "./components/dialogs/create-tourn
     ConfirmDeleteDialogComponent,
     CreateGameExperienceDialogComponent,
     CreateTournamentDialogComponent,
+    TournamentPageComponent,
+    TournamentCardComponent,
 
 
   ],

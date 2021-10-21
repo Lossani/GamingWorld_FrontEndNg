@@ -1,0 +1,13 @@
+<mat-card *ngIf="tournament">
+    <mat-card-header>
+        <mat-card-title>
+            {{tournament.title}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        {{tournament.description}}
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="full-length-button" mat-raised-button color="primary">Sign into the Tournament</button>
+    </mat-card-actions>
+</mat-card>
