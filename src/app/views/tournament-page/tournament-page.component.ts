@@ -70,6 +70,7 @@ export class TournamentPageComponent implements OnInit {
 
     this.submitted = true;
     this.tournament.userId = 1;
+    this.tournament.gameId = this.registerForm.controls.game.value;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value;

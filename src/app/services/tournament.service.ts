@@ -9,7 +9,7 @@ import { Tournament } from '../entities/tournament-entity';
 })
 export class TournamentService {
 
-  private baseURL = "http://localhost:3000/tournaments";
+  private baseURL = "https://json-test-server.herokuapp.com/tournaments";
 
   httpOptions = {
     headers: new HttpHeaders({
