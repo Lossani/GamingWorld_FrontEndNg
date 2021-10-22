@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>
+  Create Team
+</h2>
+<mat-dialog-content>
+  <form style="display: flex; flex-direction: column;" >
+    <mat-form-field class="form-field">
+      <mat-label>Name Team</mat-label>
+      <input matInput type="text" formControlName="nombre" required/>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Number of Members</mat-label>
+      <input matInput type="number" formControlName="numeroMiembros" required/>
+    </mat-form-field>
+    <div style="display: flex; width: 100%; justify-content: space-evenly;">
+      <button mat-raised-button color="primary" type="submit" >Create</button>
+      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>
