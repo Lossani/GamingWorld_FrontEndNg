@@ -84,6 +84,7 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.prizePool = 0;
 
     this.addUrgency();
+    this.cancelButton();
   }
 
   addUrgency() {
@@ -124,6 +125,17 @@ export class TournamentPageComponent implements OnInit {
 
   togglePanel() {
     this.panelOpenState = !this.panelOpenState;
+  }
+  clearForm() {
+    this.registerForm.reset();
+    for (let control in this.registerForm.controls) {
+      this.registerForm.controls[control].setErrors(null);
+    }
+  }
+  cancelButton()
+  {
+    this.clearForm();
+    this.togglePanel();
   }
 
   findTournaments(isTeam: boolean){
