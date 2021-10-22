@@ -7,6 +7,8 @@ import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/
 import {Competencia, User, UserGame} from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
 import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
+import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
+import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -155,4 +157,11 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  openAddTeamDialog(): void {
+    const dialogRef = this.dialog.open(CreateTeamDialogComponent);
+  }
+
+  openAddMembersDialog(): void {
+    const dialogRef = this.dialog.open(AddMembersDialogComponent);
+  }
 }
