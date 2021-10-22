@@ -7,7 +7,7 @@
             <mat-label>Game</mat-label>
             <mat-select formControlName="gameId" required>
                     <mat-option *ngFor="let game of games" [value]="game.id">
-                        {{game.nombre}}
+                        {{game.name}}
                     </mat-option>
             </mat-select>
         </mat-form-field>

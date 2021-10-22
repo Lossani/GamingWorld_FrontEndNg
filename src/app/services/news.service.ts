@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { article, ListOfArticles, source, topHeadlines } from '../entities/news-entity';
 import { TopGames } from '../entities/twitch-global-stats.entity';

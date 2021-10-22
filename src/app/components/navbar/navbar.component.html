@@ -10,6 +10,9 @@
         <button routerLink='' matTooltip="News Page" mat-icon-button *ngIf="router.url != '/'">
             <mat-icon>dashboard</mat-icon>
         </button>
+        <button routerLink='/tournaments' matTooltip="Tournaments" mat-icon-button>
+            <mat-icon>emoji_events</mat-icon>
+        </button>
         <button mat-icon-button>
             <mat-icon>group</mat-icon>
         </button>
@@ -17,7 +20,7 @@
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #profileMenu="matMenu">
-            <button [routerLink]="'profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>Profile</button>
+            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>Profile</button>
             <button  mat-menu-item matTooltip="Close session">Log out</button>
         </mat-menu>
     </div>
