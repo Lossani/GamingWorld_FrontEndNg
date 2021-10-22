@@ -115,6 +115,52 @@
                 <tr mat-header-row *matHeaderRowDef="displayedTournamentColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedTournamentColumns;"></tr>
               </table>
+
+
+              <br>
+              <div class="section-title">
+                <h2 class="center">Teams</h2>
+                <button mat-button color="primary" (click)="openAddTeamDialog()">Add Team</button>
+              </div>
+              <mat-divider></mat-divider>
+              <table mat-table *ngIf="teams" [dataSource]="teams">
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name Team</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.nombre }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef>Number of members</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.numeroMiembros }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef>Members</th>
+                  <td mat-cell *matCellDef="let element">
+                      <button mat-raised-button color="primary" (click)="openAddMembersDialog()">
+                        Add Members
+                      </button>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      (click)="element.editMode ? toggleEditMode(element) : openDeleteTeamConfirmDialog(element)">
+                      Delete
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedTournamentColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedTournamentColumns;"></tr>
+              </table>
+              <!--Hasta acá-->
+
+
             </div>
         </mat-card-content>
     </mat-card>

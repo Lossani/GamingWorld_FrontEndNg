@@ -4,9 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import {Competencia, User, UserGame} from 'src/app/entities/user-entity';
+import {Competencia, Team, User, UserGame} from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
 import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
+import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
+import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -29,6 +31,7 @@ export class ProfilePageComponent implements OnInit {
 
   gameExperiences!: UserGame[];
   tournaments!: Competencia[];
+  teams!: Team[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
@@ -57,9 +60,28 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
+  getTeams()
+  {
+    this.profileService.getTeams(this.profileCode)
+      .subscribe(Teams => {
+        this.teams = Teams.map(team => {
+          team.nombreFormController = new FormControl(team.nombre);
+          team.numeroMiembrosFormController = new FormControl(team.numeroMiembros);
+          return team;
+        });
+      });
+  }
+
   deleteTournament(element: Competencia): void{
     this.profileService.deleteTournament(element.id).subscribe(val => {
       this.tournaments = this.tournaments.filter(elem => (elem.id != element.id));
+    });
+  }
+
+  deleteTeam(element: Team): void
+  {
+    this.profileService.deleteTeam(element.id).subscribe(val => {
+      this.teams = this.teams.filter(elem => (elem.id != element.id));
     });
   }
 
@@ -72,6 +94,7 @@ export class ProfilePageComponent implements OnInit {
         });
         this.getGameExperiences(this.profileCode);
         this.getTournaments(this.profileCode);
+        this.getTeams();
     });
   }
 
@@ -101,7 +124,8 @@ export class ProfilePageComponent implements OnInit {
   saveChangedTournament(element: Competencia): void {
     this.profileService.putTournament(element, 1)
       .subscribe(res => {
-        element.puesto = res.puesto
+        element.nombre = res.nombre;
+        element.puesto = res.puesto;
         this.toggleEditMode(element);
       });
   }
@@ -155,4 +179,31 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  openAddTeamDialog(): void {
+    const addToList = () => {
+      this.getTeams();
+    }
+    this.dialog.open(CreateTeamDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        next: addToList
+      }
+    });
+  }
+
+  openAddMembersDialog(): void {
+    const dialogRef = this.dialog.open(AddMembersDialogComponent);
+  }
+
+  openDeleteTeamConfirmDialog(element: Team) {
+    const confirmFunction = () => {
+      this.deleteTeam(element);
+    }
+   this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        action: "Delete Team",
+        confirmFunction: confirmFunction
+      }
+    })
+  }
 }

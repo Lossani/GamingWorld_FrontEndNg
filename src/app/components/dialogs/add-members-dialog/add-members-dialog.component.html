@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>
+Add Members
+</h2>
+<mat-dialog-content>
+  <form style="display: flex; flex-direction: column;" >
+    <mat-form-field class="form-field">
+      <mat-label>Select Members</mat-label>
+      <mat-select formControlName="user" required>
+      </mat-select>
+    </mat-form-field>
+
+    <div style="display: flex; width: 100%; justify-content: space-evenly;">
+      <button mat-raised-button color="primary" type="submit" >Add</button>
+      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

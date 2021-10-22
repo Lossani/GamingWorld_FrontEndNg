@@ -22,6 +22,16 @@ export interface UserCompetencia {
     puesto: string
 }
 
+export interface Team
+{
+  id?: number,
+  userId: number,
+  nombre: string,
+  numeroMiembros: number,
+  nombreFormController?: FormControl,
+  numeroMiembrosFormController?: FormControl
+}
+
 export interface Competencia {
     id: number,
     nombre: string,
