@@ -1,5 +1,5 @@
 export interface Game {
     id: Number,
-    nombre: string,
-    genero: string
+    name: string,
+    gender: string
 }

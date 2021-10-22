@@ -1,15 +1,23 @@
 <mat-card *ngIf="tournament">
-    <mat-card-header>
+  <mat-card-content>
+    <img mat-card-image src="{{tournament.urlToImage}}">
+  </mat-card-content>
         <mat-card-title>
             {{tournament.title}}
         </mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-        {{tournament.description}}
-    </mat-card-content>
+
+      <p>{{tournament.description}}</p>
+      <p *ngIf="game">{{game.name}}</p>
+      <p>Participation: {{tournament.participantLimit}}</p>
+      <p>Prize Pool: {{tournament.prizePool}}$</p>
+      <p>Date: {{tournament.tDate}}</p>
+      <p>Hour: {{tournament.tHour}}</p>
+
+  </mat-card-content>
     <mat-card-actions>
-        <button class="full-length-button" 
-            mat-raised-button 
+        <button class="full-length-button"
+            mat-raised-button
             color="primary"
             (click)="openConfirmRegistration()">Sign into the Tournament</button>
     </mat-card-actions>

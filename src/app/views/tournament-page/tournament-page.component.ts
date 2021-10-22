@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
+import {TournamentService} from "../../services/tournament.service";
+import {Tournament} from "../../entities/tournament-entity";
+import {MatDialog} from "@angular/material/dialog";
+import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
 
 @Component({
   selector: 'app-tournament-page',
@@ -11,6 +15,7 @@ import { GameService } from 'src/app/services/game.service';
 export class TournamentPageComponent implements OnInit {
 
   games!: Game[];
+  tournaments!: Tournament[];
 
   newTournament = new FormGroup({
     title: new FormControl(''),
@@ -25,14 +30,21 @@ export class TournamentPageComponent implements OnInit {
     })
   });
 
-  constructor(private gameService: GameService) { 
+  constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog) {
     gameService.getGames().subscribe(data => {
       this.games = data;
     });
+    tournamentService.getTournaments().subscribe(data => {
+      this.tournaments = data;
+    });
+
   }
 
   ngOnInit(): void {
-    
+
+  }
+  openPremiumInfoDialog(): void{
+    const dialogRef = this.dialog.open(PremiumInformationDialogComponent);
   }
 
 }

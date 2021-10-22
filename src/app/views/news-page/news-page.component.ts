@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { topHeadlines } from 'src/app/entities/news-entity';
-import { NewsService } from 'src/app/services/news-service.service';
+import { NewsService } from 'src/app/services/news.service';
 import {MatDialog} from "@angular/material/dialog";
 import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
 import { TopGames } from 'src/app/entities/twitch-global-stats.entity';

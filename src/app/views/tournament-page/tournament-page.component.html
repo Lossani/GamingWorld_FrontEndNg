@@ -1,55 +1,78 @@
 <app-navbar [isInNews]="false"></app-navbar>
 <div class="navbar-separator"></div>
-
-<div id="PrincipalContainer">
+<div style="width: 80%; margin-left: auto;margin-right: auto">
+  <div id="PrincipalContainer">
+    <div>jhgkgkm</div>
     <div id="TournamentsContainer">
-        <mat-accordion>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Post a tournament
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form [formGroup]="newTournament">
-                    <mat-form-field class="form-field">
-                        <mat-label>Tournament Title</mat-label>
-                        <input type="text" matInput formControlName="title">
-                    </mat-form-field>
-                    <mat-form-field class="form-field">
-                        <mat-label>Tournament Description</mat-label>
-                        <textarea matInput rows="5" formControlName="description"></textarea>
-                    </mat-form-field>
-                    <mat-form-field class="form-field">
-                        <mat-label>Game</mat-label>
-                        <mat-select formControlName="game">
-                            <mat-option *ngFor="let game of games"
-                                [value]="game.id">
-                                    {{game.nombre}}
-                                </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
-                    <div *ngIf="newTournament.controls.isTeam.value" formGroupName="teamTournament">
-                        <mat-form-field class="form-field">
-                            <mat-label>Number of Teams</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let val of [4, 8, 16, 32]"
-                                    [value]="val">{{val}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="!newTournament.controls.isTeam.value" formGroupName="soloTournament">
-                        <mat-form-field class="form-field">
-                            <mat-label>Number of Participants</mat-label>
-                            <input type="number" matInput min="0" max="100">
-                        </mat-form-field>
-                    </div>
-                    <button mat-raised-button color="primary" class="full-length-button">Publicate Tournament</button>
-                </form>
-            </mat-expansion-panel>
-        </mat-accordion>
-        <app-tournament-card [tournament]="{title: 'Hello There', description: 'asdasd', maxCapacity: 1}"></app-tournament-card>
-        <app-tournament-card [tournament]="{title: 'Hello There', description: 'asdasd', maxCapacity: 1}"></app-tournament-card>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Post a tournament
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="newTournament">
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Title</mat-label>
+              <input type="text" matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Description</mat-label>
+              <textarea matInput rows="5" formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Game</mat-label>
+              <mat-select formControlName="game">
+                <mat-option *ngFor="let game of games"
+                            [value]="game.id">
+                  {{game.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
+            <div *ngIf="newTournament.controls.isTeam.value" formGroupName="teamTournament">
+              <mat-form-field class="form-field">
+                <mat-label>Number of Teams</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let val of [4, 8, 16, 32]"
+                              [value]="val">{{val}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngIf="!newTournament.controls.isTeam.value" formGroupName="soloTournament">
+              <mat-form-field class="form-field">
+                <mat-label>Number of Participants</mat-label>
+                <input type="number" matInput min="0" max="100">
+              </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" class="full-length-button">Publicate Tournament</button>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <app-tournament-card *ngFor="let tournament of tournaments" [tournament]="tournament"></app-tournament-card>
     </div>
-    <div id="StreamerInfo"></div>
+    <div id="StreamerInfo">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Support GamingWorld
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p style="padding-bottom: 5vh">
+            Become a premium member and get access to exclusive tools to find
+            users with the same competitive level and interest than you for just 5$.
+          </p>
+          <div style="width: 100%; display: flex; justify-content: center;">
+            <mat-icon class="credit-card-icon">
+              credit_card
+            </mat-icon>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary"   class="full-length-button" (click)="openPremiumInfoDialog()">More Information</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
