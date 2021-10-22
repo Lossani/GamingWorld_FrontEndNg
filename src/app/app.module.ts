@@ -22,6 +22,7 @@ import {CreateTournamentDialogComponent} from "./components/dialogs/create-tourn
 import { TournamentPageComponent } from './views/tournament-page/tournament-page.component';
 import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
 import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 
 
@@ -54,6 +55,7 @@ import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-s
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatDatepickerModule
 
   ],
   providers: [],

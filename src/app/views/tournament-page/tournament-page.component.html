@@ -2,54 +2,83 @@
 <div class="navbar-separator"></div>
 <div style="width: 80%; margin-left: auto;margin-right: auto">
   <div id="PrincipalContainer">
-    <div>jhgkgkm</div>
+    <div>
+      <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Filter By
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-action-list>
+            <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
+            <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
+          </mat-action-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    </div>
     <div id="TournamentsContainer">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Post a tournament
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <form [formGroup]="newTournament">
-            <mat-form-field class="form-field">
-              <mat-label>Tournament Title</mat-label>
-              <input type="text" matInput formControlName="title">
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Tournament Description</mat-label>
-              <textarea matInput rows="5" formControlName="description"></textarea>
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Game</mat-label>
-              <mat-select formControlName="game">
-                <mat-option *ngFor="let game of games"
-                            [value]="game.id">
-                  {{game.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
-            <div *ngIf="newTournament.controls.isTeam.value" formGroupName="teamTournament">
+          <form [formGroup]="registerForm" (submit)="submitForm()">
               <mat-form-field class="form-field">
-                <mat-label>Number of Teams</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let val of [4, 8, 16, 32]"
-                              [value]="val">{{val}}</mat-option>
+                <mat-label>Tournament Title</mat-label>
+                <input type="text" matInput formControlName="title">
+              </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Banner</mat-label>
+              <input type="text" matInput formControlName="urlToImage">
+            </mat-form-field>
+            <img *ngIf="registerForm.controls.urlToImage.value" [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
+              <mat-form-field class="form-field">
+                <mat-label>Tournament Description</mat-label>
+                <textarea matInput rows="5" formControlName="description"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="datetime-local" formControlName="date" placeholder="Start Date">
+              </mat-form-field>
+              <mat-form-field class="form-field">
+                <mat-label>Game</mat-label>
+                <mat-select formControlName="game">
+                  <mat-option *ngFor="let game of games"
+                              [value]="game.id">
+                    {{game.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
-            </div>
-            <div *ngIf="!newTournament.controls.isTeam.value" formGroupName="soloTournament">
-              <mat-form-field class="form-field">
-                <mat-label>Number of Participants</mat-label>
-                <input type="number" matInput min="0" max="100">
-              </mat-form-field>
-            </div>
-            <button mat-raised-button color="primary" class="full-length-button">Publicate Tournament</button>
+              <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
+              <div [hidden]="!registerForm.controls.isTeam.value" formGroupName="teamTournament">
+                <mat-form-field class="form-field">
+                  <mat-label  >Number of Teams</mat-label>
+                  <mat-select>
+                    <mat-option formControlName="teamQuantity" *ngFor="let val of [4, 8, 16, 32]"
+                                [value]="val">{{val}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div [hidden]="registerForm.controls.isTeam.value" formGroupName="soloTournament">
+                <mat-form-field class="form-field">
+                  <mat-label >Number of Participants</mat-label>
+                  <input type="number" formControlName="playerCapacity" matInput min="0" max="100">
+                </mat-form-field>
+              </div>
+                <button [disabled]="!registerForm.valid" mat-flat-button color="primary" type="submit">Save</button>
+                <button  mat-flat-button color="red" (click)="togglePanel()"  >Cancel</button>
           </form>
+
         </mat-expansion-panel>
+
       </mat-accordion>
-      <app-tournament-card *ngFor="let tournament of tournaments" [tournament]="tournament"></app-tournament-card>
+
+      <app-tournament-card *ngFor="let tournament of filterTournaments" [tournament]="tournament"></app-tournament-card>
+
     </div>
     <div id="StreamerInfo">
       <mat-card>

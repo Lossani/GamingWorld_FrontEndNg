@@ -1,7 +1,8 @@
 export interface Tournament {
     title: string,
     description: string,
-    participantLimit: number,
+    teamQuantity: number,
+    playerCapacity: number,
     prizePool: number,
     tDate: string,
     postedAt: string,
