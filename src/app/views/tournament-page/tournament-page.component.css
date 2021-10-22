@@ -1,0 +1,26 @@
+#PrincipalContainer {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  padding: 0 5rem;
+  gap: 10px;
+}
+
+#TournamentsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.credit-card-icon {
+  transform: scale(3);
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 720px) {
+  #PrincipalContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5rem;
+    gap: 10px;
+  }
+}

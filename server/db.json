@@ -1,0 +1,34 @@
+{
+  "tournaments": [
+    {
+      "teamTournament": false,
+      "id": 1,
+      "userId": 1,
+      "title": "Custom LoL Clash",
+      "description": "Participate in an all new tournament in Summoners Rift agains Challenger players",
+      "urlToImage": "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/clash-2018/es_AR/a46e742ae82f9d4f9db8e34ba57873e513e727b7/assets/static/img/meta/fb-share.jpg",
+      "gameId": 1,
+      "teamQuantity": null,
+      "playerCapacity": 30,
+      "prizePool": 0,
+      "tDate": "2021-10-20",
+      "postedAt": "2021-10-19T04:35:27.374Z",
+      "tHour": "01:14"
+    },
+    {
+      "teamTournament": true,
+      "id": 2,
+      "userId": 1,
+      "title": "Custom New World War",
+      "content": "Participate in an all new war agains players from another region in Aeternum",
+      "urlToImage": "https://www.pcgamesn.com/wp-content/uploads/2020/06/new_world_screen.jpg",
+      "gameId": 2,
+      "teamQuantity": 10,
+      "playerCapacity": null,
+      "prizePool": 0,
+      "tDate": "2021-10-15",
+      "postedAt": "2021-10-13T03:25:17.274Z",
+      "tHour": "04:14"
+    }
+  ]
+}

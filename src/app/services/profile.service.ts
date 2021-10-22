@@ -72,6 +72,7 @@ export class ProfileService {
     });
   }
 
+
   deleteTournament(id: number): Observable<any>{
     console.log("delete");
     const url = `${this.URL}/competencias/${id}`;
