@@ -12,5 +12,4 @@ export interface Tournament {
     userId: number,
     gameId: number
     urlToImage: string
-
 }

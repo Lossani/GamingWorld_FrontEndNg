@@ -34,9 +34,9 @@
               </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>Tournament Banner</mat-label>
-              <input type="text" matInput formControlName="urlToImage">
+              <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
-            <img *ngIf="registerForm.controls.urlToImage.value" [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
+            <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)" [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
               <mat-form-field class="form-field">
                 <mat-label>Tournament Description</mat-label>
                 <textarea matInput rows="5" formControlName="description"></textarea>
@@ -57,8 +57,8 @@
               <div [hidden]="!registerForm.controls.isTeam.value" formGroupName="teamTournament">
                 <mat-form-field class="form-field">
                   <mat-label  >Number of Teams</mat-label>
-                  <mat-select>
-                    <mat-option formControlName="teamQuantity" *ngFor="let val of [4, 8, 16, 32]"
+                  <mat-select formControlName="teamQuantity">
+                    <mat-option  *ngFor="let val of [4, 8, 16, 32]"
                                 [value]="val">{{val}}</mat-option>
                   </mat-select>
                 </mat-form-field>

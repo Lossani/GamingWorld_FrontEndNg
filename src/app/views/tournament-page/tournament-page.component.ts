@@ -26,7 +26,7 @@ export class TournamentPageComponent implements OnInit {
   registerForm: FormGroup =  this.formBuilder.group({
     title: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
     description: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
-    urlToImage: ['', {updateOn: 'change'}],
+    urlToImage: ['', {updateOn: 'change'} ],
     game: ['', {updateOn: 'change'}],
     isTeam: [false, {updateOn: 'change'}],
     date: ['', {validators: [Validators.required], updateOn: 'change'}],
@@ -45,8 +45,10 @@ export class TournamentPageComponent implements OnInit {
     });
 
     tournamentService.getTournaments().subscribe(data => {
-      this.tournaments = data;
+
+      this.tournaments = this.sortTournaments(data);
       this.filterTournaments = this.tournaments;
+
     });
     this.tournament = {} as Tournament;
   }
@@ -63,20 +65,22 @@ export class TournamentPageComponent implements OnInit {
   submitForm() {
     let postedAt: Date = new Date();
     console.log(this.registerForm.valid);
+    let tq = this.registerForm.controls.teamTournament as FormGroup;
+    let pc = this.registerForm.controls.soloTournament as FormGroup;
 
     this.submitted = true;
     this.tournament.userId = 1;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value;
-    this.tournament.teamQuantity = this.registerForm.controls.isTeam.value ? (this.registerForm.controls).teamTournament.value.teamQuantity.value : null;
-    this.tournament.playerCapacity = this.registerForm.controls.isTeam.value ? (this.registerForm.controls).soloTournament.value.playerCapacity.value : null;
+    this.tournament.teamQuantity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : null;
+    this.tournament.playerCapacity = this.registerForm.controls.isTeam.value ? null : pc.controls.playerCapacity.value;
     this.tournament.teamTournament = this.registerForm.controls.isTeam.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
     this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();;
     this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
-
     this.tournament.postedAt = postedAt.toISOString();
+    this.tournament.prizePool = 0;
 
     this.addUrgency();
   }
@@ -84,8 +88,30 @@ export class TournamentPageComponent implements OnInit {
   addUrgency() {
     let date: Date = new Date();
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
+      this.filterTournaments.push(this.tournament);
+      this.filterTournaments = this.sortTournaments(this.filterTournaments);
     });
   }
+
+  isValidUrl(url: string){
+    var reg = new RegExp("(https|http)?://(www.)?[-a-zA-Z0-9@:%.+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%+.~#?&//=]*)", "i");
+    return reg.test(url);
+
+  }
+
+  sortTournaments(tournaments: Tournament[]){
+    tournaments.sort( (a,b) => {
+        if (new Date(a.postedAt) > new Date(b.postedAt))
+          return -1;
+        if (new Date(a.postedAt) < new Date(b.postedAt))
+          return 1;
+        return 0;
+    });
+    return tournaments;
+  }
+
+
+
 
   ngOnInit(): void {
 
@@ -101,6 +127,7 @@ export class TournamentPageComponent implements OnInit {
 
   findTournaments(isTeam: boolean){
     this.filterTournaments = this.tournaments.filter( ({teamTournament}) => (isTeam ? teamTournament : !teamTournament) )
+    this.filterTournaments = this.sortTournaments(this.filterTournaments);
   }
 
 }

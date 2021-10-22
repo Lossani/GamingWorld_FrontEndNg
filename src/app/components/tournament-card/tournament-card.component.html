@@ -5,12 +5,15 @@
         <mat-card-title>
             {{tournament.title}}
         </mat-card-title>
+        <mat-card-subtitle>
+
+        </mat-card-subtitle>
     <mat-card-content>
 
       <p>{{tournament.description}}</p>
       <p *ngIf="game">{{game.name}}</p>
-      <p>Participation: {{tournament.playerCapacity}}</p>
-      <p>Prize Pool: {{tournament.prizePool}}$</p>
+      <p>Limit: {{tournament.teamTournament ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.teamTournament ? " Teams" : " Participants"}}</p>
+      <p>Prize Pool: {{tournament.prizePool}} $</p>
       <p>Date: {{tournament.tDate}}</p>
       <p>Hour: {{tournament.tHour}}</p>
 
