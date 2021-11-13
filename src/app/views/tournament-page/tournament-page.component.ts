@@ -83,11 +83,11 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.postedAt = postedAt.toISOString();
     this.tournament.prizePool = 0;
 
-    this.addUrgency();
+    this.addTournament();
     this.cancelButton();
   }
 
-  addUrgency() {
+  addTournament() {
     let date: Date = new Date();
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
       this.filterTournaments.push(this.tournament);
