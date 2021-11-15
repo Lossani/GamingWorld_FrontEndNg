@@ -4,6 +4,8 @@ import {User} from "../../entities/user-entity";
 import {UsersService} from "../../services/users.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {map} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login-page',
@@ -19,20 +21,24 @@ export class LoginPageComponent implements OnInit {
 
   user!:User
 
+  constructor( private usersService: UsersService, public formBuilder: FormBuilder,private router: Router ) {
+    this.user = {} as User;
+  }
+
   login() {
     this.user.username = this.loginForm.controls.username.value;
     this.user.password = this.loginForm.controls.password.value;
     console.log(this.user)
-    this.usersService.postLogin(this.user).subscribe( (response)=>{
-      console.log(response.headers)
+    this.usersService.postLogin(this.user).pipe().subscribe(
+      (data: HttpResponse<any>) => {
+        console.log(data.headers.get('authorization'));
+      },
+      error => {
       }
-
     );
   }
 
-  constructor( private usersService: UsersService, public formBuilder: FormBuilder ) {
-    this.user = {} as User;
-  }
+
 
   ngOnInit(): void {
   }
