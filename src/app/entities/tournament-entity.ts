@@ -5,11 +5,12 @@ export interface Tournament {
     playerCapacity: number,
     prizePool: number,
     tDate: string,
-    postedAt: string,
+    createdAt: string,
     tHour: string,
-    teamTournament: false,
+    isTeamMode: false,
     id: number,
     userId: number,
     gameId: number
     urlToImage: string
+
 }

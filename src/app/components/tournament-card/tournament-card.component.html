@@ -12,16 +12,11 @@
 
       <p>{{tournament.description}}</p>
       <p *ngIf="game">{{game.name}}</p>
-      <p>Limit: {{tournament.teamTournament ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.teamTournament ? " Teams" : " Participants"}}</p>
+      <p>Limit: {{tournament.isTeamMode ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
       <p>Prize Pool: {{tournament.prizePool}} $</p>
       <p>Date: {{tournament.tDate}}</p>
       <p>Hour: {{tournament.tHour}}</p>
 
   </mat-card-content>
-    <mat-card-actions>
-        <button class="full-length-button"
-            mat-raised-button
-            color="primary"
-            (click)="openConfirmRegistration()">Sign into the Tournament</button>
-    </mat-card-actions>
+
 </mat-card>

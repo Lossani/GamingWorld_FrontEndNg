@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Tournament } from 'src/app/entities/tournament-entity';
-import { ConfirmSigninTournamentComponent } from '../dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
 import {Game} from "../../entities/game-entity";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,16 +16,13 @@ export class TournamentCardComponent implements OnInit {
   tournament?: Tournament;
   game?: Game;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, public router: Router) { }
+
+
 
   ngOnInit(): void {
   }
 
-  openConfirmRegistration() {
-    const dialogRef = this.dialog.open(ConfirmSigninTournamentComponent, {
-      data: {
-        title: this.tournament?.title
-      }
-    });
-  }
+
+
 }

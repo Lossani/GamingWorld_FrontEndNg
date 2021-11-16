@@ -17,7 +17,6 @@ import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.
 import { ProfilePageComponent } from './views/profile-page/profile-page.component';
 import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import {Component} from '@angular/core';
 import {CreateTournamentDialogComponent} from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 import { TournamentPageComponent } from './views/tournament-page/tournament-page.component';
 import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
@@ -25,6 +24,7 @@ import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-s
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { CreateTeamDialogComponent } from './components/dialogs/create-team-dialog/create-team-dialog.component';
 import { AddMembersDialogComponent } from './components/dialogs/add-members-dialog/add-members-dialog.component';
+import { TournamentViewPageComponent } from './views/tournament-view-page/tournament-view-page.component';
 
 
 
@@ -48,6 +48,7 @@ import { AddMembersDialogComponent } from './components/dialogs/add-members-dial
     ConfirmSigninTournamentComponent,
     CreateTeamDialogComponent,
     AddMembersDialogComponent,
+    TournamentViewPageComponent,
 
 
   ],

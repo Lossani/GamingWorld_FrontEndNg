@@ -77,7 +77,26 @@
 
       </mat-accordion>
 
-      <app-tournament-card *ngFor="let tournament of filterTournaments" [tournament]="tournament"></app-tournament-card>
+      <div *ngFor="let tournament of filterTournaments">
+        <mat-card>
+          <app-tournament-card [tournament]="tournament" ></app-tournament-card>
+          <mat-card-actions align="end">
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openConfirmRegistration()">Sign into the Tournament</button>
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink='/tournaments/{{tournament.id}}'
+            >View Tournament</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+
+
 
     </div>
     <div id="StreamerInfo">

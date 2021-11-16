@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {MatDialog} from "@angular/material/dialog";
 import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
-import {formatDate} from "@angular/common";
+
+import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
 
 @Component({
   selector: 'app-tournament-page',
@@ -73,15 +74,16 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.gameId = this.registerForm.controls.game.value;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
-    this.tournament.urlToImage = this.registerForm.controls.urlToImage.value;
+    this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
+    console.log(this.registerForm.controls.urlToImage.value.toString());
     this.tournament.teamQuantity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : null;
     this.tournament.playerCapacity = this.registerForm.controls.isTeam.value ? null : pc.controls.playerCapacity.value;
-    this.tournament.teamTournament = this.registerForm.controls.isTeam.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
-    this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();;
+    this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
     this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
-    this.tournament.postedAt = postedAt.toISOString();
+    this.tournament.createdAt = postedAt.toISOString();
     this.tournament.prizePool = 0;
+    this.tournament.isTeamMode = this.registerForm.controls.isTeam.value;
 
     this.addTournament();
     this.cancelButton();
@@ -90,6 +92,7 @@ export class TournamentPageComponent implements OnInit {
   addTournament() {
     let date: Date = new Date();
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
+      this.tournament.id= response.id;
       this.filterTournaments.push(this.tournament);
       this.filterTournaments = this.sortTournaments(this.filterTournaments);
     });
@@ -103,9 +106,9 @@ export class TournamentPageComponent implements OnInit {
 
   sortTournaments(tournaments: Tournament[]){
     tournaments.sort( (a,b) => {
-        if (new Date(a.postedAt) > new Date(b.postedAt))
+        if (new Date(a.createdAt) > new Date(b.createdAt))
           return -1;
-        if (new Date(a.postedAt) < new Date(b.postedAt))
+        if (new Date(a.createdAt) < new Date(b.createdAt))
           return 1;
         return 0;
     });
@@ -139,8 +142,17 @@ export class TournamentPageComponent implements OnInit {
   }
 
   findTournaments(isTeam: boolean){
-    this.filterTournaments = this.tournaments.filter( ({teamTournament}) => (isTeam ? teamTournament : !teamTournament) )
+    this.filterTournaments = this.tournaments.filter( ({isTeamMode}) => (isTeam ? isTeamMode : !isTeamMode) )
     this.filterTournaments = this.sortTournaments(this.filterTournaments);
+  }
+
+  openConfirmRegistration() {
+    const dialogRef = this.dialog.open(ConfirmSigninTournamentComponent, {
+      data: {
+        title: this.tournament?.title
+      }
+    });
+
   }
 
 }
