@@ -25,6 +25,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { CreateTeamDialogComponent } from './components/dialogs/create-team-dialog/create-team-dialog.component';
 import { AddMembersDialogComponent } from './components/dialogs/add-members-dialog/add-members-dialog.component';
 import { TournamentViewPageComponent } from './views/tournament-view-page/tournament-view-page.component';
+import { PremiumCardComponent } from './components/premium-card/premium-card.component';
 
 
 
@@ -49,6 +50,7 @@ import { TournamentViewPageComponent } from './views/tournament-view-page/tourna
     CreateTeamDialogComponent,
     AddMembersDialogComponent,
     TournamentViewPageComponent,
+    PremiumCardComponent,
 
 
   ],

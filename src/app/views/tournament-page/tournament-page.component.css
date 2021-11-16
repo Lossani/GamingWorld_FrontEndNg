@@ -11,10 +11,7 @@
   gap: 10px;
 }
 
-.credit-card-icon {
-  transform: scale(3);
-  padding: 0.5rem 0;
-}
+
 
 @media (max-width: 720px) {
   #PrincipalContainer {

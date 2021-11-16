@@ -5,7 +5,7 @@ import { GameService } from 'src/app/services/game.service';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {MatDialog} from "@angular/material/dialog";
-import {PremiumInformationDialogComponent} from "../../components/dialogs/premium-information-dialog/premium-information-dialog.component";
+
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
 
@@ -122,9 +122,7 @@ export class TournamentPageComponent implements OnInit {
 
   }
 
-  openPremiumInfoDialog(): void{
-    const dialogRef = this.dialog.open(PremiumInformationDialogComponent);
-  }
+
 
   togglePanel() {
     this.panelOpenState = !this.panelOpenState;
