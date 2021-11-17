@@ -43,7 +43,7 @@ export interface TournamentExperience {
   positionFormController: FormControl
 }
 
-export interface FavouriteGame {
+export interface FavoriteGame {
   id: number,
   userId: number,
   gameId: number,

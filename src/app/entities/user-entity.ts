@@ -1,4 +1,4 @@
-import {FavouriteGame, GameExperience, StreamerSponsor, TournamentExperience} from "./profile-entity";
+import {FavoriteGame, GameExperience, StreamerSponsor, TournamentExperience} from "./profile-entity";
 
 export interface User {
     id: Number,
@@ -6,7 +6,7 @@ export interface User {
     email: string,
     "game-experiences": GameExperience[],
     "tournament-experiences": TournamentExperience[],
-    "favourite-games": FavouriteGame[],
+    "favourite-games": FavoriteGame[],
     "streamer-sponsors": StreamerSponsor[],
     password?:string;
 }

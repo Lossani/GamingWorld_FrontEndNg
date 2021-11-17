@@ -9,7 +9,8 @@ import {CreateTournamentDialogComponent} from "../../components/dialogs/create-t
 import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
 import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 import {User} from "../../entities/user-entity";
-import {Team, TournamentExperience, UserGame} from "../../entities/profile-entity";
+import {FavoriteGame, Team, TournamentExperience, UserGame} from "../../entities/profile-entity";
+import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -28,11 +29,13 @@ export class ProfilePageComponent implements OnInit {
   // Juegos donde tiene experiencia
   displayedTournamentColumns: string[] = ["name", "date", "position", "actions"];
   // variable que guarda los nombres de los torneos que se van a mostrar
-
+  displayedFavoriteColumns: string[] = ["name", "actions"];
+  // variable que guarda los juegos favoritos del usuario
 
   gameExperiences!: UserGame[];
   tournaments!: TournamentExperience[];
   teams!: Team[];
+  favoriteGames!: FavoriteGame[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
@@ -194,6 +197,10 @@ export class ProfilePageComponent implements OnInit {
 
   openAddMembersDialog(): void {
     const dialogRef = this.dialog.open(AddMembersDialogComponent);
+  }
+
+  openAddFavoriteGameDialog(): void{
+    this.dialog.open(CreateFavoriteGameDialogComponent);
   }
 
   openDeleteTeamConfirmDialog(element: Team) {

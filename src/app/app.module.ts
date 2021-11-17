@@ -25,6 +25,7 @@ import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-s
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { CreateTeamDialogComponent } from './components/dialogs/create-team-dialog/create-team-dialog.component';
 import { AddMembersDialogComponent } from './components/dialogs/add-members-dialog/add-members-dialog.component';
+import { CreateFavoriteGameDialogComponent } from './components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component';
 
 
 
@@ -48,6 +49,7 @@ import { AddMembersDialogComponent } from './components/dialogs/add-members-dial
     ConfirmSigninTournamentComponent,
     CreateTeamDialogComponent,
     AddMembersDialogComponent,
+    CreateFavoriteGameDialogComponent,
 
 
   ],
