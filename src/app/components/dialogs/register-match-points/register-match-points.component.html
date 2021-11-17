@@ -11,6 +11,11 @@
           <div class="flex-box">
             <div>{{participant.name}}</div>
             <div>{{participant.points}}</div>
+            <div class="example-button-container">
+              <button mat-mini-fab color="warn"(click)="deleteParticipant(participant)" aria-label="Example icon button with a filter list icon">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </div>
         </mat-list>
       </mat-card>
@@ -25,9 +30,8 @@
                    [formControl]="myControl"
                    [matAutocomplete]="auto"
                    >
-            <mat-autocomplete #auto="matAutocomplete" [(ngModel)]="searchParticipant" name="searchParticipant"
-            (optionSelected)="onOptionSelected($event)">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"  [displayWith]="getDisplayFn">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  [(ngModel)]="this.searchParticipant" name="searchParticipant" >
                 {{option.name}}
               </mat-option>
             </mat-autocomplete>
@@ -36,7 +40,7 @@
         <h3 style="margin-top: 10px"><b>Extra Points</b> </h3>
         <form style="margin-top: -20px">
           <mat-form-field  appearance="fill">
-            <input matInput placeholder="Add extra points to the user" >
+            <input [value]="extraPoints" (input)="updateBox($event)" type="number" matInput placeholder="Add extra points to the user" >
           </mat-form-field>
         </form>
         <button mat-raised-button color="primary" class="btnAddParticipant" (click)="addParticipant()">Add participant</button>

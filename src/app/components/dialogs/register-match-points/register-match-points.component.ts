@@ -22,9 +22,7 @@ export class RegisterMatchPointsComponent implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) {
-    this.participants=dialogData.participants
-
-
+    this.participants = dialogData.participants
   }
 
   ngOnInit(): void {
@@ -34,7 +32,7 @@ export class RegisterMatchPointsComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
 
     return this.participants.filter(option => option.name.toLowerCase().includes(filterValue));
@@ -46,11 +44,13 @@ export class RegisterMatchPointsComponent implements OnInit {
 
        temp.points = 0;
 
+       console.log(this.extraPoints)
+
        if (!this.participantsMatchPoints.some(e => e.id === temp.id)) {
          temp.points = parseInt(temp.points) + parseInt(this.extraPoints);
          this.participantsMatchPoints.push(temp);
-
        }
+
        this.extraPoints = 0;
        console.log(temp);
        console.log(this.searchParticipant)
@@ -73,10 +73,25 @@ export class RegisterMatchPointsComponent implements OnInit {
 
   onOptionSelected(dataOption: any) {
     this.searchParticipant=dataOption.option.value
-    console.log(dataOption.option);
+    console.log(dataOption.option.value);
     //set you model here so that your input box get selected value
   }
 
+  public getDisplayFn(val:any) {
+    if(val!=null)
+    return val.name;
+  }
+
+  updateBox(e:any) {
+    this.extraPoints = e.target.value;
+  }
+
+  deleteParticipant(pos:any){
+    this.participantsMatchPoints=this.participantsMatchPoints.filter(function(value){
+      return value.id !== pos.id;
+    });
+
+  }
 
 
 

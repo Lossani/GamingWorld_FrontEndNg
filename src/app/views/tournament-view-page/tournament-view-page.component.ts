@@ -53,7 +53,6 @@ export class TournamentViewPageComponent implements OnInit {
   registerPoints() {
     const dialogRef = this.dialog.open(RegisterMatchPointsComponent, {
 
-
       data: {
         title: this.tournament?.title,
         participants:this.participants
