@@ -52,7 +52,6 @@ export class ProfileService {
     });
   }
 
-
   deleteGameExperience(id: number): Observable<any>{
     const url = `${this.URL}/game-experiences/${id}`;
     return this.Http.delete(url);
@@ -72,7 +71,6 @@ export class ProfileService {
       puesto: tournament.position
     });
   }
-
 
   deleteTournament(id: number): Observable<any>{
     console.log("delete");

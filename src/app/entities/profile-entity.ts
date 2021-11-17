@@ -8,6 +8,7 @@ export interface GameExperience{
   userId: number
 }
 
+//Esto creo que no va
 export interface UserGame {
   id: number,
   experienceLevel: number,
@@ -40,4 +41,16 @@ export interface TournamentExperience {
   editMode: boolean,
   nameFormController: FormControl,
   positionFormController: FormControl
+}
+
+export interface FavouriteGame {
+  id: number,
+  userId: number,
+  gameId: number,
+}
+
+export interface StreamerSponsor {
+  id: number,
+  userId: number,
+  name: string,
 }
