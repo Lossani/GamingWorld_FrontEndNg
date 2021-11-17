@@ -1,0 +1,54 @@
+
+
+    <h2 mat-dialog-title>
+      Register points for  {{dialogData.title}} Tournament
+    </h2>
+    <div class="grid-dialog">
+      <mat-card style="margin-right: 10px; min-height: 250px; min-width: 250px" >
+
+
+        <mat-list  *ngFor="let participant of participantsMatchPoints">
+          <div class="flex-box">
+            <div>{{participant.name}}</div>
+            <div>{{participant.points}}</div>
+          </div>
+        </mat-list>
+      </mat-card>
+      <div>
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Participant</mat-label>
+            <input type="text"
+                   placeholder="Select one"
+                   aria-label="Participant"
+                   matInput
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto"
+                   >
+            <mat-autocomplete #auto="matAutocomplete" [(ngModel)]="searchParticipant" name="searchParticipant"
+            (optionSelected)="onOptionSelected($event)">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+        <h3 style="margin-top: 10px"><b>Extra Points</b> </h3>
+        <form style="margin-top: -20px">
+          <mat-form-field  appearance="fill">
+            <input matInput placeholder="Add extra points to the user" >
+          </mat-form-field>
+        </form>
+        <button mat-raised-button color="primary" class="btnAddParticipant" (click)="addParticipant()">Add participant</button>
+      </div>
+    </div>
+    <mat-dialog-actions style="justify-content: flex-end">
+      <button  mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+      <button  mat-raised-button color="primary" (click)="addParticipantPoints()" mat-dialog-close>Confirm</button>
+    </mat-dialog-actions>
+
+
+
+
+
+

@@ -26,6 +26,8 @@ import { CreateTeamDialogComponent } from './components/dialogs/create-team-dial
 import { AddMembersDialogComponent } from './components/dialogs/add-members-dialog/add-members-dialog.component';
 import { TournamentViewPageComponent } from './views/tournament-view-page/tournament-view-page.component';
 import { PremiumCardComponent } from './components/premium-card/premium-card.component';
+import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-tournament/confirm-end-tournament.component';
+import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
 
 
 
@@ -51,6 +53,8 @@ import { PremiumCardComponent } from './components/premium-card/premium-card.com
     AddMembersDialogComponent,
     TournamentViewPageComponent,
     PremiumCardComponent,
+    ConfirmEndTournamentComponent,
+    RegisterMatchPointsComponent,
 
 
   ],

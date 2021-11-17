@@ -85,6 +85,7 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.prizePool = 0;
     this.tournament.isTeamMode = this.registerForm.controls.isTeam.value;
 
+
     this.addTournament();
     this.cancelButton();
   }
