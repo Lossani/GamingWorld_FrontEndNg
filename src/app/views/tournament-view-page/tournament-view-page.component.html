@@ -11,17 +11,18 @@
       <mat-card>
           <app-tournament-card [tournament]="tournament"></app-tournament-card>
           <mat-card-actions align="end">
-
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="endTournament()">End Tournament</button>
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="registerPoints()"
-              style="margin-right: 10px"
-            >Set Scores</button>
+            <div *ngIf="tournament.tournamentStatus">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="endTournament()">End Tournament</button>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="registerPoints()"
+                style="margin-right: 10px"
+              >Set Scores</button>
+            </div>
           </mat-card-actions>
       </mat-card>
 

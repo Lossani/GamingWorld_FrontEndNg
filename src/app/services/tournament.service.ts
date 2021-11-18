@@ -56,4 +56,11 @@ export class TournamentService {
         catchError(this.handleError));
   }
 
+  endTournament(id: number): Observable<Tournament> {
+    return this.http.put<Tournament>(`${this.baseURL}/${id}/end`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
 }

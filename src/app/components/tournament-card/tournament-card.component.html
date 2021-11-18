@@ -18,9 +18,12 @@
       <p>Hour: {{this.tournamentHour}}</p>
       <p>Game: {{tournament.gameId}}</p>
   </mat-card-content>
-  <mat-chip-list>
+  <mat-chip-list *ngIf="tournament.tournamentStatus">
     <mat-chip selected color="primary" *ngIf="compareDates()" >Stand By</mat-chip>
-    <mat-chip selected color="primary" *ngIf="!compareDates()">Active</mat-chip>
+    <mat-chip selected style="background-color: mediumseagreen" *ngIf="!compareDates()">Active</mat-chip>
+  </mat-chip-list>
+  <mat-chip-list *ngIf="!tournament.tournamentStatus">
+    <mat-chip selected color="warn">Ended</mat-chip>
   </mat-chip-list>
 
 </mat-card>

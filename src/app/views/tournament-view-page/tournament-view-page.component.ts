@@ -46,8 +46,13 @@ export class TournamentViewPageComponent implements OnInit {
       data: {
         title: this.tournament?.title
       }
-    });
-
+    }).afterClosed().subscribe((result: boolean) =>{
+      console.log(result);
+      if(result){this.tournamentService.endTournament(this.tournamentId).subscribe(data => {
+        this.tournament = data;
+        console.log(this.tournament)
+      });}
+    })
   }
 
   registerPoints() {
