@@ -21,14 +21,20 @@ export class TournamentCardComponent implements OnInit {
   tournamentDate?: string;
 
   constructor(private dialog: MatDialog, public router: Router) {
+
   }
 
-
-
   ngOnInit(): void {
+
+  }
+
+  getDate(){
     let tDate = new Date(this.tournament.tournamentDate);
-    this.tournamentDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
-    this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
+    return tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
+  }
+  getHour(){
+    let tDate = new Date(this.tournament.tournamentDate);
+    return this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
   }
 
 

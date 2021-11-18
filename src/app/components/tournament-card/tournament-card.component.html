@@ -12,10 +12,10 @@
 
       <p>{{tournament.description}}</p>
       <p *ngIf="game">{{game.name}}</p>
-      <p>Limit: {{tournament.isTeamMode ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
+      <p>Limit: {{tournament.tournamentCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
       <p>Prize Pool: {{tournament.prizePool}} $</p>
-      <p>Date: {{this.tournamentDate}}</p>
-      <p>Hour: {{this.tournamentHour}}</p>
+      <p>Date: {{this.getDate()}}</p>
+      <p>Hour: {{this.getHour()}}</p>
       <p>Game: {{tournament.gameId}}</p>
   </mat-card-content>
   <mat-chip-list *ngIf="tournament.tournamentStatus">

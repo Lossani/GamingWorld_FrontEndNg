@@ -42,7 +42,6 @@ export class TournamentPageComponent implements OnInit {
   constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder) {
     gameService.getGames().subscribe(data => {
       this.games = data;
-      console.log(this.games)
     });
 
     tournamentService.getTournaments().subscribe(data => {
@@ -76,8 +75,7 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
     console.log(this.registerForm.controls.urlToImage.value.toString());
-    this.tournament.teamQuantity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : null;
-    this.tournament.playerCapacity = this.registerForm.controls.isTeam.value ? null : pc.controls.playerCapacity.value;
+    this.tournament.tournamentCapacity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : pc.controls.playerCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
     this.tournament.tournamentDate = this.registerForm.controls.date.value;
     console.log(tDate.toString());

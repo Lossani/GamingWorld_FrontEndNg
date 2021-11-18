@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Observable} from "rxjs";
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import {TournamentService} from "../../../services/tournament.service";
 
 
 @Component({
@@ -17,12 +18,13 @@ export class RegisterMatchPointsComponent implements OnInit {
   searchParticipant: any = null;
   extraPoints: any = 0;
   participantsMatchPoints: any[] = [];
+  tournamentId: number = 0;
 
 
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) {
-    this.participants = dialogData.participants
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any, private tournamentService: TournamentService) {
+    this.participants = dialogData.participants;
+    this.tournamentId = dialogData.tournamentId;
   }
 
   ngOnInit(): void {
@@ -58,17 +60,17 @@ export class RegisterMatchPointsComponent implements OnInit {
    }
 
    addParticipantPoints() {
-
      this.participants.forEach((value) => {
        this.participantsMatchPoints.forEach((value2) => {
          if (value.id == value2.id) {
            value.points += value2.points;
          }
        })
+      this.tournamentService.updatePointsTournament(this.tournamentId,value.id,value.points);
      })
      this.searchParticipant = null;
      this.extraPoints = 0;
-       this.participantsMatchPoints = [];
+     this.participantsMatchPoints = [];
    }
 
   onOptionSelected(dataOption: any) {

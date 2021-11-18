@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 import {RegisterMatchPointsComponent} from "../../components/dialogs/register-match-points/register-match-points.component";
+import {Observable} from "rxjs";
 
 
 
@@ -15,42 +16,50 @@ import {RegisterMatchPointsComponent} from "../../components/dialogs/register-ma
 })
 export class TournamentViewPageComponent implements OnInit {
 
-  tournament!: Tournament;
+  tournament: Tournament = {} as Tournament;
   tournamentId!: number;
-  participants: any[] = [
-    {id: 1, name: "Manuel Garcia", points: 0},
-    {id: 2, name: "Javier Merino", points: 0},
-    {id: 3, name: "Paolo Pinzas", points: 10}
-  ];
-
+  // participants: any[] = [
+  //   {id: 1, name: "Manuel Garcia", points: 0},
+  //   {id: 2, name: "Javier Merino", points: 0},
+  //   {id: 3, name: "Paolo Pinzas", points: 10}
+  // ];
+  participants: any[] = [];
 
 
   constructor(private tournamentService: TournamentService, private route: ActivatedRoute, public dialog: MatDialog) {
     this.route.params.subscribe(params => {
       this.tournamentId = params['id']
     });
-    tournamentService.getTournamentById(this.tournamentId).subscribe(data => {
-      this.tournament = data;
-      console.log(this.tournament)
 
 
-    });
+
   }
 
   ngOnInit(): void {
+    this.tournamentService.getTournamentById(this.tournamentId).subscribe(data => {
+      this.tournament=data;
+    });
+    this.tournamentService.getParticipantsByTournamentId(this.tournamentId).subscribe(
+      data=> {
+        data.forEach(value => {
+          this.participants.push(
+            {id: value.id, name: value.participantProfile.user.name, points: value.points}
+          )
+        })
+        console.log(this.participants);
+      }
+    )
 
   }
 
   endTournament() {
     const dialogRef = this.dialog.open(ConfirmEndTournamentComponent, {
       data: {
-        title: this.tournament?.title
+        title: this.tournament.title
       }
     }).afterClosed().subscribe((result: boolean) =>{
       console.log(result);
       if(result){this.tournamentService.endTournament(this.tournamentId).subscribe(data => {
-        this.tournament = data;
-        console.log(this.tournament)
       });}
     })
   }
@@ -59,8 +68,9 @@ export class TournamentViewPageComponent implements OnInit {
     const dialogRef = this.dialog.open(RegisterMatchPointsComponent, {
 
       data: {
-        title: this.tournament?.title,
-        participants:this.participants
+        title: this.tournament.title,
+        participants:this.participants,
+        tournamentId: this.tournamentId
       }
     });
 

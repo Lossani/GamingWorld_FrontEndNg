@@ -49,6 +49,21 @@ export class TournamentService {
         catchError(this.handleError));
   }
 
+  getParticipantsByTournamentId(id: number): Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseURL}/${id}/participants`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  updatePointsTournament(idTournament:number, idParticipant: number, points: number): Observable<any>{
+    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+
   getTournamentById(id: number): Observable<Tournament> {
     return this.http.get<Tournament>(`${this.baseURL}/${id}`, this.httpOptions)
       .pipe(

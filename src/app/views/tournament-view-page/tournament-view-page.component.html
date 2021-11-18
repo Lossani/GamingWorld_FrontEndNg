@@ -11,7 +11,7 @@
       <mat-card>
           <app-tournament-card [tournament]="tournament"></app-tournament-card>
           <mat-card-actions align="end">
-            <div *ngIf="tournament.tournamentStatus">
+            <div *ngIf="tournament">
               <button
                 mat-raised-button
                 color="warn"
