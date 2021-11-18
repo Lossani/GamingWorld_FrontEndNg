@@ -79,8 +79,11 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.teamQuantity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : null;
     this.tournament.playerCapacity = this.registerForm.controls.isTeam.value ? null : pc.controls.playerCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
-    this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
-    this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
+    this.tournament.tournamentDate = this.registerForm.controls.date.value;
+    console.log(tDate.toString());
+    // this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
+    // this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
+    this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
     this.tournament.prizePool = 0;
     this.tournament.isTeamMode = this.registerForm.controls.isTeam.value;

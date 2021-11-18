@@ -13,15 +13,23 @@ import { Router } from '@angular/router';
 export class TournamentCardComponent implements OnInit {
 
   @Input()
-  tournament?: Tournament;
+  tournament: Tournament = {} as Tournament;
   game?: Game;
 
-  constructor(private dialog: MatDialog, public router: Router) { }
+  tournamentHour?: string;
+  tournamentDate?: string;
+
+  constructor(private dialog: MatDialog, public router: Router) {
+  }
 
 
 
   ngOnInit(): void {
+    let tDate = new Date(this.tournament.tournamentDate);
+    this.tournamentDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
+    this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
   }
+
 
 
 

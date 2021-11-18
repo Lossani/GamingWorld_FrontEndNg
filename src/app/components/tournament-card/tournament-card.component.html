@@ -14,8 +14,8 @@
       <p *ngIf="game">{{game.name}}</p>
       <p>Limit: {{tournament.isTeamMode ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
       <p>Prize Pool: {{tournament.prizePool}} $</p>
-      <p>Date: {{tournament.tDate}}</p>
-      <p>Hour: {{tournament.tHour}}</p>
+      <p>Date: {{this.tournamentDate}}</p>
+      <p>Hour: {{this.tournamentHour}}</p>
       <p>Game: {{tournament.gameId}}</p>
 
   </mat-card-content>
