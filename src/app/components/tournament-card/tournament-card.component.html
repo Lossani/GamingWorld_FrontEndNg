@@ -19,8 +19,8 @@
       <p>Game: {{tournament.gameId}}</p>
   </mat-card-content>
   <mat-chip-list>
-    <mat-chip selected color="primary" *ngIf="compareDates()==1" >Stand By</mat-chip>
-    <mat-chip selected color="primary" *ngIf="compareDates()==2">Active</mat-chip>
+    <mat-chip selected color="primary" *ngIf="compareDates()" >Stand By</mat-chip>
+    <mat-chip selected color="primary" *ngIf="!compareDates()">Active</mat-chip>
   </mat-chip-list>
 
 </mat-card>

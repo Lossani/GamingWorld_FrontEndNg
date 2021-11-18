@@ -36,13 +36,7 @@ export class TournamentCardComponent implements OnInit {
     let date1: Date = new Date();
     let comp: number = 0;
     let tDate = new Date(this.tournament.tournamentDate);
-    if (date1 < tDate) {
-            comp = 1;
-    }
-    else{
-            comp = 2;
-    }
-    return comp;
+    return (date1 < tDate);
   }
 
 }

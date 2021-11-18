@@ -157,4 +157,11 @@ export class TournamentPageComponent implements OnInit {
 
   }
 
+  compareDates(tournament: any){
+    let date1: Date = new Date();
+    let comp: number = 0;
+    let tDate = new Date(tournament.tournamentDate);
+    return (date1 < tDate);
+  }
+
 }

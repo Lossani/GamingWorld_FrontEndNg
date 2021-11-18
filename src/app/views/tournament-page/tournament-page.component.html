@@ -85,7 +85,9 @@
             <button
               mat-raised-button
               color="primary"
-              (click)="openConfirmRegistration()">Sign into the Tournament</button>
+              (click)="openConfirmRegistration()"
+              [disabled]="!compareDates(tournament) || !tournament.tournamentStatus"
+            >Sign into the Tournament</button>
             <button
               mat-raised-button
               color="primary"
