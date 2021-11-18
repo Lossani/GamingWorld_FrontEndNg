@@ -28,6 +28,7 @@ import { TournamentViewPageComponent } from './views/tournament-view-page/tourna
 import { PremiumCardComponent } from './components/premium-card/premium-card.component';
 import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-tournament/confirm-end-tournament.component';
 import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 
 
@@ -66,7 +67,8 @@ import { RegisterMatchPointsComponent } from './components/dialogs/register-matc
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatChipsModule
 
   ],
   providers: [],

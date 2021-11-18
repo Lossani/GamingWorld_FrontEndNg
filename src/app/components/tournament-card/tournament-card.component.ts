@@ -16,6 +16,7 @@ export class TournamentCardComponent implements OnInit {
   tournament: Tournament = {} as Tournament;
   game?: Game;
 
+
   tournamentHour?: string;
   tournamentDate?: string;
 
@@ -31,6 +32,17 @@ export class TournamentCardComponent implements OnInit {
   }
 
 
-
+  compareDates(){
+    let date1: Date = new Date();
+    let comp: number = 0;
+    let tDate = new Date(this.tournament.tournamentDate);
+    if (date1 < tDate) {
+            comp = 1;
+    }
+    else{
+            comp = 2;
+    }
+    return comp;
+  }
 
 }
