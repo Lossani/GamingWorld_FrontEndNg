@@ -30,9 +30,6 @@ export class TournamentViewPageComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.tournamentId = params['id']
     });
-
-
-
   }
 
   ngOnInit(): void {

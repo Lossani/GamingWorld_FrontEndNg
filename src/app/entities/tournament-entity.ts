@@ -10,6 +10,7 @@ export interface Tournament {
     urlToImage: string,
     tournamentDate: string,
     tournamentStatus: boolean,
-    tournamentCapacity: number
+    tournamentCapacity: number,
+    inTournament: boolean
 
 }

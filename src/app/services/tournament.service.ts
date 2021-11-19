@@ -56,6 +56,25 @@ export class TournamentService {
         catchError(this.handleError));
   }
 
+  registerInTournament(idTournament:number): Observable<any>{
+    let item : any = {
+      participantProfileId: 1,
+      points: 0
+    }
+
+    return this.http.post<any>(`${this.baseURL}/${idTournament}/participants`, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  validateUserInTournament(idTournament:number, idParticipant: number): Observable<any>{
+    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}/validate`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
   updatePointsTournament(idTournament:number, idParticipant: number, points: number): Observable<any>{
     return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
       .pipe(

@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
+import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 
 @Component({
   selector: 'app-tournament-page',
@@ -47,6 +48,12 @@ export class TournamentPageComponent implements OnInit {
     tournamentService.getTournaments().subscribe(data => {
 
       this.tournaments = this.sortTournaments(data);
+
+      this.tournaments.forEach(element=> {this.tournamentService.validateUserInTournament(element.id, 1).subscribe(value => {
+        element.inTournament = value;
+      })
+      });
+
       this.filterTournaments = this.tournaments;
 
     });
@@ -117,8 +124,9 @@ export class TournamentPageComponent implements OnInit {
     return tournaments;
   }
 
-
-
+  validUserInTournament(tournamentId: number){
+    return
+  }
 
   ngOnInit(): void {
 
@@ -146,12 +154,18 @@ export class TournamentPageComponent implements OnInit {
     this.filterTournaments = this.sortTournaments(this.filterTournaments);
   }
 
-  openConfirmRegistration() {
+  openConfirmRegistration(tournament: Tournament) {
     const dialogRef = this.dialog.open(ConfirmSigninTournamentComponent, {
       data: {
         title: this.tournament?.title
       }
+    }).afterClosed().subscribe((result: boolean) =>{
+      console.log(result);
+      if(result){this.tournamentService.registerInTournament(tournament.id).subscribe(data => {
+        tournament.inTournament=data;
+      });}
     });
+
 
   }
 
