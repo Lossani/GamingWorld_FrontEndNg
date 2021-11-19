@@ -8,7 +8,7 @@ export interface Tournament {
     userId: number,
     gameId: number,
     urlToImage: string,
-    tournamentDate: string,
+    tournamentDate: Date,
     tournamentStatus: boolean,
     tournamentCapacity: number,
     inTournament: boolean

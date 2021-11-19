@@ -27,17 +27,19 @@ export class TournamentPageComponent implements OnInit {
 
   registerForm: FormGroup =  this.formBuilder.group({
     title: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
-    description: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
+    description: ['', {validators: [Validators.required, Validators.minLength(30)], updateOn: 'change'}],
     urlToImage: ['', {updateOn: 'change'} ],
-    game: ['', {updateOn: 'change'}],
+    prizePool: ['', {updateOn: 'change'}],
+    game: ['',{validators: [Validators.required], updateOn: 'change'}],
     isTeam: [false, {updateOn: 'change'}],
     date: ['', {validators: [Validators.required], updateOn: 'change'}],
-    teamTournament: this.formBuilder.group({
-      teamQuantity: ['', {updateOn: 'change'}],
-    }),
-    soloTournament: this.formBuilder.group({
-      playerCapacity: ['', {updateOn: 'change'}],
-    })
+    // teamTournament: this.formBuilder.group({
+    //   teamQuantity: ['',{validators: [Validators.required], updateOn: 'change'}],
+    // }),
+    // soloTournament: this.formBuilder.group({
+    //   playerCapacity: ['',{validators: [Validators.required], updateOn: 'change'}],
+    // })
+    tournamentCapacity: ['', {validators: [Validators.required], updateOn: 'change'}],
   });
 
   constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder) {
@@ -81,10 +83,14 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
+    this.tournament.prizePool = this.registerForm.controls.prizePool.value;
     console.log(this.registerForm.controls.urlToImage.value.toString());
-    this.tournament.tournamentCapacity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : pc.controls.playerCapacity.value;
+    // this.tournament.tournamentCapacity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : pc.controls.playerCapacity.value;
+    this.tournament.tournamentCapacity = this.registerForm.controls.tournamentCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
-    this.tournament.tournamentDate = this.registerForm.controls.date.value;
+    let userTimezoneOffset = tDate.getTimezoneOffset() * 60000;
+    this.tournament.tournamentDate = (new Date(tDate.getTime()));
+    console.log(this.registerForm.controls.date.value);
     console.log(tDate.toString());
     // this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
     // this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
