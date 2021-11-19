@@ -11,8 +11,6 @@
   gap: 10px;
 }
 
-
-
 @media (max-width: 720px) {
   #PrincipalContainer {
     display: flex;

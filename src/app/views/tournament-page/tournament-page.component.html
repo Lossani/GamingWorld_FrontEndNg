@@ -4,20 +4,20 @@
   <div id="PrincipalContainer">
     <div>
       <div>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            Filter By
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-action-list>
-            <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
-            <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
-          </mat-action-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              Filter By
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-action-list>
+              <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
+              <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
+            </mat-action-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
     <div id="TournamentsContainer">
       <mat-accordion>
@@ -28,53 +28,64 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <form [formGroup]="registerForm" (submit)="submitForm()">
-              <mat-form-field class="form-field">
-                <mat-label>Tournament Title</mat-label>
-                <input type="text" matInput formControlName="title">
-              </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Title</mat-label>
+              <input type="text" matInput formControlName="title">
+            </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>Tournament Banner</mat-label>
               <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
-            <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)" [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
-              <mat-form-field class="form-field">
-                <mat-label>Tournament Description</mat-label>
-                <textarea matInput rows="5" formControlName="description"></textarea>
-              </mat-form-field>
+            <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
+                 [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Description</mat-label>
+              <textarea matInput rows="5" formControlName="description"></textarea>
+            </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>Prize Pool</mat-label>
               <input type="number" matInput formControlName="prizePool">
             </mat-form-field>
-              <mat-form-field>
-                <input matInput type="datetime-local" formControlName="date" placeholder="Start Date">
-              </mat-form-field>
+            <mat-form-field>
+              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Game</mat-label>
+              <mat-select formControlName="game">
+                <mat-option *ngFor="let game of games"
+                            [value]="game.id">
+                  {{game.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
+            <div [hidden]="!registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>Game</mat-label>
-                <mat-select formControlName="game">
-                  <mat-option *ngFor="let game of games"
-                              [value]="game.id">
-                    {{game.name}}
-                  </mat-option>
+                <mat-label>Number of Teams</mat-label>
+                <mat-select formControlName="tournamentCapacity">
+                  <mat-option *ngFor="let val of [4, 8, 16, 32]"
+                              [value]="val">{{val}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
-              <div [hidden]="!registerForm.controls.isTeam.value">
-                <mat-form-field class="form-field">
-                  <mat-label  >Number of Teams</mat-label>
-                  <mat-select formControlName="tournamentCapacity">
-                    <mat-option  *ngFor="let val of [4, 8, 16, 32]"
-                                [value]="val">{{val}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div [hidden]="registerForm.controls.isTeam.value">
-                <mat-form-field class="form-field">
-                  <mat-label >Number of Participants</mat-label>
-                  <input type="number" formControlName="tournamentCapacity" matInput min="0" max="100">
-                </mat-form-field>
-              </div>
-                <button  mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">Cancel</button>
-                <button [disabled]="!registerForm.valid" mat-flat-button color="primary" type="submit">Save</button>
+            </div>
+            <div [hidden]="registerForm.controls.isTeam.value">
+              <mat-form-field class="form-field">
+                <mat-label>Number of Participants</mat-label>
+                <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
+                       max="100">
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
+                  * Minimum 2 participants
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
+                  * Maximum 100 participants
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
+              Cancel
+            </button>
+            <button [disabled]="!registerForm.valid" mat-flat-button color="primary" type="submit">Save</button>
           </form>
 
         </mat-expansion-panel>
@@ -83,7 +94,7 @@
 
       <div *ngFor="let tournament of filterTournaments">
         <mat-card>
-          <app-tournament-card [tournament]="tournament" ></app-tournament-card>
+          <app-tournament-card [tournament]="tournament"></app-tournament-card>
           <mat-card-actions align="end">
 
             <button
@@ -91,12 +102,14 @@
               color="primary"
               (click)="openConfirmRegistration(tournament)"
               [disabled]="!compareDates(tournament) || !tournament.tournamentStatus || tournament.inTournament"
-            >Sign into the Tournament</button>
+            >Sign into the Tournament
+            </button>
             <button
               mat-raised-button
               color="primary"
               routerLink='/tournaments/{{tournament.id}}'
-            >View Tournament</button>
+            >View Tournament
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>

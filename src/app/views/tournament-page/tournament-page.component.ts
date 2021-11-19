@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
+import {min} from "rxjs/operators";
 
 @Component({
   selector: 'app-tournament-page',
@@ -38,7 +39,7 @@ export class TournamentPageComponent implements OnInit {
     // soloTournament: this.formBuilder.group({
     //   playerCapacity: ['',{validators: [Validators.required], updateOn: 'change'}],
     // })
-    tournamentCapacity: ['', {validators: [Validators.required], updateOn: 'change'}],
+    tournamentCapacity: ['', {validators: [Validators.min(2), Validators.required], updateOn: 'change'}],
   });
 
   constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder) {
