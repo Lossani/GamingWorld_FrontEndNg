@@ -76,7 +76,7 @@ export class TournamentService {
   }
 
   updatePointsTournament(idTournament:number, idParticipant: number, points: number): Observable<any>{
-    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
+    return this.http.put<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
