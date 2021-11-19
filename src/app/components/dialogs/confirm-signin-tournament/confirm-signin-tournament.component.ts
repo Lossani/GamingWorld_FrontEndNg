@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-signin-tournament',
@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ConfirmSigninTournamentComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any, public dialogRef: MatDialogRef<ConfirmSigninTournamentComponent>) { }
 
   ngOnInit(): void {
   }

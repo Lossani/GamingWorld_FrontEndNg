@@ -12,16 +12,18 @@
 
       <p>{{tournament.description}}</p>
       <p *ngIf="game">{{game.name}}</p>
-      <p>Limit: {{tournament.teamTournament ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.teamTournament ? " Teams" : " Participants"}}</p>
+      <p>Limit: {{tournament.tournamentCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
       <p>Prize Pool: {{tournament.prizePool}} $</p>
-      <p>Date: {{tournament.tDate}}</p>
-      <p>Hour: {{tournament.tHour}}</p>
-
+      <p>Date: {{this.getDate()}}</p>
+      <p>Hour: {{this.getHour()}}</p>
+      <p>Game: {{tournament.gameId}}</p>
   </mat-card-content>
-    <mat-card-actions>
-        <button class="full-length-button"
-            mat-raised-button
-            color="primary"
-            (click)="openConfirmRegistration()">Sign into the Tournament</button>
-    </mat-card-actions>
+  <mat-chip-list *ngIf="tournament.tournamentStatus">
+    <mat-chip selected color="primary" *ngIf="compareDates()" >Stand By</mat-chip>
+    <mat-chip selected style="background-color: mediumseagreen" *ngIf="!compareDates()">Active</mat-chip>
+  </mat-chip-list>
+  <mat-chip-list *ngIf="!tournament.tournamentStatus">
+    <mat-chip selected color="warn">Ended</mat-chip>
+  </mat-chip-list>
+
 </mat-card>

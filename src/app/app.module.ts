@@ -17,8 +17,7 @@ import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.
 import { ProfilePageComponent } from './views/profile-page/profile-page.component';
 import { ConfirmDeleteDialogComponent } from './components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from './components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import {Component} from '@angular/core';
-import {CreateTournamentDialogComponent} from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
+import { CreateTournamentDialogComponent } from "./components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 import { TournamentPageComponent } from './views/tournament-page/tournament-page.component';
 import { TournamentCardComponent } from './components/tournament-card/tournament-card.component';
 import { ConfirmSigninTournamentComponent } from './components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
@@ -26,6 +25,11 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { CreateTeamDialogComponent } from './components/dialogs/create-team-dialog/create-team-dialog.component';
 import { AddMembersDialogComponent } from './components/dialogs/add-members-dialog/add-members-dialog.component';
 import { CreateFavoriteGameDialogComponent } from './components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component';
+import { TournamentViewPageComponent } from './views/tournament-view-page/tournament-view-page.component';
+import { PremiumCardComponent } from './components/premium-card/premium-card.component';
+import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-tournament/confirm-end-tournament.component';
+import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
+import { MatChipsModule } from "@angular/material/chips";
 
 
 
@@ -49,6 +53,10 @@ import { CreateFavoriteGameDialogComponent } from './components/dialogs/create-f
     ConfirmSigninTournamentComponent,
     CreateTeamDialogComponent,
     AddMembersDialogComponent,
+    TournamentViewPageComponent,
+    PremiumCardComponent,
+    ConfirmEndTournamentComponent,
+    RegisterMatchPointsComponent,
     CreateFavoriteGameDialogComponent,
 
 
@@ -61,7 +69,8 @@ import { CreateFavoriteGameDialogComponent } from './components/dialogs/create-f
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatChipsModule
 
   ],
   providers: [],

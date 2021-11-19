@@ -1,0 +1,27 @@
+.grid-dialog{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.btnAddParticipant{
+
+  width: 100%;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  border: none;
+  outline: none;
+}
+
+.btnToBottom{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.flex-box {
+  align-items: center;
+  display:flex;
+  justify-content:space-between;
+}

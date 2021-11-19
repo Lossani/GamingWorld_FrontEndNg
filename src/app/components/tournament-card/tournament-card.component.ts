@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Tournament } from 'src/app/entities/tournament-entity';
-import { ConfirmSigninTournamentComponent } from '../dialogs/confirm-signin-tournament/confirm-signin-tournament.component';
 import {Game} from "../../entities/game-entity";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,19 +13,36 @@ import {Game} from "../../entities/game-entity";
 export class TournamentCardComponent implements OnInit {
 
   @Input()
-  tournament?: Tournament;
+  tournament: Tournament = {} as Tournament;
   game?: Game;
 
-  constructor(private dialog: MatDialog) { }
+
+  tournamentHour?: string;
+  tournamentDate?: string;
+
+  constructor(private dialog: MatDialog, public router: Router) {
+
+  }
 
   ngOnInit(): void {
+
   }
 
-  openConfirmRegistration() {
-    const dialogRef = this.dialog.open(ConfirmSigninTournamentComponent, {
-      data: {
-        title: this.tournament?.title
-      }
-    });
+  getDate(){
+    let tDate = new Date(this.tournament.tournamentDate);
+    return tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
   }
+  getHour(){
+    let tDate = new Date(this.tournament.tournamentDate);
+    return this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
+  }
+
+
+  compareDates(){
+    let date1: Date = new Date();
+    let comp: number = 0;
+    let tDate = new Date(this.tournament.tournamentDate);
+    return (date1 < tDate);
+  }
+
 }

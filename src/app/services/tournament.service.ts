@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
 import { Tournament } from '../entities/tournament-entity';
@@ -9,7 +9,7 @@ import { Tournament } from '../entities/tournament-entity';
 })
 export class TournamentService {
 
-  private baseURL = "https://json-test-server.herokuapp.com/tournaments";
+  private baseURL = "http://localhost:8080/api/v1/tournaments";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -43,9 +43,58 @@ export class TournamentService {
   }
 
   postTournament(item: any): Observable<Tournament> {
-    return this.http.post<Tournament>(this.baseURL, JSON.stringify(item), this.httpOptions)
+    return this.http.post<Tournament>(`${this.baseURL}/1/create`, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
+
+  getParticipantsByTournamentId(id: number): Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseURL}/${id}/participants`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  registerInTournament(idTournament:number): Observable<any>{
+    let item : any = {
+      participantProfileId: 1,
+      points: 0
+    }
+
+    return this.http.post<any>(`${this.baseURL}/${idTournament}/participants`, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  validateUserInTournament(idTournament:number, idParticipant: number): Observable<any>{
+    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}/validate`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  updatePointsTournament(idTournament:number, idParticipant: number, points: number): Observable<any>{
+    return this.http.put<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+
+  getTournamentById(id: number): Observable<Tournament> {
+    return this.http.get<Tournament>(`${this.baseURL}/${id}`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  endTournament(id: number): Observable<Tournament> {
+    return this.http.put<Tournament>(`${this.baseURL}/${id}/end`, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
 }
