@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
-import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 
 @Component({
   selector: 'app-tournament-page',
@@ -74,9 +73,6 @@ export class TournamentPageComponent implements OnInit {
   submitForm() {
     let postedAt: Date = new Date();
     console.log(this.registerForm.valid);
-    let tq = this.registerForm.controls.teamTournament as FormGroup;
-    let pc = this.registerForm.controls.soloTournament as FormGroup;
-
     this.submitted = true;
     this.tournament.userId = 1;
     this.tournament.gameId = this.registerForm.controls.game.value;
@@ -85,15 +81,11 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
     this.tournament.prizePool = this.registerForm.controls.prizePool.value;
     console.log(this.registerForm.controls.urlToImage.value.toString());
-    // this.tournament.tournamentCapacity = this.registerForm.controls.isTeam.value ? tq.controls.teamQuantity.value : pc.controls.playerCapacity.value;
     this.tournament.tournamentCapacity = this.registerForm.controls.tournamentCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
-    let userTimezoneOffset = tDate.getTimezoneOffset() * 60000;
     this.tournament.tournamentDate = (new Date(tDate.getTime()));
     console.log(this.registerForm.controls.date.value);
     console.log(tDate.toString());
-    // this.tournament.tDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
-    // this.tournament.tHour = tDate.getHours() + ":" + tDate.getMinutes();
     this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
     this.tournament.prizePool = 0;
@@ -105,7 +97,6 @@ export class TournamentPageComponent implements OnInit {
   }
 
   addTournament() {
-    let date: Date = new Date();
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
       this.tournament.id= response.id;
       this.filterTournaments.push(this.tournament);
@@ -128,10 +119,6 @@ export class TournamentPageComponent implements OnInit {
         return 0;
     });
     return tournaments;
-  }
-
-  validUserInTournament(tournamentId: number){
-    return
   }
 
   ngOnInit(): void {
@@ -174,10 +161,8 @@ export class TournamentPageComponent implements OnInit {
 
 
   }
-
   compareDates(tournament: any){
     let date1: Date = new Date();
-    let comp: number = 0;
     let tDate = new Date(tournament.tournamentDate);
     return (date1 < tDate);
   }

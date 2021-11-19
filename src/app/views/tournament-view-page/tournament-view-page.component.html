@@ -21,6 +21,7 @@
                 color="primary"
                 (click)="registerPoints()"
                 style="margin-right: 10px"
+                [disabled]="participants.length<1"
               >Set Scores</button>
             </div>
           </mat-card-actions>

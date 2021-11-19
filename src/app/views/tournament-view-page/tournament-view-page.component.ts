@@ -5,7 +5,6 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 import {RegisterMatchPointsComponent} from "../../components/dialogs/register-match-points/register-match-points.component";
-import {Observable} from "rxjs";
 
 
 
@@ -18,11 +17,6 @@ export class TournamentViewPageComponent implements OnInit {
 
   tournament: Tournament = {} as Tournament;
   tournamentId!: number;
-  // participants: any[] = [
-  //   {id: 1, name: "Manuel Garcia", points: 0},
-  //   {id: 2, name: "Javier Merino", points: 0},
-  //   {id: 3, name: "Paolo Pinzas", points: 10}
-  // ];
   participants: any[] = [];
 
 
@@ -87,4 +81,7 @@ export class TournamentViewPageComponent implements OnInit {
     });
     return participants;
   }
+
 }
+
+
