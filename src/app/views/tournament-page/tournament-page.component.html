@@ -69,8 +69,8 @@
                   <input type="number" formControlName="playerCapacity" matInput min="0" max="100">
                 </mat-form-field>
               </div>
+                <button  mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">Cancel</button>
                 <button [disabled]="!registerForm.valid" mat-flat-button color="primary" type="submit">Save</button>
-                <button  mat-flat-button color="warn" type="button" (click)="cancelButton()">Cancel</button>
           </form>
 
         </mat-expansion-panel>
