@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {Competencia, GameExperience, Team, User, UserCompetencia, UserGame} from '../entities/user-entity';
+import {User} from "../entities/user-entity";
+import {GameExperience, Team, TournamentExperience, UserCompetencia, UserGame} from "../entities/profile-entity";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class ProfileService {
     return this.Http.post<GameExperience>(url, {
       experienceLevel: gameExperience.experienceLevel,
       gameId: gameExperience.gameId,
-      usuarioId: gameExperience.usuarioId
+      usuarioId: gameExperience.userId
     });
   }
 
@@ -41,37 +42,35 @@ export class ProfileService {
     });
   }
 
-  putTournament(element: Competencia, usuarioId: number): Observable<Competencia> {
+  putTournament(element: TournamentExperience, usuarioId: number): Observable<TournamentExperience> {
     const url = `${this.URL}/competencias/${element.id}`;
-    return this.Http.put<Competencia>(url, {
+    return this.Http.put<TournamentExperience>(url, {
       userId: usuarioId,
-      nombre: element.nombreFormController.value,
+      nombre: element.nameFormController.value,
       date: element.date,
-      puesto: element.puestoFormController.value
+      puesto: element.positionFormController.value
     });
   }
-
 
   deleteGameExperience(id: number): Observable<any>{
     const url = `${this.URL}/game-experiences/${id}`;
     return this.Http.delete(url);
   }
 
-  getTournaments(userId: number): Observable<Competencia[]> {
+  getTournaments(userId: number): Observable<TournamentExperience[]> {
     const url = `${this.URL}/competencias?usuarioId=${userId}`;
-    return this.Http.get<Competencia[]>(url);
+    return this.Http.get<TournamentExperience[]>(url);
   }
 
-  postTournament(tournament: UserCompetencia, userId: number): Observable<Competencia> {
+  postTournament(tournament: UserCompetencia, userId: number): Observable<TournamentExperience> {
     const url = `${this.URL}/competencias`;
-    return this.Http.post<Competencia>(url, {
+    return this.Http.post<TournamentExperience>(url, {
       usuarioId: userId,
-      nombre: tournament.nombre,
+      nombre: tournament.name,
       date: tournament.date,
-      puesto: tournament.puesto
+      puesto: tournament.position
     });
   }
-
 
   deleteTournament(id: number): Observable<any>{
     console.log("delete");
@@ -91,8 +90,8 @@ export class ProfileService {
   {
     const url = `${this.URL}/teams`;
     return this.Http.post<Team>(url, {
-      usuarioId: userId,
-      nombre: team.nombre,
+      userId: userId,
+      name: team.name,
       numeroMiembros: team.numeroMiembros
     });
   }

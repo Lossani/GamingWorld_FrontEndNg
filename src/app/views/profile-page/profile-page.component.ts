@@ -4,11 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import {Competencia, Team, User, UserGame} from 'src/app/entities/user-entity';
 import { ProfileService } from 'src/app/services/profile.service';
 import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
 import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
+import {User} from "../../entities/user-entity";
+import {FavoriteGame, Team, TournamentExperience, UserGame} from "../../entities/profile-entity";
+import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -27,11 +29,13 @@ export class ProfilePageComponent implements OnInit {
   // Juegos donde tiene experiencia
   displayedTournamentColumns: string[] = ["name", "date", "position", "actions"];
   // variable que guarda los nombres de los torneos que se van a mostrar
-
+  displayedFavoriteColumns: string[] = ["name", "actions"];
+  // variable que guarda los juegos favoritos del usuario
 
   gameExperiences!: UserGame[];
-  tournaments!: Competencia[];
+  tournaments!: TournamentExperience[];
   teams!: Team[];
+  favoriteGames!: FavoriteGame[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
@@ -53,8 +57,8 @@ export class ProfilePageComponent implements OnInit {
       .subscribe(Tournaments => {
         this.tournaments = Tournaments.map(tournament => {
           tournament.editMode = false;
-          tournament.nombreFormController = new FormControl(tournament.nombre);
-          tournament.puestoFormController = new FormControl(tournament.puesto);
+          tournament.nameFormController = new FormControl(tournament.name);
+          tournament.positionFormController = new FormControl(tournament.position);
           return tournament;
         });
       });
@@ -65,14 +69,14 @@ export class ProfilePageComponent implements OnInit {
     this.profileService.getTeams(this.profileCode)
       .subscribe(Teams => {
         this.teams = Teams.map(team => {
-          team.nombreFormController = new FormControl(team.nombre);
+          team.nombreFormController = new FormControl(team.name);
           team.numeroMiembrosFormController = new FormControl(team.numeroMiembros);
           return team;
         });
       });
   }
 
-  deleteTournament(element: Competencia): void{
+  deleteTournament(element: TournamentExperience): void{
     this.profileService.deleteTournament(element.id).subscribe(val => {
       this.tournaments = this.tournaments.filter(elem => (elem.id != element.id));
     });
@@ -121,11 +125,11 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
-  saveChangedTournament(element: Competencia): void {
+  saveChangedTournament(element: TournamentExperience): void {
     this.profileService.putTournament(element, 1)
       .subscribe(res => {
-        element.nombre = res.nombre;
-        element.puesto = res.puesto;
+        element.name = res.name;
+        element.position = res.position;
         this.toggleEditMode(element);
       });
   }
@@ -143,7 +147,7 @@ export class ProfilePageComponent implements OnInit {
       }
     })
   }
-  openDeleteConfirmTournamentDialog(element: Competencia): void{
+  openDeleteConfirmTournamentDialog(element: TournamentExperience): void{
     const confirmFunction = () => {
       this.deleteTournament(element);
     }
@@ -193,6 +197,10 @@ export class ProfilePageComponent implements OnInit {
 
   openAddMembersDialog(): void {
     const dialogRef = this.dialog.open(AddMembersDialogComponent);
+  }
+
+  openAddFavoriteGameDialog(): void{
+    this.dialog.open(CreateFavoriteGameDialogComponent);
   }
 
   openDeleteTeamConfirmDialog(element: Team) {

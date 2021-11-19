@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import { ProfileService } from 'src/app/services/profile.service';
-import { Competencia, GameExperience, UserCompetencia } from 'src/app/entities/user-entity';
+import {UserCompetencia} from "../../../entities/profile-entity";
 
 @Component({
   selector: 'app-create-game-experience-dialog',
@@ -32,9 +32,9 @@ export class CreateTournamentDialogComponent implements OnInit {
       return;
 
     let newTournamente: UserCompetencia = {
-      nombre: this.formGroup.controls.nombre.value,
+      name: this.formGroup.controls.nombre.value,
       date: (new Date(this.formGroup.controls.date.value)).toISOString().split('T')[0],
-      puesto: this.formGroup.controls.puesto.value
+      position: this.formGroup.controls.puesto.value
     }
 
     this.profileService.postTournament(newTournamente, this.data.userId).subscribe(res => {

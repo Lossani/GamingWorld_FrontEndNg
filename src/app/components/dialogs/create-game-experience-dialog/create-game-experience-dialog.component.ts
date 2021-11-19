@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import { ProfileService } from 'src/app/services/profile.service';
-import { GameExperience } from 'src/app/entities/user-entity';
+import {GameExperience} from "../../../entities/profile-entity";
 
 @Component({
   selector: 'app-create-game-experience-dialog',
@@ -37,7 +37,7 @@ export class CreateGameExperienceDialogComponent implements OnInit {
     let gameExperience: GameExperience = {
       gameId: this.formGroup.controls.gameId.value,
       experienceLevel: this.formGroup.controls.experienceLevel.value,
-      usuarioId: this.data.userId
+      userId: this.data.userId
     };
     this.profileService.postGameExperience(gameExperience)
       .subscribe(val => {
