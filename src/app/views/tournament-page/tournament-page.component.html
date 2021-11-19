@@ -47,7 +47,7 @@
               <input type="number" matInput formControlName="prizePool">
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date">
+              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date" min="{{date().toString()}}">
             </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>Game</mat-label>

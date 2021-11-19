@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
-import {min} from "rxjs/operators";
 
 @Component({
   selector: 'app-tournament-page',
@@ -24,7 +23,6 @@ export class TournamentPageComponent implements OnInit {
   submitted: boolean = false;
   panelOpenState: boolean = false;
 
-
   registerForm: FormGroup =  this.formBuilder.group({
     title: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
     description: ['', {validators: [Validators.required, Validators.minLength(30)], updateOn: 'change'}],
@@ -32,7 +30,7 @@ export class TournamentPageComponent implements OnInit {
     prizePool: ['', {updateOn: 'change'}],
     game: ['',{validators: [Validators.required], updateOn: 'change'}],
     isTeam: [false, {updateOn: 'change'}],
-    date: ['', {validators: [Validators.required], updateOn: 'change'}],
+    date: ['', {validators: [Validators.required, ], updateOn: 'change'}],
     // teamTournament: this.formBuilder.group({
     //   teamQuantity: ['',{validators: [Validators.required], updateOn: 'change'}],
     // }),
@@ -70,6 +68,14 @@ export class TournamentPageComponent implements OnInit {
   get summary() { return this.registerForm.get('description'); }
 
   get content() { return this.registerForm.get('content'); }
+
+  date() {
+    let nowDate = new Date();
+    var userTimezoneOffset = nowDate.getTimezoneOffset() * 60000;
+    nowDate = new Date(nowDate.getTime()-userTimezoneOffset);
+    nowDate.setDate(nowDate.getDate()+1)
+    return nowDate.toISOString().slice(0,16);
+  }
 
   submitForm() {
     let postedAt: Date = new Date();
