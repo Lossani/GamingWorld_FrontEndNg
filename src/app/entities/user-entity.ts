@@ -1,7 +1,7 @@
 import {FavoriteGame, GameExperience, StreamerSponsor, TournamentExperience} from "./profile-entity";
 
 export interface User {
-    id: Number,
+    id: number,
     username: string,
     email: string,
     "game-experiences": GameExperience[],

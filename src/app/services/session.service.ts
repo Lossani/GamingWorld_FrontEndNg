@@ -11,36 +11,36 @@ export class SessionService {
 
   private baseURL = "http://localhost:8080";
 
-  private static currentSession : Session = {} as Session;
+  private  currentSession : Session = {} as Session;
 
-  private static isLoggedIn : Boolean = false;
+  private  isLoggedIn : boolean = false;
 
   constructor(private router: Router, private usersService: UsersService, private http: HttpClient) {
     let sessionString = localStorage.getItem("currentSession");
     if (sessionString != null) {
-      SessionService.currentSession = JSON.parse(sessionString);
-      SessionService.isLoggedIn = true;
+      this.currentSession = JSON.parse(sessionString);
+      this.isLoggedIn = true;
     }
   }
 
-  public static getCurrentSession(): Session
+  public  getCurrentSession(): Session
   {
-    return SessionService.currentSession;
+    return this.currentSession;
   }
 
-  public static getIsLoggedIn(): Boolean
+  public  getIsLoggedIn(): boolean
   {
-    return SessionService.isLoggedIn;
+    return this.isLoggedIn;
   }
 
-  static logout(): void
+   logout(): void
   {
     localStorage.removeItem("currentSession");
-    SessionService.isLoggedIn = false;
-    SessionService.currentSession = {} as Session;
+    this.isLoggedIn = false;
+    this.currentSession = {} as Session;
   }
 
-  async attemptLogin(item: any): Promise<Boolean> {
+  async attemptLogin(item: any): Promise<boolean> {
      localStorage.removeItem("currentSession");
 
      let httpOptions = {
@@ -53,13 +53,13 @@ export class SessionService {
      await this.http.post<any>(`${this.baseURL}/api/v1/users/login`, JSON.stringify(item), httpOptions).toPromise().then(
        async (response: HttpResponse<any>) => {
 
-         SessionService.currentSession.user = response.body;
+         this.currentSession.user = response.body;
          let body: String | null = response.headers.get('authorization');
 
          if (body != null)
-           SessionService.currentSession.token = body.replace("Bearer ", "");
+           this.currentSession.token = body.replace("Bearer ", "");
 
-         localStorage.setItem("currentSession", JSON.stringify(SessionService.currentSession));
+         localStorage.setItem("currentSession", JSON.stringify(this.currentSession));
        }
      );
 

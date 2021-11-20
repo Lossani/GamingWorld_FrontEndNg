@@ -4,23 +4,22 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
 import { Tournament } from '../entities/tournament-entity';
 import {ServiceConfiguration} from "./service-configuration";
+import {ProfileService} from "./profile.service";
+import {User} from "../entities/user-entity";
+import {SessionService} from "./session.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TournamentService {
 
-
   private baseURL = "";
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  }
-
-  constructor(private http: HttpClient, serviceConfiguration: ServiceConfiguration) {
-    this.baseURL = serviceConfiguration.baseUrl + "/api/v1/tournaments";
+  constructor(private http: HttpClient, private serviceConfiguration: ServiceConfiguration, private profileService: ProfileService, private sessionService: SessionService) {
+    console.log(this.serviceConfiguration.httpOptions);
+    this.baseURL = serviceConfiguration.baseUrl + "/tournaments";
+    this.serviceConfiguration.httpOptions.headers.set('Authorization', "Bearer " + sessionService.getCurrentSession().token)
+    console.log(this.serviceConfiguration.httpOptions);
   }
 
   // API Error Handling
@@ -39,47 +38,56 @@ export class TournamentService {
   }
 
   getTournaments(): Observable<Tournament[]> {
-    return this.http.get<Tournament[]>(`${this.baseURL}`, this.httpOptions)
+
+    return this.http.get<Tournament[]>(`${this.baseURL}`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
   postTournament(item: any): Observable<Tournament> {
-    return this.http.post<Tournament>(`${this.baseURL}/1/create`, JSON.stringify(item), this.httpOptions)
+    let user: User = this.sessionService.getCurrentSession().user;
+
+
+
+    return this.http.post<Tournament>(`${this.baseURL}/${user.id}/create`, JSON.stringify(item), this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
   getParticipantsByTournamentId(id: number): Observable<any[]>{
-    return this.http.get<any[]>(`${this.baseURL}/${id}/participants`, this.httpOptions)
+    return this.http.get<any[]>(`${this.baseURL}/${id}/participants`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
-  registerInTournament(idTournament:number): Observable<any>{
-    let item : any = {
-      participantProfileId: 1,
+  registerInTournament(idTournament:number, participantProfileId: number): Observable<any>{
+
+
+    let item = {
+      participantProfileId: participantProfileId,
       points: 0
     }
 
-    return this.http.post<any>(`${this.baseURL}/${idTournament}/participants`, JSON.stringify(item), this.httpOptions)
+
+
+    return this.http.post<any>(`${this.baseURL}/${idTournament}/participants`, JSON.stringify(item), this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
   validateUserInTournament(idTournament:number, idParticipant: number): Observable<any>{
-    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}/validate`, this.httpOptions)
+    return this.http.get<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}/validate`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
   updateTournamentPoints(idTournament:number,typeTournament:string, idParticipant: number, points: number): Observable<any>{
-    return this.http.put<any>(`${this.baseURL}/${idTournament}/${typeTournament.toLowerCase()}s/${idParticipant}?points=${points}`, this.httpOptions)
+    return this.http.put<any>(`${this.baseURL}/${idTournament}/${typeTournament.toLowerCase()}s/${idParticipant}?points=${points}`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
@@ -87,14 +95,14 @@ export class TournamentService {
 
 
   getTournamentById(id: number): Observable<Tournament> {
-    return this.http.get<Tournament>(`${this.baseURL}/${id}`, this.httpOptions)
+    return this.http.get<Tournament>(`${this.baseURL}/${id}`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
   }
 
   endTournament(id: number): Observable<Tournament> {
-    return this.http.put<Tournament>(`${this.baseURL}/${id}/end`, this.httpOptions)
+    return this.http.put<Tournament>(`${this.baseURL}/${id}/end`, this.serviceConfiguration.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

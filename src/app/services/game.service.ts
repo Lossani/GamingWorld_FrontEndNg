@@ -34,7 +34,7 @@ export class GameService {
   }
 
   constructor(private Http: HttpClient,serviceConfiguration: ServiceConfiguration) {
-    this.URL = serviceConfiguration.baseUrl + "/api/v1/games";
+    this.URL = serviceConfiguration.baseUrl + "/games";
   }
 
   getGames(): Observable<Game[]> {

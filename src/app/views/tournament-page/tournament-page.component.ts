@@ -10,6 +10,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
 import {Observer, Subject} from "rxjs";
 import {RequireMatch} from "../../components/search-games/search-games/required-match";
+import {SessionService} from "../../services/session.service";
+import {User} from "../../entities/user-entity";
+import {ProfileService} from "../../services/profile.service";
 
 
 
@@ -30,6 +33,8 @@ export class TournamentPageComponent implements OnInit {
   selectedGame: any = {};
   resetSearchGame: boolean = false;
 
+  sessionValid: boolean = false;
+
   registerForm: FormGroup =  this.formBuilder.group({
     title: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
     description: ['', {validators: [Validators.required, Validators.minLength(30)], updateOn: 'change'}],
@@ -47,19 +52,29 @@ export class TournamentPageComponent implements OnInit {
     tournamentCapacity: ['', {validators: [Validators.min(2), Validators.required], updateOn: 'change'}],
   });
 
-  constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder) {
+  constructor(private profileService: ProfileService,private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder, private sessionService: SessionService) {
     // gameService.getGames().subscribe(data => {
     //   this.games = data;
     // });
+
+    this.sessionValid = this.sessionService.getIsLoggedIn()
 
     tournamentService.getTournaments().subscribe(data => {
 
       this.tournaments = this.sortTournaments(data);
 
-      this.tournaments.forEach(element=> {this.tournamentService.validateUserInTournament(element.id, 1).subscribe(value => {
-        element.inTournament = value;
-      })
-      });
+      let participantId: any;
+      profileService.getProfileByUserId(this.sessionService.getCurrentSession().user.id).subscribe(
+        data=>{
+          participantId = data.id;
+          this.tournaments.forEach(element=> {this.tournamentService.validateUserInTournament(element.id, participantId).subscribe(value => {
+            element.inTournament = !value;
+          })
+          });
+        }
+      )
+
+
 
       this.filterTournaments = this.tournaments;
 
@@ -188,9 +203,18 @@ export class TournamentPageComponent implements OnInit {
       }
     }).afterClosed().subscribe((result: boolean) =>{
       console.log(result);
-      if(result){this.tournamentService.registerInTournament(tournament.id).subscribe(data => {
-        tournament.inTournament=data;
-      });}
+
+      let user: User = this.sessionService.getCurrentSession().user;
+      let profile: any;
+      this.profileService.getProfileByUserId(user.id).subscribe(data=>{
+        profile=data;
+        console.log(profile.id)
+        if(result){this.tournamentService.registerInTournament(tournament.id, profile.id).subscribe(data => {
+          tournament.inTournament=data;
+        });}
+      })
+
+
     });
 
 
