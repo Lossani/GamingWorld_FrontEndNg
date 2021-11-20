@@ -30,7 +30,7 @@ export interface Team
 }
 
 export interface TournamentExperience {
-  id?: number,
+  id: number,
   name: string,
   date: string,
   position: string,
@@ -55,4 +55,15 @@ export interface StreamingCategory
 {
   id?: number,
   name: string
+}
+
+//Si borro esto, la app no arranca
+//profile.service llama a esta interfaz
+
+export interface UserGame {
+  id: number,
+  experienceLevel: number,
+  game: Game,
+  editMode: boolean,
+  experienceFormController: FormControl
 }

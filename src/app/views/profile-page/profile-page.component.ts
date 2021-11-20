@@ -9,8 +9,17 @@ import {CreateTournamentDialogComponent} from "../../components/dialogs/create-t
 import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
 import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 import {User} from "../../entities/user-entity";
-import {FavoriteGame, Team, TournamentExperience, UserGame} from "../../entities/profile-entity";
+import {
+  FavoriteGame,
+  StreamerSponsor,
+  StreamingCategory,
+  Team,
+  TournamentExperience,
+  UserGame
+} from "../../entities/profile-entity";
 import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
+import {CreateStreamSponsorDialogComponent} from "../../components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component";
+import {CreateStreamCategoryDialogComponent} from "../../components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -31,11 +40,17 @@ export class ProfilePageComponent implements OnInit {
   // variable que guarda los nombres de los torneos que se van a mostrar
   displayedFavoriteColumns: string[] = ["name", "actions"];
   // variable que guarda los juegos favoritos del usuario
+  displayedCategoriesColums: string[] = ["name", "actions"];
+  // variable que guarda las categorias de stream
+  displayedSponsorColumns: string[] = ["name", "actions"];
+  // variable que guarda los sponsors del streamer
 
   gameExperiences!: UserGame[];
   tournaments!: TournamentExperience[];
   teams!: Team[];
   favoriteGames!: FavoriteGame[];
+  streamingCategories!: StreamingCategory[];
+  streamingSponsors!: StreamerSponsor[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
@@ -203,15 +218,26 @@ export class ProfilePageComponent implements OnInit {
     this.dialog.open(CreateFavoriteGameDialogComponent);
   }
 
+  openAddStreamSponsorDialog(): void{
+    this.dialog.open(CreateStreamSponsorDialogComponent);
+  }
+
+  openAddStreamCategoryDialog(): void{
+    this.dialog.open(CreateStreamCategoryDialogComponent);
+  }
+
   openDeleteTeamConfirmDialog(element: Team) {
     const confirmFunction = () => {
       this.deleteTeam(element);
     }
+
    this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
         action: "Delete Team",
         confirmFunction: confirmFunction
       }
     })
+
+
   }
 }
