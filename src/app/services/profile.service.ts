@@ -3,16 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {User} from "../entities/user-entity";
 import {GameExperience, Team, TournamentExperience, UserCompetencia, UserGame} from "../entities/profile-entity";
+import {ServiceConfiguration} from "./service-configuration";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private profileUrl = "https://json-test-server.herokuapp.com/usuarios/";
-  private URL = "https://json-test-server.herokuapp.com";
+  private profileUrl = "";
+  private URL = "";
 
-  constructor(private Http: HttpClient) { }
+  constructor(private Http: HttpClient,serviceConfiguration: ServiceConfiguration) {
+    this.profileUrl = serviceConfiguration.baseUrl + "/usuarios/";
+    this.URL = serviceConfiguration.baseUrl;
+  }
 
   getProfileById(id: number): Observable<User>{
     const url = this.profileUrl + id.toString() + "?_embed=competencias&_embed=game-experiences"

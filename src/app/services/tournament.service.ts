@@ -3,13 +3,15 @@ import { Observable, throwError } from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
 import { Tournament } from '../entities/tournament-entity';
+import {ServiceConfiguration} from "./service-configuration";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TournamentService {
 
-  private baseURL = "http://localhost:8080/api/v1/tournaments";
+
+  private baseURL = "";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,7 +19,8 @@ export class TournamentService {
     })
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, serviceConfiguration: ServiceConfiguration) {
+    this.baseURL = serviceConfiguration.baseUrl + "/api/v1/tournaments";
   }
 
   // API Error Handling
@@ -75,8 +78,8 @@ export class TournamentService {
         catchError(this.handleError));
   }
 
-  updatePointsTournament(idTournament:number, idParticipant: number, points: number): Observable<any>{
-    return this.http.put<any>(`${this.baseURL}/${idTournament}/participants/${idParticipant}?points=${points}`, this.httpOptions)
+  updateTournamentPoints(idTournament:number,typeTournament:string, idParticipant: number, points: number): Observable<any>{
+    return this.http.put<any>(`${this.baseURL}/${idTournament}/${typeTournament.toLowerCase()}s/${idParticipant}?points=${points}`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

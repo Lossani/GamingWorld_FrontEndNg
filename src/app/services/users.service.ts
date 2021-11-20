@@ -4,13 +4,14 @@ import {Tournament} from "../entities/tournament-entity";
 import {catchError, map, retry} from "rxjs/operators";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {User} from "../entities/user-entity";
+import {ServiceConfiguration} from "./service-configuration";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  private baseURL = "http://localhost:8080";
+  private baseURL = "";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,7 +20,9 @@ export class UsersService {
     observe: 'response' as 'body'
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, serviceConfiguration: ServiceConfiguration) {
+    this.baseURL = serviceConfiguration.baseUrl;
+  }
 
   // API Error Handling
   handleError(error: HttpErrorResponse) {

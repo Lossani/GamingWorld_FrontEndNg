@@ -8,6 +8,11 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
+import {Observer, Subject} from "rxjs";
+import {RequireMatch} from "../../components/search-games/search-games/required-match";
+
+
+
 
 @Component({
   selector: 'app-tournament-page',
@@ -16,19 +21,21 @@ import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm
 })
 export class TournamentPageComponent implements OnInit {
 
-  games!: Game[];
+  resetFormSubject: Subject<boolean> = new Subject<boolean>();
   tournaments!: Tournament[];
   filterTournaments!: Tournament[];
   tournament!: Tournament;
   submitted: boolean = false;
   panelOpenState: boolean = false;
+  selectedGame: any = {};
+  resetSearchGame: boolean = false;
 
   registerForm: FormGroup =  this.formBuilder.group({
     title: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
     description: ['', {validators: [Validators.required, Validators.minLength(30)], updateOn: 'change'}],
     urlToImage: ['', {updateOn: 'change'} ],
-    prizePool: ['', {updateOn: 'change'}],
-    game: ['',{validators: [Validators.required], updateOn: 'change'}],
+    prizePool: ['0', {validators: [Validators.min(0)], updateOn: 'change'}],
+    // game: ['', {validators: [Validators.required, RequireMatch], updateOn: 'change'}],
     isTeam: [false, {updateOn: 'change'}],
     date: ['', {validators: [Validators.required, ], updateOn: 'change'}],
     // teamTournament: this.formBuilder.group({
@@ -41,9 +48,9 @@ export class TournamentPageComponent implements OnInit {
   });
 
   constructor(private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder) {
-    gameService.getGames().subscribe(data => {
-      this.games = data;
-    });
+    // gameService.getGames().subscribe(data => {
+    //   this.games = data;
+    // });
 
     tournamentService.getTournaments().subscribe(data => {
 
@@ -69,6 +76,10 @@ export class TournamentPageComponent implements OnInit {
 
   get content() { return this.registerForm.get('content'); }
 
+  resetChildForm(){
+    this.resetFormSubject.next(true);
+  }
+
   date() {
     let nowDate = new Date();
     var userTimezoneOffset = nowDate.getTimezoneOffset() * 60000;
@@ -77,12 +88,20 @@ export class TournamentPageComponent implements OnInit {
     return nowDate.toISOString().slice(0,16);
   }
 
+  receiveMessage($event:any) {
+    // this.registerForm.controls.game = $event;
+    if($event!=[]){
+      this.selectedGame = $event
+    }
+
+    console.log($event)
+  }
+
   submitForm() {
     let postedAt: Date = new Date();
     console.log(this.registerForm.valid);
     this.submitted = true;
     this.tournament.userId = 1;
-    this.tournament.gameId = this.registerForm.controls.game.value;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
@@ -93,12 +112,13 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.tournamentDate = (new Date(tDate.getTime()));
     console.log(this.registerForm.controls.date.value);
     console.log(tDate.toString());
+    this.tournament.gameId = this.selectedGame.id;
     this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
     this.tournament.prizePool = 0;
     this.tournament.isTeamMode = this.registerForm.controls.isTeam.value;
 
-
+    this.selectedGame = {};
     this.addTournament();
     this.cancelButton();
   }
@@ -136,15 +156,22 @@ export class TournamentPageComponent implements OnInit {
 
   togglePanel() {
     this.panelOpenState = !this.panelOpenState;
+
+    if(this.panelOpenState && this.resetSearchGame)
+    this.resetSearchGame = false;
+
   }
   clearForm() {
-    this.registerForm.reset();
     for (let control in this.registerForm.controls) {
       this.registerForm.controls[control].setErrors(null);
     }
+    this.registerForm.reset();
   }
   cancelButton()
   {
+    this.selectedGame = {};
+    this.resetSearchGame = true;
+
     this.clearForm();
     this.togglePanel();
   }

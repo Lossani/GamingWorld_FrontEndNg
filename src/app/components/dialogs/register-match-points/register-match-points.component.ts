@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Observable} from "rxjs";
 import {map, startWith} from 'rxjs/operators';
-import {FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TournamentService} from "../../../services/tournament.service";
 
 
@@ -13,24 +13,37 @@ import {TournamentService} from "../../../services/tournament.service";
 })
 export class RegisterMatchPointsComponent implements OnInit {
   myControl = new FormControl();
-  filteredOptions: Observable<any[]> | undefined;
+  participantControl: FormGroup = this.formBuilder.group({
+    points: ['', {validators: [Validators.min(0), Validators.required], updateOn: 'change'}],
+    }
+  )
+  filteredOptions: Observable<any[]> = new Observable<Array<string>>();
   participants: any[];
   searchParticipant: any = null;
   extraPoints: any = 0;
   participantsMatchPoints: any[] = [];
   tournamentId: number = 0;
+  tournamentType: string = "";
 
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any, private tournamentService: TournamentService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any, private tournamentService: TournamentService, public formBuilder: FormBuilder) {
     this.participants = dialogData.participants;
     this.tournamentId = dialogData.tournamentId;
+    tournamentService.getTournamentById(this.tournamentId).subscribe(
+      data =>{
+        if(data!=null){
+          this.tournamentType = data.isTeamMode ? "Team" : "Participant";
+        }
+      }
+    )
   }
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value)),
+      map(value => {if(value!=null) return (typeof value === 'string' ? value : value.name)}),
+      map(name => (name ? this._filter(name) : this.participants.slice())),
     );
   }
 
@@ -43,20 +56,14 @@ export class RegisterMatchPointsComponent implements OnInit {
    addParticipant(){
 
        let temp = {...this.searchParticipant}
-
        temp.points = 0;
-
-       console.log(this.extraPoints)
-
        if (!this.participantsMatchPoints.some(e => e.id === temp.id)) {
          temp.points = parseInt(temp.points) + parseInt(this.extraPoints);
          this.participantsMatchPoints.push(temp);
        }
-
+       this.myControl.reset();
        this.extraPoints = 0;
-       console.log(temp);
-       console.log(this.searchParticipant)
-
+       this.searchParticipant = null;
    }
 
    addParticipantPoints() {
@@ -66,7 +73,7 @@ export class RegisterMatchPointsComponent implements OnInit {
            value.points += value2.points;
          }
        })
-      this.tournamentService.updatePointsTournament(this.tournamentId,value.id,value.points).subscribe(value=>{console.log(value)});
+      this.tournamentService.updateTournamentPoints(this.tournamentId,this.tournamentType,value.id,value.points).subscribe(value=>{console.log(value)});
      })
      this.searchParticipant = null;
      this.extraPoints = 0;
@@ -74,9 +81,7 @@ export class RegisterMatchPointsComponent implements OnInit {
    }
 
   onOptionSelected(dataOption: any) {
-    this.searchParticipant=dataOption.option.value
-    console.log(dataOption.option.value);
-    //set you model here so that your input box get selected value
+    this.searchParticipant = dataOption.option.value;
   }
 
   public getDisplayFn(val:any) {
