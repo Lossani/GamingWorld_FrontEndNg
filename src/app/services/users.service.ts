@@ -36,10 +36,6 @@ export class UsersService {
     return throwError('Something happened with request, please try again later');
   }
 
-  postLogin(item: any):Observable<any> {
-    return this.http.post<any>(`${this.baseURL}/login`, JSON.stringify(item), this.httpOptions);
-  }
-
   getUserByEmail(email: string, token: string){
 
     let params = new URLSearchParams();
