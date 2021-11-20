@@ -81,7 +81,7 @@
             <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
               Cancel
             </button>
-            <button [disabled]="!registerForm.valid || this.selectedGame.id" mat-flat-button color="primary" type="submit">Save</button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">Save</button>
           </form>
 
         </mat-expansion-panel>
