@@ -17,12 +17,6 @@ export interface UserGame {
   experienceFormController: FormControl
 }
 
-export interface UserCompetencia {
-  name: string,
-  date: string,
-  position: string
-}
-
 export interface Team
 {
   id?: number,
@@ -53,4 +47,10 @@ export interface StreamerSponsor {
   id: number,
   userId: number,
   name: string,
+}
+
+export interface StreamingCategory
+{
+  id?: number,
+  name: string
 }

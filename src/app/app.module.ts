@@ -30,6 +30,7 @@ import { PremiumCardComponent } from './components/premium-card/premium-card.com
 import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-tournament/confirm-end-tournament.component';
 import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
 import { MatChipsModule } from "@angular/material/chips";
+import {SessionService} from "./services/session.service";
 
 
 
@@ -73,7 +74,7 @@ import { MatChipsModule } from "@angular/material/chips";
     MatChipsModule
 
   ],
-  providers: [],
+  providers: [SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

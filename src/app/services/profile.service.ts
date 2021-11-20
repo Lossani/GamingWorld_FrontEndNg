@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {User} from "../entities/user-entity";
-import {GameExperience, Team, TournamentExperience, UserCompetencia, UserGame} from "../entities/profile-entity";
+import {GameExperience, Team, TournamentExperience, UserGame} from "../entities/profile-entity";
 
 @Injectable({
   providedIn: 'root'
@@ -62,15 +62,6 @@ export class ProfileService {
     return this.Http.get<TournamentExperience[]>(url);
   }
 
-  postTournament(tournament: UserCompetencia, userId: number): Observable<TournamentExperience> {
-    const url = `${this.URL}/competencias`;
-    return this.Http.post<TournamentExperience>(url, {
-      usuarioId: userId,
-      nombre: tournament.name,
-      date: tournament.date,
-      puesto: tournament.position
-    });
-  }
 
   deleteTournament(id: number): Observable<any>{
     console.log("delete");

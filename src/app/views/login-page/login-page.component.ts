@@ -32,7 +32,9 @@ export class LoginPageComponent implements OnInit {
     this.sessionService.attemptLogin(this.user).then(
       success => {
         if (success)
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/').then(() => {
+            window.location.reload();
+          });
       }
     );
   }

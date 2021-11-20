@@ -11,15 +11,11 @@ export class SessionService {
 
   private baseURL = "http://localhost:8080";
 
-  private static currentSession : Session;
+  private static currentSession : Session = {} as Session;
 
-  private static isLoggedIn : Boolean;
+  private static isLoggedIn : Boolean = false;
 
-  constructor(private router: Router, private usersService: UsersService, private http: HttpClient, @Optional() @SkipSelf() parentModule?: SessionService) {
-    if (parentModule) {
-      throw new Error(
-        'GreetingModule is already loaded. Import it in the AppModule only');
-    }
+  constructor(private router: Router, private usersService: UsersService, private http: HttpClient) {
     let sessionString = localStorage.getItem("currentSession");
     if (sessionString != null) {
       SessionService.currentSession = JSON.parse(sessionString);
