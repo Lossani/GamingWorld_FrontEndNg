@@ -34,7 +34,8 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-            Participants
+            <div *ngIf="this.tournament.isTeamMode">Teams</div>
+            <div *ngIf="!this.tournament.isTeamMode">Participants</div>
           </mat-card-title>
           <mat-card-content></mat-card-content>
         </mat-card-header>

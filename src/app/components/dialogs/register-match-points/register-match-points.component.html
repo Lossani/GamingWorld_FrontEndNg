@@ -20,30 +20,33 @@
         </mat-list>
       </mat-card>
       <div>
-        <form class="example-form">
+        <form [formGroup]="participantControl" class="example-form">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Participant</mat-label>
+            <mat-label>{{this.tournamentType}}</mat-label>
             <input type="text"
                    placeholder="Select one"
-                   aria-label="Participant"
                    matInput
                    [formControl]="myControl"
                    [matAutocomplete]="auto"
                    >
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"  [displayWith]="getDisplayFn">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  [(ngModel)]="this.searchParticipant" name="searchParticipant" >
+            <mat-autocomplete  #auto="matAutocomplete"  (optionSelected)="onOptionSelected($event)"  [displayWith]="getDisplayFn">
+              <mat-option [(ngModel)]="this.searchParticipant" ngDefaultControl [ngModelOptions]="{standalone: true}" name="searchParticipant"  *ngFor="let option of filteredOptions | async" [value]="option"  >
                 {{option.name}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-        </form>
-        <h3 style="margin-top: 10px"><b>Extra Points</b> </h3>
-        <form style="margin-top: -20px">
+
+          <h3 style="margin-top: 10px"><b>Extra Points</b> </h3>
           <mat-form-field  appearance="fill">
-            <input [value]="extraPoints" (input)="updateBox($event)" type="number" matInput placeholder="Add extra points to the user" >
+            <mat-label>Points</mat-label>
+            <input formControlName="points" [value]="extraPoints" (input)="updateBox($event)" type="number" matInput placeholder="Points in this match participant" >
           </mat-form-field>
+          <div style="width: 100%">
+            <button style="width: 100%" [disabled]="!participantControl.valid || this.searchParticipant == null" mat-raised-button color="primary" (click)="addParticipant()">Add participant</button>
+          </div>
         </form>
-        <button mat-raised-button color="primary" class="btnAddParticipant" (click)="addParticipant()">Add participant</button>
+
+
       </div>
     </div>
     <mat-dialog-actions style="justify-content: flex-end">

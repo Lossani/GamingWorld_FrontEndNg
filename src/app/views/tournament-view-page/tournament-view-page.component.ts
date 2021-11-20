@@ -24,12 +24,18 @@ export class TournamentViewPageComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.tournamentId = params['id']
     });
+
   }
 
   ngOnInit(): void {
+
     this.tournamentService.getTournamentById(this.tournamentId).subscribe(data => {
+      console.log(this.tournamentId)
       this.tournament=data;
+      console.log(this.tournament);
+      console.log(data)
     });
+
     this.tournamentService.getParticipantsByTournamentId(this.tournamentId).subscribe(
       data=> {
         data.forEach(value => {

@@ -1,0 +1,17 @@
+<mat-form-field style="width: 100%" appearance="fill">
+  <mat-label>Games</mat-label>
+  <input type="text"
+         placeholder="Find games"
+         aria-label="Games"
+         matInput
+         (input)="updateBox($event)"
+         [formControl]="myControl"
+         [matAutocomplete]="auto">
+  <mat-autocomplete [(ngModel)]="this.options" name="options" ngDefaultControl [ngModelOptions]="{standalone: true}" autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"
+                    [displayWith]="getDisplayFn">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+

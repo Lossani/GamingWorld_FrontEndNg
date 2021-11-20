@@ -31,6 +31,7 @@ import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-
 import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
 import { MatChipsModule } from "@angular/material/chips";
 import {SessionService} from "./services/session.service";
+import { SearchGamesComponent } from './components/search-games/search-games/search-games.component';
 
 
 
@@ -59,6 +60,7 @@ import {SessionService} from "./services/session.service";
     ConfirmEndTournamentComponent,
     RegisterMatchPointsComponent,
     CreateFavoriteGameDialogComponent,
+    SearchGamesComponent,
 
 
   ],

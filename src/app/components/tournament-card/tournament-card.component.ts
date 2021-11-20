@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Tournament } from 'src/app/entities/tournament-entity';
-import {Game} from "../../entities/game-entity";
 import { Router } from '@angular/router';
+import {GameService} from "../../services/game.service";
 
 
 @Component({
@@ -14,14 +14,27 @@ export class TournamentCardComponent implements OnInit {
 
   @Input()
   tournament: Tournament = {} as Tournament;
-  game?: Game;
+  tournamentGameName: string = "";
 
 
   tournamentHour?: string;
   tournamentDate?: string;
 
-  constructor(private dialog: MatDialog, public router: Router) {
+  constructor(private dialog: MatDialog, public router: Router, private gameService: GameService) {
 
+  }
+
+  ngOnChanges(): void{
+    this.getDate();
+    this.getHour()
+    if(this.tournament.gameId){
+      this.gameService.getGameById(this.tournament.gameId).subscribe(data=>{
+        console.log(data)
+        this.tournamentGameName = data.name;
+      })
+    }
+
+    console.log(this.tournamentGameName)
   }
 
   ngOnInit(): void {
@@ -30,17 +43,16 @@ export class TournamentCardComponent implements OnInit {
 
   getDate(){
     let tDate = new Date(this.tournament.tournamentDate);
-    return tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
+    this.tournamentDate = tDate.getFullYear()+'-'+(tDate.getMonth()+1)+'-'+tDate.getDate();
   }
   getHour(){
     let tDate = new Date(this.tournament.tournamentDate);
-    return this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
+    this.tournamentHour = tDate.getHours() + ":" + tDate.getMinutes();
   }
 
 
   compareDates(){
     let date1: Date = new Date();
-    let comp: number = 0;
     let tDate = new Date(this.tournament.tournamentDate);
     return (date1 < tDate);
   }
