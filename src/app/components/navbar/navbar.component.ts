@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SessionService } from "../../services/session.service";
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+
   user?: string;
+  isLoggedIn?: Boolean;
 
   @Input()
   public isInNews: boolean = false;
@@ -17,12 +19,22 @@ export class NavbarComponent implements OnInit {
   searchQuery = new FormControl('');
 
 
-  constructor(public router: Router) {
-  }
-  
-  ngOnInit(): void {
-    const aux = sessionStorage.getItem('user');
-    this.user = aux || "-1";
+  constructor(public router: Router, private sessionService: SessionService) {
+
   }
 
+  ngOnInit(): void {
+    this.isLoggedIn = SessionService.getIsLoggedIn();
+    this.user = SessionService.getCurrentSession().user.id.toString();
+    console.log(this.isLoggedIn);
+    console.log(this.user);
+  }
+
+  logout() {
+    SessionService.logout();
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('/').then(() => {
+      window.location.reload();
+    });
+  }
 }

@@ -18,8 +18,13 @@
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #profileMenu="matMenu">
-            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>Profile</button>
-            <button  mat-menu-item matTooltip="Close session">Log out</button>
+          <div *ngIf="isLoggedIn; else elseBlock">
+            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>My Profile</button>
+            <button (click)="logout()" mat-menu-item matTooltip="Close session">Log out</button>
+          </div>
+          <ng-template #elseBlock>
+            <button [routerLink]="'/login/'" mat-menu-item matTooltip="Login">Log in</button>
+          </ng-template>
         </mat-menu>
     </div>
 </mat-toolbar>
