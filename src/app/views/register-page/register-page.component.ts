@@ -22,7 +22,7 @@ export class RegisterPageComponent implements OnInit {
     confirmPassword: ['', {validators: [Validators.required, Validators.maxLength(60)], updateOn: 'change'}],
     name: ['', {validators: [Validators.required, Validators.maxLength(40)], updateOn: 'change'}],
     lastName: ['', {validators: [Validators.required, Validators.maxLength(40)], updateOn: 'change'}],
-    email: ['', {validators: [Validators.required], updateOn: 'change'}]
+    email: ['', {validators: [Validators.email], updateOn: 'change'}]
 
   }, { validator: this.checkPasswords });
 
