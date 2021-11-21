@@ -185,8 +185,58 @@
                 <tr mat-header-row *matHeaderRowDef="displayedFavoriteColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedFavoriteColumns;"></tr>
               </table>
-              <!--Hasta acá-->
 
+              <br>
+              <div class="section-title">
+                <h2 class="center">Streaming Category</h2>
+                <button mat-button color="primary" (click)="openAddStreamCategoryDialog()">Add Streaming Category</button>
+              </div>
+              <mat-divider></mat-divider>
+              <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
+              <table mat-table>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Category Name</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.nombre }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="warn">
+                      Delete
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedFavoriteColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedFavoriteColumns;"></tr>
+              </table>
+
+              <br>
+              <div class="section-title">
+                <h2 class="center">Streaming Sponsor</h2>
+                <button mat-button color="primary" (click)="openAddStreamSponsorDialog()">Add Streaming Sponsor</button>
+              </div>
+              <mat-divider></mat-divider>
+              <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
+              <table mat-table>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Sponsor Name</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.nombre }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="warn">
+                      Delete
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedFavoriteColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedFavoriteColumns;"></tr>
+              </table>
             </div>
         </mat-card-content>
     </mat-card>
