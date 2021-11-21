@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 import {RegisterMatchPointsComponent} from "../../components/dialogs/register-match-points/register-match-points.component";
+import {SessionService} from "../../services/session.service";
 
 
 
@@ -18,9 +19,11 @@ export class TournamentViewPageComponent implements OnInit {
   tournament: Tournament = {} as Tournament;
   tournamentId!: number;
   participants: any[] = [];
+  userValid: boolean = false;
 
 
-  constructor(private tournamentService: TournamentService, private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private tournamentService: TournamentService, private route: ActivatedRoute, public dialog: MatDialog,
+  private sessionService: SessionService) {
     this.route.params.subscribe(params => {
       this.tournamentId = params['id']
     });
@@ -29,18 +32,21 @@ export class TournamentViewPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.tournamentService.getTournamentById(this.tournamentId).subscribe(data => {
+    this.tournamentService.getTournamentById(this.tournamentId).subscribe((data: any) => {
       console.log(this.tournamentId)
       this.tournament=data;
       console.log(this.tournament);
       console.log(data)
+      this.userValid = this.sessionService.getCurrentSession().user.id == data.user.id;
+      console.log(this.sessionService.getCurrentSession().user.id);
+      console.log(this.tournament.userId);
     });
 
     this.tournamentService.getParticipantsByTournamentId(this.tournamentId).subscribe(
       data=> {
         data.forEach(value => {
           this.participants.push(
-            {id: value.id, name: value.participantProfile.user.name, points: value.points}
+            {id: value.id, name: value.participantProfile.user.username, points: value.points}
           )
         })
         console.log(this.participants);
@@ -86,6 +92,10 @@ export class TournamentViewPageComponent implements OnInit {
       return 0;
     });
     return participants;
+  }
+
+  ngDoCheck(){
+
   }
 
 }

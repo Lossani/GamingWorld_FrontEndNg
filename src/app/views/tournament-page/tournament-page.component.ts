@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Game } from 'src/app/entities/game-entity';
 import { GameService } from 'src/app/services/game.service';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
@@ -8,8 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 
 
 import {ConfirmSigninTournamentComponent} from "../../components/dialogs/confirm-signin-tournament/confirm-signin-tournament.component";
-import {Observer, Subject} from "rxjs";
-import {RequireMatch} from "../../components/search-games/search-games/required-match";
+import {Subject} from "rxjs";
 import {SessionService} from "../../services/session.service";
 import {User} from "../../entities/user-entity";
 import {ProfileService} from "../../services/profile.service";
@@ -52,7 +50,8 @@ export class TournamentPageComponent implements OnInit {
     tournamentCapacity: ['', {validators: [Validators.min(2), Validators.required], updateOn: 'change'}],
   });
 
-  constructor(private profileService: ProfileService,private gameService: GameService, private tournamentService: TournamentService, public dialog: MatDialog, public formBuilder: FormBuilder, private sessionService: SessionService) {
+  constructor(private profileService: ProfileService,private gameService: GameService, private tournamentService: TournamentService,
+              public dialog: MatDialog, public formBuilder: FormBuilder, private sessionService: SessionService) {
     // gameService.getGames().subscribe(data => {
     //   this.games = data;
     // });
@@ -116,7 +115,7 @@ export class TournamentPageComponent implements OnInit {
     let postedAt: Date = new Date();
     console.log(this.registerForm.valid);
     this.submitted = true;
-    this.tournament.userId = 1;
+    this.tournament.userId = this.sessionService.getCurrentSession().user.id;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
@@ -130,7 +129,6 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.gameId = this.selectedGame.id;
     this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
-    this.tournament.prizePool = 0;
     this.tournament.isTeamMode = this.registerForm.controls.isTeam.value;
 
     this.selectedGame = {};

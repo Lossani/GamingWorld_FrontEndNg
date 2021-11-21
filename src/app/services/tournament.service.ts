@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
 import { Tournament } from '../entities/tournament-entity';
 import {ServiceConfiguration} from "./service-configuration";
@@ -47,8 +47,6 @@ export class TournamentService {
 
   postTournament(item: any): Observable<Tournament> {
     let user: User = this.sessionService.getCurrentSession().user;
-
-
 
     return this.http.post<Tournament>(`${this.baseURL}/${user.id}/create`, JSON.stringify(item), this.serviceConfiguration.httpOptions)
       .pipe(
