@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, throwError} from "rxjs";
-import {Tournament} from "../entities/tournament-entity";
-import {catchError, map, retry} from "rxjs/operators";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
+import {catchError, retry} from "rxjs/operators";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {User} from "../entities/user-entity";
 import {ServiceConfiguration} from "./service-configuration";
 
@@ -20,7 +19,7 @@ export class UsersService {
     observe: 'response' as 'body'
   }
 
-  constructor(private http: HttpClient, serviceConfiguration: ServiceConfiguration) {
+  constructor(private http: HttpClient, private serviceConfiguration: ServiceConfiguration) {
     this.baseURL = serviceConfiguration.baseUrl;
   }
 
@@ -51,10 +50,18 @@ export class UsersService {
       }),
       search: params
     }
-    return this.http.get<User>(`${this.baseURL}/api/v1/users`, tempHttpOptions)
+    return this.http.get<User>(`${this.baseURL}/users`, tempHttpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError))
+  }
+
+  postUser(item: any): Observable<User> {
+
+    return this.http.post<User>(`${this.baseURL}/users/signup`, JSON.stringify(item), this.serviceConfiguration.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
   }
 
 

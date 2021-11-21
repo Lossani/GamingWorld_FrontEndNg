@@ -1,7 +1,7 @@
 <div id="RegisterContainer">
     <mat-card style="width: 400px;" class="card-secondary-background">
         <mat-card-header>
-            <mat-card-title>
+            <mat-card-title style="color: white;">
                 Sign Up
             </mat-card-title>
         </mat-card-header>
@@ -10,42 +10,41 @@
         <form [formGroup]="registerForm">
             <mat-card-content>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Name</mat-label>
-                    <input type="text" matInput id="name" formControlName="name" required>
-                    <mat-error *ngIf="registerForm.controls.name.invalid">Complete the field with valid informations</mat-error>
+                    <mat-label style="color: white;">Name</mat-label>
+                    <input style="color: white;" type="text" matInput id="name" formControlName="name" required>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Last Name</mat-label>
-                    <input type="text" matInput id="lastName" formControlName="lastName" required>
+                    <mat-label style="color: white;">Last Name</mat-label>
+                    <input style="color: white;" type="text" matInput id="lastName" formControlName="lastName" required>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput id="email" formControlName="email" required>
+                    <mat-label style="color: white;">Email</mat-label>
+                    <input style="color: white;" type="email" matInput id="email" formControlName="email" required>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Username</mat-label>
-                    <input type="text" matInput id="username" formControlName="username" required>
+                    <mat-label style="color: white;">Username</mat-label>
+                    <input style="color: white;" type="text" matInput id="username" formControlName="username" required>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input type="password" matInput id="password" formControlName="password" required>
+                    <mat-label style="color: white;">Password</mat-label>
+                    <input style="color: white;" type="password" matInput id="password" formControlName="password" required>
                 </mat-form-field>
-                <mat-form-field class="form-field" appearance="fill" require>
-                    <mat-label>Confirm Password</mat-label>
-                    <input type="password" matInput id="confirmPassword" formControlName="confirmPassword" required>
-                    <mat-error *ngIf="registerForm.value.password != registerForm.value.confirmPassword">
-                        You have to input the same Password!
-                    </mat-error>
+                <mat-form-field class="form-field" appearance="fill" required>
+                    <mat-label style="color: white;">Confirm Password</mat-label>
+                    <input style="color: white;" type="password" matInput id="confirmPassword" formControlName="confirmPassword" required>
+
                 </mat-form-field>
             </mat-card-content>
+          <button [routerLink]="'/login/'" mat-raised-button color="warn" (click)="cancelButton()" style="margin-right: 10px">
+            Cancel
+          </button>
+          <button [disabled]="!registerForm.valid" mat-raised-button color="primary" type="button" (click)="submitForm()">
+            Register
+          </button>
+
         </form>
         <mat-card-actions>
-            <button mat-raised-button (click)="register()" color="primary">
-                Register
-            </button>
-            <button routerLink="" mat-raised-button color="warn">
-                Cancel
-            </button>
+
         </mat-card-actions>
     </mat-card>
 </div>

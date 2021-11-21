@@ -24,14 +24,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = SessionService.getIsLoggedIn();
-    this.user = SessionService.getCurrentSession().user.id.toString();
+    this.isLoggedIn = this.sessionService.getIsLoggedIn();
+    this.user = this.sessionService.getCurrentSession().user.id.toString();
     console.log(this.isLoggedIn);
     console.log(this.user);
   }
 
   logout() {
-    SessionService.logout();
+    this.sessionService.logout();
     this.isLoggedIn = false;
     this.router.navigateByUrl('/').then(() => {
       window.location.reload();

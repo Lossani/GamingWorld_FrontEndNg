@@ -34,6 +34,8 @@ import {SessionService} from "./services/session.service";
 import { SearchGamesComponent } from './components/search-games/search-games/search-games.component';
 import { CreateStreamSponsorDialogComponent } from './components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component';
 import { CreateStreamCategoryDialogComponent } from './components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component';
+import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
+import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 
 
 
@@ -65,6 +67,8 @@ import { CreateStreamCategoryDialogComponent } from './components/dialogs/create
     SearchGamesComponent,
     CreateStreamSponsorDialogComponent,
     CreateStreamCategoryDialogComponent,
+    LoginOrSignupComponent,
+    ConfirmUserRegistrationComponent,
 
 
   ],

@@ -13,13 +13,18 @@ export class ProfileService {
   private profileUrl = "";
   private URL = "";
 
-  constructor(private Http: HttpClient,serviceConfiguration: ServiceConfiguration) {
-    this.profileUrl = serviceConfiguration.baseUrl + "/usuarios/";
+  constructor(private Http: HttpClient, private serviceConfiguration: ServiceConfiguration) {
+    this.profileUrl = serviceConfiguration.baseUrl + "/profiles";
     this.URL = serviceConfiguration.baseUrl;
   }
 
   getProfileById(id: number): Observable<User>{
     const url = this.profileUrl + id.toString() + "?_embed=competencias&_embed=game-experiences"
+    return this.Http.get<User>(url);
+  }
+
+  getProfileByUserId(id: number): Observable<User>{
+    const url = this.profileUrl + "/user/" + id;
     return this.Http.get<User>(url);
   }
 
