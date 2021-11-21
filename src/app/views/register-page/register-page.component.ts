@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {UsersService} from "../../services/users.service";
 import {User} from "../../entities/user-entity";
+import {Router} from "@angular/router";
+import {ConfirmUserRegistrationComponent} from "../../components/dialogs/confirm-user-registration/confirm-user-registration.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-register-page',
@@ -12,7 +15,6 @@ export class RegisterPageComponent implements OnInit {
 
   user: User = {} as User;
   submitted: boolean = false;
-
 
   registerForm: FormGroup =  this.formBuilder.group({
     username: ['', {validators: [Validators.required, Validators.maxLength(30)], updateOn: 'change'}],
@@ -31,7 +33,7 @@ export class RegisterPageComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-  constructor(private usersService: UsersService, public formBuilder: FormBuilder) {
+  constructor(private usersService: UsersService, public formBuilder: FormBuilder, public router: Router,public dialog: MatDialog) {
 
 
   }
@@ -53,13 +55,20 @@ export class RegisterPageComponent implements OnInit {
     this.user.premium=false;
 
     this.addUser();
-    this.cancelButton();
+    this.clearForm();
+    this.confirmRegistration();
+  }
+
+  confirmRegistration() {
+    this.clearForm();
+    const dialogRef = this.dialog.open(ConfirmUserRegistrationComponent);
   }
 
   addUser() {
     this.usersService.postUser(this.user).subscribe((response: any) => {
       console.log(response);
     });
+
   }
 
   clearForm() {
@@ -67,15 +76,14 @@ export class RegisterPageComponent implements OnInit {
       this.registerForm.controls[control].setErrors(null);
     }
     this.registerForm.reset();
+
   }
-
-
 
   cancelButton()
   {
     this.clearForm();
-
   }
+
 
 
 }

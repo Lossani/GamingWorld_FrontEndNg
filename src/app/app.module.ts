@@ -33,7 +33,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import {SessionService} from "./services/session.service";
 import { SearchGamesComponent } from './components/search-games/search-games/search-games.component';
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
-import {ServiceConfiguration} from "./services/service-configuration";
+import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 
 
 
@@ -64,6 +64,7 @@ import {ServiceConfiguration} from "./services/service-configuration";
     CreateFavoriteGameDialogComponent,
     SearchGamesComponent,
     LoginOrSignupComponent,
+    ConfirmUserRegistrationComponent,
 
 
   ],

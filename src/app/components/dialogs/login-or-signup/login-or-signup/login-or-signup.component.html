@@ -4,8 +4,8 @@
     <img mat-card-image src="https://www.fifplay.com/img/public/big-gaming-competition.jpg" alt="Photo of Tournament">
     <mat-card-content>Please Log-in or Sing-up in GamingWorld to access the tournaments.</mat-card-content>
     <mat-card-actions align="end">
-      <button mat-button>Log-in</button>
-      <button mat-button>Sing-up</button>
+      <button [routerLink]="'/login/'" mat-button>Log-in</button>
+      <button [routerLink]="'/sign-up/'" mat-button>Sign-up</button>
     </mat-card-actions>
   </mat-card>
 </div>
