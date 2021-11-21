@@ -1,0 +1,55 @@
+{
+  "NAVBAR": {
+    "Profile": "Mi Perfil",
+    "Log-Out": "Cerrar Sesión",
+    "Log-In": "Iniciar Sesion"
+  },
+  "PREMIUM-CARD": {
+    "Support": "Apoya GamingWorld",
+    "Text-1": "Conviértete en miembro premium y podrás crear torneos sin la necesidad de gestionarlos.",
+    "More-Info": "Más Información"
+  },
+  "TOURNAMENT-CARD": {
+    "Limit": "Límite: ",
+    "Prize-Pool": "Botín: ",
+    "Date": "Día: ",
+    "Hour": "Hora: ",
+    "Game": "Juego: "
+  },
+  "NEWS-PAGE": {
+    "Filter": "Filtrar Por",
+    "Games": "Videojuegos",
+    "Themes": "Categorias Populares de Twitch"
+  },
+  "NEWS-CARD": {
+    "MI": "Ver Más"
+  },
+  "PREMIUM-INFORMATION-DIALOG": {
+    "Subscribe": "Suscribete a GamingWorld",
+    "Question-1": "¿Estás cansado de tener que gestionar grandes torneos con muchos participantes?",
+    "Text-2": "No se preocupe, con nuestro servicio premium podemos administrar todos los detalles del torneo por usted. \nNo tendrá que hacer nada. Simplemente siéntese y relájese mientras nuestros administradores establecen las puntuaciones y otra información vital. ",
+    "Plan": "Plan Premium",
+    "Amount": "$5.00/Por mes",
+    "Close": "Cerrar",
+    "Purchase": "Comprar"
+  },
+  "TOURNAMENT-PAGE": {
+    "Filter-2": "Filtrar Por",
+    "Team": "Torneos por Equipos",
+    "Solo": "Torneos Solo",
+    "Post": "Crear un Torneo",
+    "Title": "Titulo del Torneo",
+    "Banner": "Portada del Torneo",
+    "Description": "Descripcion del Torneo",
+    "Prize": "Botin",
+    "Team-T": "Por Equipo",
+    "Number-T": "Numero de Equipos",
+    "Number-P": "Numero de Participantes",
+    "Error-1": "Minimo 2 participantes",
+    "Error-2": "Maximo 100 participantes",
+    "Cancel": "Cancelar",
+    "Save": "Guardar",
+    "Sign-In-T": "Registrarse en el Torneo",
+    "View-T": "Ver Torneo"
+  }
+}
