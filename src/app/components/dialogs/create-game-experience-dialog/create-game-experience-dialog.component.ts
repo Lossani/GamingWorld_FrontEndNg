@@ -36,14 +36,11 @@ export class CreateGameExperienceDialogComponent implements OnInit {
 
     let gameExperience: GameExperience = {
       gameId: this.formGroup.controls.gameId.value,
-      experienceLevel: this.formGroup.controls.experienceLevel.value,
+      experience: this.formGroup.controls.experienceLevel.value,
       userId: this.data.userId
     };
-    this.profileService.postGameExperience(gameExperience)
-      .subscribe(val => {
-        this.data.next();
-        this.matData.closeAll();
-      });
+    this.data.next(gameExperience);
+    this.matData.closeAll();
   }
 
 }

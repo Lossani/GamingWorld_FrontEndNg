@@ -10,7 +10,7 @@ import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-di
 import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 import {User} from "../../entities/user-entity";
 import {
-  FavoriteGame,
+  FavoriteGame, GameExperience, Profile,
   StreamerSponsor,
   StreamingCategory,
   Team,
@@ -20,6 +20,9 @@ import {
 import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
 import {CreateStreamSponsorDialogComponent} from "../../components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component";
 import {CreateStreamCategoryDialogComponent} from "../../components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component";
+import {SessionService} from "../../services/session.service";
+import {MatTableDataSource} from "@angular/material/table";
+import {Game} from "../../entities/game-entity";
 
 @Component({
   selector: 'app-profile-page',
@@ -32,11 +35,18 @@ export class ProfilePageComponent implements OnInit {
   // Codigo Obtenido por el route param
   profileCode!: number;
   // Datos basicos de Usuario
-  usuario!: User;
+  user!: User;
+  profile!: Profile;
+  //profile!: MatTableDataSource<Profile>;
+  gameExperiences!: MatTableDataSource<GameExperience>;
+  favoriteGames!: MatTableDataSource<FavoriteGame>;
+  tournamentExperiences!: MatTableDataSource<TournamentExperience>;
+  streamingCategories!: MatTableDataSource<StreamingCategory>;
+  streamerSponsors!: MatTableDataSource<StreamerSponsor>;
   // variable que guarda los nombres de las columnas que se van a mostrar
   displayedExperienceColumns: string[] = ["name", "experienceLevel", "actions"];
   // Juegos donde tiene experiencia
-  displayedTournamentColumns: string[] = ["name", "date", "position", "actions"];
+  displayedTournamentColumns: string[] = ["name", "position", "actions"];
   // variable que guarda los nombres de los torneos que se van a mostrar
   displayedFavoriteColumns: string[] = ["name", "actions"];
   // variable que guarda los juegos favoritos del usuario
@@ -45,40 +55,16 @@ export class ProfilePageComponent implements OnInit {
   displayedSponsorColumns: string[] = ["name", "actions"];
   // variable que guarda los sponsors del streamer
 
-  gameExperiences!: UserGame[];
-  tournaments!: TournamentExperience[];
+  //gameExperiences!: UserGame[];
+  //tournaments!: TournamentExperience[];
   teams!: Team[];
-  favoriteGames!: FavoriteGame[];
-  streamingCategories!: StreamingCategory[];
-  streamingSponsors!: StreamerSponsor[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private sessionService: SessionService) { }
 
-  getGameExperiences(id: number) {
-    this.profileService.getExperiencedGames(id)
-      .subscribe(Games => {
-        this.gameExperiences = Games.map(game => {
-          game.editMode = false;
-          game.experienceFormController = new FormControl(game.experienceLevel.toString());
-          return game;
-        });
-      });
-  }
-
-  getTournaments(id: number){
-    this.profileService.getTournaments(id)
-      .subscribe(Tournaments => {
-        this.tournaments = Tournaments.map(tournament => {
-          tournament.editMode = false;
-          tournament.nameFormController = new FormControl(tournament.name);
-          tournament.positionFormController = new FormControl(tournament.position);
-          return tournament;
-        });
-      });
-  }
-
+  /*
   getTeams()
   {
     this.profileService.getTeams(this.profileCode)
@@ -90,7 +76,8 @@ export class ProfilePageComponent implements OnInit {
         });
       });
   }
-
+*/
+  /*
   deleteTournament(element: TournamentExperience): void{
     this.profileService.deleteTournament(element.id).subscribe(val => {
       this.tournaments = this.tournaments.filter(elem => (elem.id != element.id));
@@ -103,17 +90,22 @@ export class ProfilePageComponent implements OnInit {
       this.teams = this.teams.filter(elem => (elem.id != element.id));
     });
   }
-
+*/
   ngOnInit(): void {
-    this.route.params.subscribe(data => {
-      this.profileCode = data.profileCode;
-      this.profileService.getProfileById(this.profileCode)
-        .subscribe(User => {
-          this.usuario = User;
-        });
-        this.getGameExperiences(this.profileCode);
-        this.getTournaments(this.profileCode);
-        this.getTeams();
+    this.getProfileData().then();
+  }
+
+  async getProfileData()
+  {
+    this.user = this.sessionService.getCurrentSession().user;
+    await this.profileService.getProfileByUserId(this.user.id)
+      .toPromise().then((profile: Profile) => {
+        this.gameExperiences = new MatTableDataSource(profile.gameExperiences);
+        this.favoriteGames = new MatTableDataSource(profile.favoriteGames);
+        this.tournamentExperiences = new MatTableDataSource(profile.tournamentExperiences);
+        this.streamerSponsors = new MatTableDataSource(profile.streamerSponsors);
+        this.streamingCategories = new MatTableDataSource(profile.streamingCategories);
+        this.profile = profile;
     });
   }
 
@@ -125,21 +117,18 @@ export class ProfilePageComponent implements OnInit {
     }
 
   }
-
+/*
   deleteExperienceInGame(element: UserGame): void{
     this.profileService.deleteGameExperience(element.id).subscribe(val => {
       this.gameExperiences = this.gameExperiences.filter(elem => (elem.id != element.id));
     });
   }
-
-  saveChangedExperience(element: UserGame): void {
-    this.profileService.putGameExperience(element, 1)
-      .subscribe(res => {
-        element.experienceLevel = res.experienceLevel;
-        this.toggleEditMode(element);
-      });
+*/
+/*
+  saveChangedExperience(element: GameExperience): void {
+    this.profile.gameExperiences.
   }
-
+/*
   saveChangedTournament(element: TournamentExperience): void {
     this.profileService.putTournament(element, 1)
       .subscribe(res => {
@@ -148,23 +137,37 @@ export class ProfilePageComponent implements OnInit {
         this.toggleEditMode(element);
       });
   }
+*/
 
-
-
-  openDeleteConfirmDialog(element: UserGame): void{
+  openDeleteGameExperienceConfirmDialog(element: GameExperience): void{
     const confirmFunction = () => {
-      this.deleteExperienceInGame(element);
+      this.profile.gameExperiences = this.profile.gameExperiences.filter(element => (element.id != element.id));
+      this.gameExperiences.data = this.profile.gameExperiences;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
-        action: "Delete Game Experience",
+        action: "Delete Game Experience?",
+        confirmFunction: confirmFunction
+      }
+    })
+  }
+
+  openDeleteFavoriteGameConfirmDialog(element: FavoriteGame): void{
+    const confirmFunction = () => {
+      this.profile.favoriteGames = this.profile.favoriteGames.filter(element => (element.id != element.id));
+      this.favoriteGames.data = this.profile.favoriteGames;
+    }
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        action: "Delete Favorite Game?",
         confirmFunction: confirmFunction
       }
     })
   }
   openDeleteConfirmTournamentDialog(element: TournamentExperience): void{
     const confirmFunction = () => {
-      this.deleteTournament(element);
+      this.profile.tournamentExperiences = this.profile.tournamentExperiences.filter(element => (element.id != element.id));
+      this.tournamentExperiences.data = this.profile.tournamentExperiences;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
@@ -175,8 +178,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   openAddGameDialog(): void {
-    const addToList = () => {
-      this.getGameExperiences(this.profileCode);
+    const addToList = (element: GameExperience) => {
+      this.profile.gameExperiences.push(element);
+      this.gameExperiences.data = this.profile.gameExperiences;
     }
     const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
       data: {
@@ -187,8 +191,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   openAddTournamentDialog(): void {
-    const addToList = () => {
-      this.getTournaments(this.profileCode);
+    const addToList = (element: TournamentExperience) => {
+      this.profile.tournamentExperiences.push(element);
+      this.tournamentExperiences.data = this.profile.tournamentExperiences;
     }
     const dialogRef = this.dialog.open(CreateTournamentDialogComponent, {
       data: {
@@ -200,7 +205,7 @@ export class ProfilePageComponent implements OnInit {
 
   openAddTeamDialog(): void {
     const addToList = () => {
-      this.getTeams();
+      //this.getTeams();
     }
     this.dialog.open(CreateTeamDialogComponent, {
       data: {
@@ -215,17 +220,45 @@ export class ProfilePageComponent implements OnInit {
   }
 
   openAddFavoriteGameDialog(): void{
-    this.dialog.open(CreateFavoriteGameDialogComponent);
+    const addToList = (element: FavoriteGame) => {
+      this.profile.favoriteGames.push(element);
+      this.favoriteGames.data = this.profile.favoriteGames;
+    }
+    this.dialog.open(CreateFavoriteGameDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        next: addToList
+      }
+    });
   }
 
   openAddStreamSponsorDialog(): void{
-    this.dialog.open(CreateStreamSponsorDialogComponent);
+    const addToList = (element: StreamerSponsor) => {
+      this.profile.streamerSponsors.push(element);
+      this.streamerSponsors.data = this.profile.streamerSponsors;
+    }
+    this.dialog.open(CreateStreamSponsorDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        next: addToList
+      }
+    });
   }
 
   openAddStreamCategoryDialog(): void{
-    this.dialog.open(CreateStreamCategoryDialogComponent);
+    const addToList = (element: StreamingCategory) => {
+      this.profile.streamingCategories.push(element);
+      this.streamingCategories.data = this.profile.streamingCategories;
+    }
+    this.dialog.open(CreateStreamCategoryDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        next: addToList
+      }
+    });
   }
 
+  /*
   openDeleteTeamConfirmDialog(element: Team) {
     const confirmFunction = () => {
       this.deleteTeam(element);
@@ -238,6 +271,23 @@ export class ProfilePageComponent implements OnInit {
       }
     })
 
+
+  }*/
+
+  saveProfile(): void
+  {
+    this.profileService.updateProfileById(this.profile).subscribe(
+      profile => {
+        this.gameExperiences.data = profile.gameExperiences;
+        this.favoriteGames.data = profile.favoriteGames;
+        this.tournamentExperiences.data = profile.tournamentExperiences;
+        this.streamerSponsors.data = profile.streamerSponsors;
+        this.streamingCategories.data = profile.streamingCategories;
+        this.profile = profile;
+
+        alert("Profile saved!");
+      }
+    )
 
   }
 }

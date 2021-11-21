@@ -2,7 +2,7 @@
 Add Favorite Games
 </h2>
 <mat-dialog-content>
-  <form style="display: flex; flex-direction: column;" >
+  <form style="display: flex; flex-direction: column;" [formGroup]="formGroup">
     <mat-form-field class="form-field" appearance="fill">
       <mat-label>Game</mat-label>
       <mat-select formControlName="gameId" required>
@@ -12,7 +12,7 @@ Add Favorite Games
       </mat-select>
     </mat-form-field>
     <div style="display: flex; width: 100%; justify-content: space-evenly;">
-      <button mat-raised-button color="primary" type="submit">Create</button>
+      <button mat-raised-button color="primary" type="submit" (click)="submit()">Create</button>
       <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
     </div>
   </form>
