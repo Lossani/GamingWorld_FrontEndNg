@@ -51,5 +51,35 @@
     "Save": "Save",
     "Sign-In-T": "Sign into the Tournament",
     "View-T": "View Tournament"
+  },
+  "TOURNAMENT-VIEW-PAGE": {
+    "End": "End Tournament",
+    "Set": "Set Scores",
+    "Team-V": "Teams",
+    "Participants-V": "Participants"
+  },
+  "END-TOURNAMENT-DIALOG":{
+    "End-V": "End",
+    "T": "Tournament ?",
+    "Are-You-Sure": "Are you sure you want to end",
+    "T2": "tournament?.",
+    "Action": "This action cannot be revoked and you won't be able to edit it any longer",
+    "No": "No",
+    "Yes": "Yes"
+  },
+  "REGISTER-POINTS": {
+    "Register": "Register points for",
+    "RT": "Tournament",
+    "Extra": "Extra Points",
+    "Points": "Points",
+    "Add-P": "Add participant",
+    "Clo": "Close",
+    "Con": "Confirm"
+  },
+  "LOGIN-OR-SIGNUP": {
+    "Join": "Join in the GamingWorld Community",
+    "Please": "Please Log-in or Sing-up in GamingWorld to access the tournaments.",
+    "Log": "Log-In",
+    "Sign": "Sign-Up"
   }
 }

@@ -51,5 +51,35 @@
     "Save": "Guardar",
     "Sign-In-T": "Registrarse en el Torneo",
     "View-T": "Ver Torneo"
+  },
+  "TOURNAMENT-VIEW-PAGE": {
+    "End": "Finalizar Torneo",
+    "Set": "Establecer Puntajes",
+    "Team-V": "Equipos",
+    "Participants-V": "Participantes"
+  },
+  "END-TOURNAMENT-DIALOG":{
+    "End-V": "¿Finalizar",
+    "T": " ?",
+    "Are-You-Sure": "¿Esta seguro que desea finalizar",
+    "T2": "?.",
+    "Action": "Esta accion no se puede revocar y ya no podra editarla",
+    "No": "No",
+    "Yes": "Si"
+  },
+  "REGISTER-POINTS": {
+    "Register": "Registrar puntos para",
+    "RT": ".",
+    "Extra": "Puntos Extra",
+    "Points": "Puntos",
+    "Add-P": "Añadir participantes",
+    "Clo": "Cerrar",
+    "Con": "Confirmar"
+  },
+  "LOGIN-OR-SIGNUP": {
+    "Join": "Unete a la comunidad de GamingWorld",
+    "Please": "Por favor inicia sesión o registrate a GamingWorld para que accedas a los torneos.",
+    "Log": "Inicia Sesión",
+    "Sign": "Registrate"
   }
 }
