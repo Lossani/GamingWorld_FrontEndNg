@@ -14,32 +14,33 @@
             <div class="profile-section">
                 <div class="section-title">
                     <h2 class="center">Games</h2>
-                    <button mat-button color="primary" (click)="openAddGameDialog()">Add Game</button>
+                    <button mat-button color="primary" (click)="openAddGameDialog()" *ngIf="validateSession">Add Game</button>
                 </div>
                 <mat-divider></mat-divider>
 
                 <table  mat-table *ngIf="gameExperiences" [dataSource]="gameExperiences" >
                     <ng-container  matColumnDef="name">
                       <th style="width: 50%" mat-header-cell *matHeaderCellDef >Game</th>
-                      <td mat-cell *matCellDef="let element " >{{element.gameId}}</td>
+                      <td mat-cell *matCellDef="let element " >{{element.gameName}}</td>
                     </ng-container>
                     <ng-container  matColumnDef="experienceLevel">
                       <th mat-header-cell *matHeaderCellDef  >Experience</th>
                       <td mat-cell *matCellDef="let element"  >{{element.experience}}</td>
                     </ng-container>
-                    <ng-container  matColumnDef="actions">
+                    <ng-container  matColumnDef="actions" >
                       <th class="th-actions" mat-header-cell *matHeaderCellDef >Actions</th>
                       <td mat-cell *matCellDef="let element" >
                         <button
                           mat-mini-fab color="primary"
-                          (click)="openEditGameDialog(element)">
+                          (click)="openEditGameDialog(element)" *ngIf="validateSession">
                           <mat-icon>edit</mat-icon>
                         </button>
                         |
                         <button
                           mat-mini-fab
                           color="warn"
-                          (click)="element.editMode ? toggleEditMode(element) : openDeleteGameExperienceConfirmDialog(element)">
+                          (click)="element.editMode ? toggleEditMode(element) : openDeleteGameExperienceConfirmDialog(element)"
+                          *ngIf="validateSession">
                           <mat-icon>delete</mat-icon>
                         </button>
                       </td>
@@ -52,7 +53,7 @@
                 <br>
                 <div class="section-title">
                     <h2 class="center">Tournaments</h2>
-                    <button mat-button color="primary" (click)="openAddTournamentDialog()">Add Tournament</button>
+                    <button mat-button color="primary" (click)="openAddTournamentDialog()" *ngIf="validateSession">Add Tournament</button>
                 </div>
                 <mat-divider></mat-divider>
               <table mat-table *ngIf="tournamentExperiences" [dataSource]="tournamentExperiences">
@@ -80,14 +81,15 @@
                   <td mat-cell *matCellDef="let element" >
                     <button
                       mat-mini-fab color="primary"
-                      (click)="openEditTournamentDialog(element)">
+                      (click)="openEditTournamentDialog(element)" *ngIf="validateSession">
                       <mat-icon>edit</mat-icon>
                     </button>
                     |
                     <button
                       mat-mini-fab
                       color="warn"
-                      (click)="element.editMode ? toggleEditMode(element) : openDeleteConfirmTournamentDialog(element)">
+                      (click)="element.editMode ? toggleEditMode(element) : openDeleteConfirmTournamentDialog(element)"
+                      *ngIf="validateSession">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </td>
@@ -101,7 +103,8 @@
               <br>
               <div class="section-title">
                 <h2 class="center">Favorite Games</h2>
-                <button mat-button color="primary" (click)="openAddFavoriteGameDialog()">Add Favorite Games</button>
+                <button mat-button color="primary" (click)="openAddFavoriteGameDialog()"
+                        *ngIf="validateSession">Add Favorite Games</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
@@ -109,7 +112,7 @@
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef>Name Game</th>
                   <td mat-cell *matCellDef="let element">
-                    {{ element.gameId }}
+                    {{ element.gameName }}
                   </td>
                 </ng-container>
 
@@ -118,12 +121,14 @@
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
-                      (click)="openEditFavoriteGameDialog(element)">
+                      (click)="openEditFavoriteGameDialog(element)"
+                      *ngIf="validateSession">
                       <mat-icon>edit</mat-icon>
                     </button>
                     |
                     <button mat-mini-fab color="warn"
-                            (click)="openDeleteFavoriteGameConfirmDialog(element)">
+                            (click)="openDeleteFavoriteGameConfirmDialog(element)"
+                            *ngIf="validateSession">
 
                       <mat-icon>delete</mat-icon>
                     </button>
@@ -136,7 +141,8 @@
               <br>
               <div class="section-title">
                 <h2 class="center">Streaming Category</h2>
-                <button mat-button color="primary" (click)="openAddStreamCategoryDialog()">Add Streaming Category</button>
+                <button mat-button color="primary" (click)="openAddStreamCategoryDialog()"
+                        *ngIf="validateSession">Add Streaming Category</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
@@ -152,12 +158,13 @@
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
-                      (click)="openEditStreamCategoryDialog(element)">
+                      (click)="openEditStreamCategoryDialog(element)" *ngIf="validateSession">
                       <mat-icon>edit</mat-icon>
                     </button>
                     |
                     <button mat-mini-fab color="warn"
-                            (click)="openDeleteConfirmStreamCategoryDialog(element)">
+                            (click)="openDeleteConfirmStreamCategoryDialog(element)"
+                            *ngIf="validateSession">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </td>
@@ -169,7 +176,8 @@
               <br>
               <div class="section-title">
                 <h2 class="center">Streaming Sponsor</h2>
-                <button mat-button color="primary" (click)="openAddStreamSponsorDialog()">Add Streaming Sponsor</button>
+                <button mat-button color="primary" (click)="openAddStreamSponsorDialog()"
+                        *ngIf="validateSession">Add Streaming Sponsor</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
@@ -185,12 +193,14 @@
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
-                      (click)="openEditStreamSponsorDialog(element)">
+                      (click)="openEditStreamSponsorDialog(element)"
+                      *ngIf="validateSession">
                       <mat-icon>edit</mat-icon>
                     </button>
                     |
                     <button mat-mini-fab color="warn"
-                            (click)="openDeleteConfirmStreamSponsorDialog(element)">
+                            (click)="openDeleteConfirmStreamSponsorDialog(element)"
+                            *ngIf="validateSession">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </td>
@@ -203,7 +213,8 @@
       <mat-card-actions align="end">
         <button
           mat-raised-button color="primary"
-          (click)="saveProfile()">
+          (click)="saveProfile()"
+          *ngIf="validateSession">
           Save
         </button>
       </mat-card-actions>

@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
 import { ProfileService } from 'src/app/services/profile.service';
 import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
-import {CreateTeamDialogComponent} from "../../components/dialogs/create-team-dialog/create-team-dialog.component";
-import {AddMembersDialogComponent} from "../../components/dialogs/add-members-dialog/add-members-dialog.component";
 import {User} from "../../entities/user-entity";
 import {
   FavoriteGame, GameExperience, Profile,
@@ -21,6 +19,7 @@ import {CreateStreamSponsorDialogComponent} from "../../components/dialogs/creat
 import {CreateStreamCategoryDialogComponent} from "../../components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component";
 import {SessionService} from "../../services/session.service";
 import {MatTableDataSource} from "@angular/material/table";
+import {GameService} from "../../services/game.service";
 
 
 @Component({
@@ -36,7 +35,6 @@ export class ProfilePageComponent implements OnInit {
   // Datos basicos de Usuario
   user!: User;
   profile!: Profile;
-  //profile!: MatTableDataSource<Profile>;
   gameExperiences!: MatTableDataSource<GameExperience>;
   favoriteGames!: MatTableDataSource<FavoriteGame>;
   tournamentExperiences!: MatTableDataSource<TournamentExperience>;
@@ -53,51 +51,42 @@ export class ProfilePageComponent implements OnInit {
   // variable que guarda las categorias de stream
   displayedSponsorColumns: string[] = ["name", "actions"];
   // variable que guarda los sponsors del streamer
+  @Input()
+  profileId?: number;
 
-  //gameExperiences!: UserGame[];
-  //tournaments!: TournamentExperience[];
+  validateSession: boolean = false;
+
+
   teams!: Team[];
 
   constructor(private profileService: ProfileService,
               public dialog: MatDialog,
               private route: ActivatedRoute,
-              private sessionService: SessionService) { }
+              private sessionService: SessionService,
+              private gameService: GameService) {
 
-  /*
-  getTeams()
-  {
-    this.profileService.getTeams(this.profileCode)
-      .subscribe(Teams => {
-        this.teams = Teams.map(team => {
-          team.nombreFormController = new FormControl(team.name);
-          team.numeroMiembrosFormController = new FormControl(team.numeroMiembros);
-          return team;
-        });
-      });
-  }
-*/
-  /*
-  deleteTournament(element: TournamentExperience): void{
-    this.profileService.deleteTournament(element.id).subscribe(val => {
-      this.tournaments = this.tournaments.filter(elem => (elem.id != element.id));
+    this.route.params.subscribe(params => {
+      this.profileId = params['profileId']
+      this.validateSession = this.sessionService.getCurrentSession().user.id == this.profileId;
     });
   }
 
-  deleteTeam(element: Team): void
-  {
-    this.profileService.deleteTeam(element.id).subscribe(val => {
-      this.teams = this.teams.filter(elem => (elem.id != element.id));
-    });
-  }
-*/
+
   ngOnInit(): void {
     this.getProfileData().then();
+
   }
+
 
   async getProfileData()
   {
-    this.user = this.sessionService.getCurrentSession().user;
-    await this.profileService.getProfileByUserId(this.user.id)
+
+
+    let userId = this.sessionService.getCurrentSession().user.id;
+    if(this.profileId!=undefined){
+      userId = this.profileId;
+    }
+    await this.profileService.getProfileByUserId(userId)
       .toPromise().then((profile: Profile) => {
         this.gameExperiences = new MatTableDataSource(profile.gameExperiences);
         this.favoriteGames = new MatTableDataSource(profile.favoriteGames);
@@ -105,6 +94,8 @@ export class ProfilePageComponent implements OnInit {
         this.streamerSponsors = new MatTableDataSource(profile.streamerSponsors);
         this.streamingCategories = new MatTableDataSource(profile.streamingCategories);
         this.profile = profile;
+        this.user = profile.user;
+
     });
   }
 
@@ -116,31 +107,11 @@ export class ProfilePageComponent implements OnInit {
     }
 
   }
-/*
-  deleteExperienceInGame(element: UserGame): void{
-    this.profileService.deleteGameExperience(element.id).subscribe(val => {
-      this.gameExperiences = this.gameExperiences.filter(elem => (elem.id != element.id));
-    });
-  }
-*/
-/*
-  saveChangedExperience(element: GameExperience): void {
-    this.profile.gameExperiences.
-  }
-/*
-  saveChangedTournament(element: TournamentExperience): void {
-    this.profileService.putTournament(element, 1)
-      .subscribe(res => {
-        element.name = res.name;
-        element.position = res.position;
-        this.toggleEditMode(element);
-      });
-  }
-*/
 
   openDeleteGameExperienceConfirmDialog(element: GameExperience): void{
     const confirmFunction = () => {
-      this.profile.gameExperiences = this.profile.gameExperiences.filter(element => (element.id != element.id));
+
+      this.profile.gameExperiences = this.profile.gameExperiences.filter(data => { return data.gameId != element.gameId});
       this.gameExperiences.data = this.profile.gameExperiences;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -153,7 +124,7 @@ export class ProfilePageComponent implements OnInit {
 
   openDeleteFavoriteGameConfirmDialog(element: FavoriteGame): void{
     const confirmFunction = () => {
-      this.profile.favoriteGames = this.profile.favoriteGames.filter(element => (element.id != element.id));
+      this.profile.favoriteGames = this.profile.favoriteGames.filter(data => (data.gameId != element.gameId));
       this.favoriteGames.data = this.profile.favoriteGames;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -165,7 +136,7 @@ export class ProfilePageComponent implements OnInit {
   }
   openDeleteConfirmTournamentDialog(element: TournamentExperience): void{
     const confirmFunction = () => {
-      this.profile.tournamentExperiences = this.profile.tournamentExperiences.filter(element => (element.id != element.id));
+      this.profile.tournamentExperiences = this.profile.tournamentExperiences.filter(data => (data.name != element.name));
       this.tournamentExperiences.data = this.profile.tournamentExperiences;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -188,6 +159,7 @@ export class ProfilePageComponent implements OnInit {
       }
     });
   }
+
 
   openEditFavoriteGameDialog(element: FavoriteGame): void {
     const index = this.profile.favoriteGames.indexOf(element)
@@ -222,7 +194,7 @@ export class ProfilePageComponent implements OnInit {
 
   openDeleteConfirmStreamCategoryDialog(element: StreamingCategory): void{
     const confirmFunction = () => {
-      this.profile.streamingCategories = this.profile.streamingCategories.filter(element => (element.id != element.id));
+      this.profile.streamingCategories = this.profile.streamingCategories.filter(data => (data.name != element.name));
       this.streamingCategories.data = this.profile.streamingCategories;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -251,7 +223,7 @@ export class ProfilePageComponent implements OnInit {
 
   openDeleteConfirmStreamSponsorDialog(element: StreamerSponsor): void{
     const confirmFunction = () => {
-      this.profile.streamerSponsors = this.profile.streamerSponsors.filter(element => (element.id != element.id));
+      this.profile.streamerSponsors = this.profile.streamerSponsors.filter(data => (data.name != element.name));
       this.streamerSponsors.data = this.profile.streamerSponsors;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -307,21 +279,6 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  openAddTeamDialog(): void {
-    const addToList = () => {
-      //this.getTeams();
-    }
-    this.dialog.open(CreateTeamDialogComponent, {
-      data: {
-        userId: this.profileCode,
-        next: addToList
-      }
-    });
-  }
-
-  openAddMembersDialog(): void {
-    const dialogRef = this.dialog.open(AddMembersDialogComponent);
-  }
 
   openAddFavoriteGameDialog(): void{
     const addToList = (element: FavoriteGame) => {
@@ -361,22 +318,6 @@ export class ProfilePageComponent implements OnInit {
       }
     });
   }
-
-  /*
-  openDeleteTeamConfirmDialog(element: Team) {
-    const confirmFunction = () => {
-      this.deleteTeam(element);
-    }
-
-   this.dialog.open(ConfirmDeleteDialogComponent, {
-      data: {
-        action: "Delete Team",
-        confirmFunction: confirmFunction
-      }
-    })
-
-
-  }*/
 
   saveProfile(): void
   {

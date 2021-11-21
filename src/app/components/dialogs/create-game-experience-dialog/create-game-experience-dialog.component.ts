@@ -39,10 +39,12 @@ export class CreateGameExperienceDialogComponent implements OnInit {
       return;
 
     let gameExperience: GameExperience = {
-      gameId: this.formGroup.controls.gameId.value,
+      gameId: this.games[this.formGroup.controls.gameId.value].id,
+      gameName: this.games[this.formGroup.controls.gameId.value].name,
       experience: this.formGroup.controls.experienceLevel.value,
       userId: this.data.userId
     };
+
     this.data.next(gameExperience);
     this.matData.closeAll();
   }

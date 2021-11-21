@@ -39,7 +39,8 @@ export class CreateFavoriteGameDialogComponent implements OnInit {
     if (!this.formGroup.valid)
       return;
     let favoriteGame: FavoriteGame = {
-      gameId: this.formGroup.controls.gameId.value,
+      gameId: this.games[this.formGroup.controls.gameId.value].id,
+      gameName: this.games[this.formGroup.controls.gameId.value].name,
       userId: this.data.userId,
     };
     this.data.next(favoriteGame);

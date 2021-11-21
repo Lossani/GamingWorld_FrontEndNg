@@ -17,7 +17,8 @@ export interface GameExperience{
   gameId: number,
   experience: number,
   userId: number,
-  editMode?: boolean
+  editMode?: boolean,
+  gameName?: string
 }
 
 export interface Team
@@ -44,6 +45,7 @@ export interface FavoriteGame {
   id?: number,
   userId: number,
   gameId: number,
+  gameName?: string
 }
 
 export interface StreamerSponsor {
