@@ -28,6 +28,10 @@ export class CreateGameExperienceDialogComponent implements OnInit {
     this.gameService.getGames().subscribe(resGames => {
       this.games = resGames;
     });
+    if (this.data.editData!=undefined){
+      this.formGroup.controls.experienceLevel.setValue(this.data.editData.experienceLevel);
+      this.formGroup.controls.gameId.setValue(this.data.editData.gameId);
+    }
   }
 
   submit() {

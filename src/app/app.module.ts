@@ -36,6 +36,7 @@ import { CreateStreamSponsorDialogComponent } from './components/dialogs/create-
 import { CreateStreamCategoryDialogComponent } from './components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component';
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -81,7 +82,8 @@ import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-u
     FormsModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    NgbModule
 
   ],
   providers: [SessionService],

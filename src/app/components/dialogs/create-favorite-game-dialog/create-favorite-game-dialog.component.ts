@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Game} from "../../../entities/game-entity";
-import {FavoriteGame, TournamentExperience} from "../../../entities/profile-entity";
+import {FavoriteGame} from "../../../entities/profile-entity";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
 import {GameService} from "../../../services/game.service";
@@ -28,6 +28,11 @@ export class CreateFavoriteGameDialogComponent implements OnInit {
     this.gameService.getGames().subscribe(resGames => {
       this.games = resGames;
     });
+    if (this.data.editData!=undefined){
+      this.formGroup.controls.favoriteGames.setValue(this.data.editData.favoriteGames);
+      this.formGroup.controls.gameId.setValue(this.data.editData.gameId);
+    }
+
   }
 
   submit() {

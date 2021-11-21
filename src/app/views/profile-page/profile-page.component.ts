@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
@@ -15,14 +14,14 @@ import {
   StreamingCategory,
   Team,
   TournamentExperience,
-  UserGame
+
 } from "../../entities/profile-entity";
 import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
 import {CreateStreamSponsorDialogComponent} from "../../components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component";
 import {CreateStreamCategoryDialogComponent} from "../../components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component";
 import {SessionService} from "../../services/session.service";
 import {MatTableDataSource} from "@angular/material/table";
-import {Game} from "../../entities/game-entity";
+
 
 @Component({
   selector: 'app-profile-page',
@@ -171,7 +170,7 @@ export class ProfilePageComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
-        action: "Delete Tournament",
+        action: "Delete Tournament?",
         confirmFunction: confirmFunction
       }
     })
@@ -188,6 +187,111 @@ export class ProfilePageComponent implements OnInit {
         next: addToList
       }
     });
+  }
+
+  openEditFavoriteGameDialog(element: FavoriteGame): void {
+    const index = this.profile.favoriteGames.indexOf(element)
+    const addToList = (element: FavoriteGame) => {
+      this.profile.favoriteGames[index]=element;
+      this.favoriteGames.data = this.profile.favoriteGames;
+    }
+    const dialogRef = this.dialog.open(CreateFavoriteGameDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        editData: element,
+        next: addToList
+      }
+    });
+
+  }
+
+  openEditStreamCategoryDialog(element: StreamingCategory): void {
+    const index = this.profile.streamingCategories.indexOf(element)
+    const addToList = (element: StreamingCategory) => {
+      this.profile.streamingCategories[index]=element;
+      this.streamingCategories.data = this.profile.streamingCategories;
+    }
+    const dialogRef = this.dialog.open(CreateStreamCategoryDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        editData: element,
+        next: addToList
+      }
+    });
+  }
+
+  openDeleteConfirmStreamCategoryDialog(element: StreamingCategory): void{
+    const confirmFunction = () => {
+      this.profile.streamingCategories = this.profile.streamingCategories.filter(element => (element.id != element.id));
+      this.streamingCategories.data = this.profile.streamingCategories;
+    }
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        action: "Delete Stream Category?",
+        confirmFunction: confirmFunction
+      }
+    })
+  }
+
+  openEditStreamSponsorDialog(element: FavoriteGame): void {
+    const index = this.profile.favoriteGames.indexOf(element)
+    const addToList = (element: FavoriteGame) => {
+      this.profile.favoriteGames[index]=element;
+      this.favoriteGames.data = this.profile.favoriteGames;
+    }
+    const dialogRef = this.dialog.open(CreateFavoriteGameDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        editData: element,
+        next: addToList
+      }
+    });
+
+  }
+
+  openDeleteConfirmStreamSponsorDialog(element: StreamerSponsor): void{
+    const confirmFunction = () => {
+      this.profile.streamerSponsors = this.profile.streamerSponsors.filter(element => (element.id != element.id));
+      this.streamerSponsors.data = this.profile.streamerSponsors;
+    }
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        action: "Delete Stream Sponsor?",
+        confirmFunction: confirmFunction
+      }
+    })
+  }
+
+  openEditTournamentDialog(element: TournamentExperience): void {
+    const index = this.profile.tournamentExperiences.indexOf(element)
+    const addToList = (element: TournamentExperience) => {
+      this.profile.tournamentExperiences[index]=element;
+      this.tournamentExperiences.data = this.profile.tournamentExperiences;
+    }
+    const dialogRef = this.dialog.open(CreateTournamentDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        editData: element,
+        next: addToList
+      }
+    });
+
+  }
+
+  openEditGameDialog(element: GameExperience): void {
+    const index = this.profile.gameExperiences.indexOf(element)
+    const addToList = (element: GameExperience) => {
+      this.profile.gameExperiences[index]=element;
+      this.gameExperiences.data = this.profile.gameExperiences;
+    }
+    const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
+      data: {
+        userId: this.profileCode,
+        editData: element,
+        next: addToList
+      }
+    });
+
   }
 
   openAddTournamentDialog(): void {

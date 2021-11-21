@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {FavoriteGame, StreamingCategory} from "../../../entities/profile-entity";
+import { StreamingCategory} from "../../../entities/profile-entity";
 
 @Component({
   selector: 'app-create-stream-category-dialog',
@@ -18,6 +18,9 @@ export class CreateStreamCategoryDialogComponent implements OnInit {
               private profileService: ProfileService, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit(): void {
+    if (this.data.editData!=undefined){
+      this.formGroup.controls.name.setValue(this.data.editData.name);
+    }
   }
 
   submit() {

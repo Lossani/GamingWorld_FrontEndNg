@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FavoriteGame, StreamerSponsor} from "../../../entities/profile-entity";
+import { StreamerSponsor} from "../../../entities/profile-entity";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
@@ -19,6 +19,9 @@ export class CreateStreamSponsorDialogComponent implements OnInit {
               private profileService: ProfileService, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit(): void {
+    if (this.data.editData!=undefined){
+      this.formGroup.controls.name.setValue(this.data.editData.name);
+    }
   }
 
   submit() {
