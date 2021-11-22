@@ -1,8 +1,10 @@
-<ng-container style="width: 100%" >
+<ng-container style="width: 100%; " >
   <input type="text"
          placeholder="Find users"
          aria-label="Games"
          matInput
+         style="background-color: #FFFFFF; border: none; padding: unset"
+
          (input)="updateBox($event)"
          [formControl]="myControl"
          [matAutocomplete]="auto" />
