@@ -27,7 +27,7 @@
               Post a tournament
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <form [formGroup]="registerForm" (submit)="submitForm()">
+          <form [formGroup]="registerForm">
             <mat-form-field class="form-field">
               <mat-label>Tournament Title</mat-label>
               <input type="text" matInput formControlName="title">
@@ -81,7 +81,7 @@
             <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
               Cancel
             </button>
-            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">Save</button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="button" (click)="submitForm()">Save</button>
           </form>
 
         </mat-expansion-panel>
