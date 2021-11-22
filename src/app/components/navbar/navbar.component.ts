@@ -3,9 +3,12 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from "../../services/session.service";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { MatFormFieldModule} from "@angular/material/form-field";
 =======
 >>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
+=======
+>>>>>>> parent of c3c8a7c (feature: add Internationalization in all tournamnets)
 
 @Component({
   selector: 'app-navbar',

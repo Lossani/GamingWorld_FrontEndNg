@@ -37,6 +37,7 @@ import { CreateStreamCategoryDialogComponent } from './components/dialogs/create
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -45,6 +46,10 @@ import { SearchUsersComponent } from './components/searchers/search-users/search
 >>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
 
 
+=======
+
+
+>>>>>>> parent of c3c8a7c (feature: add Internationalization in all tournamnets)
 
 @NgModule({
 
@@ -90,6 +95,7 @@ import { SearchUsersComponent } from './components/searchers/search-users/search
     HttpClientModule,
     MatDatepickerModule,
 <<<<<<< HEAD
+<<<<<<< HEAD
     MatChipsModule,
     TranslateModule.forRoot({
       loader:{
@@ -102,6 +108,9 @@ import { SearchUsersComponent } from './components/searchers/search-users/search
 =======
     MatChipsModule
 >>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
+=======
+    MatChipsModule
+>>>>>>> parent of c3c8a7c (feature: add Internationalization in all tournamnets)
 
   ],
   providers: [SessionService],
