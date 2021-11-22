@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from "../../services/session.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,11 @@ export class NavbarComponent implements OnInit {
 
   searchQuery = new FormControl('');
 
-
-  constructor(public router: Router, private sessionService: SessionService) {
-
+  constructor(public router: Router, private sessionService: SessionService, public translate: TranslateService) {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang?.match(/en_US|es_ES/) ? browserLang : 'en')
   }
 
   ngOnInit(): void {

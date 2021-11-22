@@ -7,13 +7,13 @@
         <mat-card>
           <mat-card-header>
             <mat-card-title>
-              Filter By
+              {{'TOURNAMENT-PAGE.Filter-2'|translate}}
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-action-list>
-              <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
-              <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
+              <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'|translate}}</button>
+              <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'|translate}}</button>
             </mat-action-list>
           </mat-card-content>
         </mat-card>
@@ -24,28 +24,28 @@
         <mat-expansion-panel [expanded]="panelOpenState">
           <mat-expansion-panel-header (click)="togglePanel()">
             <mat-panel-title>
-              Post a tournament
+              {{'TOURNAMENT-PAGE.Post'|translate}}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <form [formGroup]="registerForm" (submit)="submitForm()">
             <mat-form-field class="form-field">
-              <mat-label>Tournament Title</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Title'|translate}}</mat-label>
               <input type="text" matInput formControlName="title">
             </mat-form-field>
             <mat-form-field class="form-field">
-              <mat-label>Tournament Banner</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Banner'|translate}}</mat-label>
               <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
             <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
                  [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
             <mat-form-field class="form-field">
-              <mat-label>Tournament Description</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Description'|translate}}</mat-label>
               <textarea matInput rows="5" formControlName="description"></textarea>
             </mat-form-field>
 
 
             <mat-form-field class="form-field">
-              <mat-label>Prize Pool</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Prize'|translate}}</mat-label>
               <input type="number" matInput formControlName="prizePool">
             </mat-form-field>
             <mat-form-field>
@@ -54,10 +54,10 @@
 
             <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" ></app-search-games>
 
-            <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
+            <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'|translate}}</mat-slide-toggle>
             <div [hidden]="!registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>Number of Teams</mat-label>
+                <mat-label>{{'TOURNAMENT-PAGE.Number-T'|translate}}</mat-label>
                 <mat-select formControlName="tournamentCapacity">
                   <mat-option *ngFor="let val of [4, 8, 16, 32]"
                               [value]="val">{{val}}</mat-option>
@@ -66,22 +66,22 @@
             </div>
             <div [hidden]="registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>Number of Participants</mat-label>
+                <mat-label>{{'TOURNAMENT-PAGE.Number-P'|translate}}</mat-label>
                 <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
                        max="100">
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
-                  * Minimum 2 participants
+                  {{'TOURNAMENT-PAGE.Error-1'|translate}}
                 </mat-error>
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
-                  * Maximum 100 participants
+                  {{'TOURNAMENT-PAGE.Error-2'|translate}}
                 </mat-error>
               </mat-form-field>
 
             </div>
             <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
-              Cancel
+              {{'TOURNAMENT-PAGE.Cancel'|translate}}
             </button>
-            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">Save</button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">{{'TOURNAMENT-PAGE.Save'|translate}}</button>
           </form>
 
         </mat-expansion-panel>
@@ -98,13 +98,13 @@
               color="primary"
               (click)="openConfirmRegistration(tournament)"
               [disabled]="!compareDates(tournament) || !tournament.tournamentStatus || tournament.inTournament"
-            >Sign into the Tournament
+            >{{'TOURNAMENT-PAGE.Sign-In-T'|translate}}
             </button>
             <button
               mat-raised-button
               color="primary"
               routerLink='/tournaments/{{tournament.id}}'
-            >View Tournament
+            >{{'TOURNAMENT-PAGE.View-T'|translate}}
             </button>
           </mat-card-actions>
         </mat-card>

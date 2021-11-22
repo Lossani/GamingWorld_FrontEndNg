@@ -1,7 +1,5 @@
-
-
     <h2 mat-dialog-title>
-      Register points for  {{dialogData.title}} Tournament
+      {{'REGISTER-POINTS.Register'|translate}}  {{dialogData.title}} {{'REGISTER-POINTS.RT'|translate}}
     </h2>
     <div class="grid-dialog">
       <mat-card style="margin-right: 10px; min-height: 250px; min-width: 250px" >
@@ -12,7 +10,7 @@
             <div>{{participant.name}}</div>
             <div>{{participant.points}}</div>
             <div class="example-button-container">
-              <button mat-mini-fab color="warn"(click)="deleteParticipant(participant)" aria-label="Example icon button with a filter list icon">
+              <button mat-mini-fab color="warn" (click)="deleteParticipant(participant)" aria-label="Example icon button with a filter list icon">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
@@ -36,13 +34,13 @@
             </mat-autocomplete>
           </mat-form-field>
 
-          <h3 style="margin-top: 10px"><b>Extra Points</b> </h3>
+          <h3 style="margin-top: 10px"><b>{{'REGISTER-POINTS.Extra'|translate}}</b> </h3>
           <mat-form-field  appearance="fill">
-            <mat-label>Points</mat-label>
+            <mat-label>{{'REGISTER-POINTS.Points'|translate}}</mat-label>
             <input formControlName="points" [value]="extraPoints" (input)="updateBox($event)" type="number" matInput placeholder="Points in this match participant" >
           </mat-form-field>
           <div style="width: 100%">
-            <button style="width: 100%" [disabled]="!participantControl.valid || this.searchParticipant == null" mat-raised-button color="primary" (click)="addParticipant()">Add participant</button>
+            <button style="width: 100%" [disabled]="!participantControl.valid || this.searchParticipant == null" mat-raised-button color="primary" (click)="addParticipant()">{{'REGISTER-POINTS.Add-P'|translate}}</button>
           </div>
         </form>
 
@@ -50,8 +48,8 @@
       </div>
     </div>
     <mat-dialog-actions style="justify-content: flex-end">
-      <button  mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-      <button  mat-raised-button color="primary" (click)="addParticipantPoints()" mat-dialog-close>Confirm</button>
+      <button  mat-raised-button color="warn" mat-dialog-close>{{'REGISTER-POINTS.Clo'|translate}}</button>
+      <button  mat-raised-button color="primary" (click)="addParticipantPoints()" mat-dialog-close>{{'REGISTER-POINTS.Con'|translate}}</button>
     </mat-dialog-actions>
 
 

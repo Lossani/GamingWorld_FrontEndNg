@@ -1,0 +1,85 @@
+{
+  "NAVBAR": {
+    "Profile": "My Profile",
+    "Log-Out": "Log Out",
+    "Log-In": "Log In"
+  },
+  "PREMIUM-CARD": {
+    "Support": "Support GamingWorld",
+    "Text-1": " Become a premium member and be able to create tournaments without the need to manage them.",
+    "More-Info": "More Information"
+  },
+  "TOURNAMENT-CARD": {
+    "Limit": "Limit: ",
+    "Prize-Pool": "Prize Pool: ",
+    "Date": "Date: ",
+    "Hour": "Hour: ",
+    "Game": "Game: "
+  },
+  "NEWS-PAGE": {
+    "Filter": "Filter By",
+    "Games": "VideoGames",
+    "Themes": "Popular Twitch Themes"
+  },
+  "NEWS-CARD": {
+    "MI": "More Info"
+  },
+  "PREMIUM-INFORMATION-DIALOG": {
+    "Subscribe": "Subscribe to GamingWorld",
+    "Question-1": "Tired of having to manage big tournaments with a lot of participants?",
+    "Text-2": "Dont worry, with our premium service we can manage all the details about the tournament for you.\nYou won't have to do anything. Just sit and relax while our admins sets the scores and other vital information.",
+    "Plan": "Premium Plan",
+    "Amount": "$5.00/Monthly",
+    "Close": "Close",
+    "Purchase": "Purchase"
+  },
+  "TOURNAMENT-PAGE": {
+    "Filter-2": "Filter By",
+    "Team": "Team Tournaments",
+    "Solo": "Solo Tournaments",
+    "Post": "Post a tournament",
+    "Title": "Tournament Title",
+    "Banner": "Tournament Banner",
+    "Description": "Tournament Description",
+    "Prize": "Prize Pool",
+    "Team-T": "Team Tournament",
+    "Number-T": "Number of Teams",
+    "Number-P": "Number of Participants",
+    "Error-1": "Minium 2 participantes",
+    "Error-2": "Maximum 100 participants",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "Sign-In-T": "Sign into the Tournament",
+    "View-T": "View Tournament"
+  },
+  "TOURNAMENT-VIEW-PAGE": {
+    "End": "End Tournament",
+    "Set": "Set Scores",
+    "Team-V": "Teams",
+    "Participants-V": "Participants"
+  },
+  "END-TOURNAMENT-DIALOG":{
+    "End-V": "End",
+    "T": "Tournament ?",
+    "Are-You-Sure": "Are you sure you want to end",
+    "T2": "tournament?.",
+    "Action": "This action cannot be revoked and you won't be able to edit it any longer",
+    "No": "No",
+    "Yes": "Yes"
+  },
+  "REGISTER-POINTS": {
+    "Register": "Register points for",
+    "RT": "Tournament",
+    "Extra": "Extra Points",
+    "Points": "Points",
+    "Add-P": "Add participant",
+    "Clo": "Close",
+    "Con": "Confirm"
+  },
+  "LOGIN-OR-SIGNUP": {
+    "Join": "Join in the GamingWorld Community",
+    "Please": "Please Log-in or Sing-up in GamingWorld to access the tournaments.",
+    "Log": "Log-In",
+    "Sign": "Sign-Up"
+  }
+}

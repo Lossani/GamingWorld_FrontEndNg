@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" style="position: fixed;">
-    <span>Gamingworld</span>
+    <span>GamingWorld</span>
     <mat-form-field *ngIf="isInNews">
         <input matInput id="search" [formControl]="searchQuery">
         <button mat-icon-button matSuffix [disabled]="!searchQuery.value">
@@ -7,6 +7,9 @@
         </button>
     </mat-form-field>
     <div>
+      <select #langSelect (change)="translate.use(langSelect.value)" >
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</option>
+      </select>
         <button routerLink='' matTooltip="News Page" mat-icon-button *ngIf="router.url != '/'">
             <mat-icon>dashboard</mat-icon>
         </button>
@@ -19,11 +22,11 @@
         </button>
         <mat-menu #profileMenu="matMenu">
           <div *ngIf="isLoggedIn; else elseBlock">
-            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>My Profile</button>
-            <button (click)="logout()" mat-menu-item matTooltip="Close session">Log out</button>
+            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>{{'NAVBAR.Profile'|translate}}</button>
+            <button (click)="logout()" mat-menu-item matTooltip="Close session">{{'NAVBAR.Log-Out'|translate}}</button>
           </div>
           <ng-template #elseBlock>
-            <button [routerLink]="'/login/'" mat-menu-item matTooltip="Login">Log in</button>
+            <button [routerLink]="'/login/'" mat-menu-item matTooltip="Login">{{'NAVBAR.Log-In'|translate}}</button>
           </ng-template>
         </mat-menu>
     </div>
