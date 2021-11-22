@@ -31,13 +31,15 @@ import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-
 import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
 import { MatChipsModule } from "@angular/material/chips";
 import {SessionService} from "./services/session.service";
-import { SearchGamesComponent } from './components/search-games/search-games/search-games.component';
+import { SearchGamesComponent } from './components/searchers/search-games/search-games.component';
 import { CreateStreamSponsorDialogComponent } from './components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component';
 import { CreateStreamCategoryDialogComponent } from './components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component';
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchUsersComponent } from './components/searchers/search-users/search-users.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -73,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient){
     CreateStreamCategoryDialogComponent,
     LoginOrSignupComponent,
     ConfirmUserRegistrationComponent,
+    SearchUsersComponent,
 
 
   ],
@@ -92,7 +95,8 @@ export function HttpLoaderFactory(http: HttpClient){
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgbModule,
 
   ],
   providers: [SessionService],

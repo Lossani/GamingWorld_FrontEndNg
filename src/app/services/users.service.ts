@@ -56,6 +56,13 @@ export class UsersService {
         catchError(this.handleError))
   }
 
+  getUsersByUsername(username: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseURL}/users/find?username=${username}`, this.serviceConfiguration.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
   postUser(item: any): Observable<User> {
 
     return this.http.post<User>(`${this.baseURL}/users/signup`, JSON.stringify(item), this.serviceConfiguration.httpOptions)

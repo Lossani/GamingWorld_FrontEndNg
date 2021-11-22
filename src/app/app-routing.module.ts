@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'tournaments', component: TournamentPageComponent},
   {path: 'sign-up', component: RegisterPageComponent},
-  {path: 'profile/:profileCode', component: ProfilePageComponent},
+  {path: 'profile/:profileId', component: ProfilePageComponent},
   {path: 'tournaments/:id', component:TournamentViewPageComponent}
 
 ];

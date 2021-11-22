@@ -1,19 +1,19 @@
-<app-navbar [isInNews]="false"></app-navbar>
-<div class="navbar-separator"></div>
-<div *ngIf="sessionValid" style="width: 80%; margin-left: auto;margin-right: auto">
+<app-navbar style="margin-bottom: 20px" [isInNews]="false"></app-navbar>
+<div class="navbar-separator" style="margin-bottom: 10px"></div>
+<div *ngIf="sessionValid" style="width: 90%; margin-left: auto;margin-right: auto">
   <div id="PrincipalContainer">
     <div>
       <div>
         <mat-card>
           <mat-card-header>
             <mat-card-title>
-              {{'TOURNAMENT-PAGE.Filter-2'|translate}}
+              {{'TOURNAMENT-PAGE.Filter-2'}}
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-action-list>
-              <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'|translate}}</button>
-              <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'|translate}}</button>
+              <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'}}</button>
+              <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'}}</button>
             </mat-action-list>
           </mat-card-content>
         </mat-card>
@@ -24,28 +24,28 @@
         <mat-expansion-panel [expanded]="panelOpenState">
           <mat-expansion-panel-header (click)="togglePanel()">
             <mat-panel-title>
-              {{'TOURNAMENT-PAGE.Post'|translate}}
+              {{'TOURNAMENT-PAGE.Post'}}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <form [formGroup]="registerForm" (submit)="submitForm()">
             <mat-form-field class="form-field">
-              <mat-label>{{'TOURNAMENT-PAGE.Title'|translate}}</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Title'}}</mat-label>
               <input type="text" matInput formControlName="title">
             </mat-form-field>
             <mat-form-field class="form-field">
-              <mat-label>{{'TOURNAMENT-PAGE.Banner'|translate}}</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Banner'}}</mat-label>
               <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
             <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
                  [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
             <mat-form-field class="form-field">
-              <mat-label>{{'TOURNAMENT-PAGE.Description'|translate}}</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Description'}}</mat-label>
               <textarea matInput rows="5" formControlName="description"></textarea>
             </mat-form-field>
 
 
             <mat-form-field class="form-field">
-              <mat-label>{{'TOURNAMENT-PAGE.Prize'|translate}}</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Prize'}}</mat-label>
               <input type="number" matInput formControlName="prizePool">
             </mat-form-field>
             <mat-form-field>
@@ -54,10 +54,10 @@
 
             <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" ></app-search-games>
 
-            <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'|translate}}</mat-slide-toggle>
+            <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'}}</mat-slide-toggle>
             <div [hidden]="!registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>{{'TOURNAMENT-PAGE.Number-T'|translate}}</mat-label>
+                <mat-label>{{'TOURNAMENT-PAGE.Number-T'}}</mat-label>
                 <mat-select formControlName="tournamentCapacity">
                   <mat-option *ngFor="let val of [4, 8, 16, 32]"
                               [value]="val">{{val}}</mat-option>
@@ -66,22 +66,22 @@
             </div>
             <div [hidden]="registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>{{'TOURNAMENT-PAGE.Number-P'|translate}}</mat-label>
+                <mat-label>{{'TOURNAMENT-PAGE.Number-P'}}</mat-label>
                 <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
                        max="100">
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
-                  {{'TOURNAMENT-PAGE.Error-1'|translate}}
+                  {{'TOURNAMENT-PAGE.Error-1'}}
                 </mat-error>
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
-                  {{'TOURNAMENT-PAGE.Error-2'|translate}}
+                  {{'TOURNAMENT-PAGE.Error-2'}}
                 </mat-error>
               </mat-form-field>
 
             </div>
             <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
-              {{'TOURNAMENT-PAGE.Cancel'|translate}}
+              {{'TOURNAMENT-PAGE.Cancel'}}
             </button>
-            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">{{'TOURNAMENT-PAGE.Save'|translate}}</button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">{{'TOURNAMENT-PAGE.Save'}}</button>
           </form>
 
         </mat-expansion-panel>
@@ -98,13 +98,13 @@
               color="primary"
               (click)="openConfirmRegistration(tournament)"
               [disabled]="!compareDates(tournament) || !tournament.tournamentStatus || tournament.inTournament"
-            >{{'TOURNAMENT-PAGE.Sign-In-T'|translate}}
+            >{{'TOURNAMENT-PAGE.Sign-In-T'}}
             </button>
             <button
               mat-raised-button
               color="primary"
               routerLink='/tournaments/{{tournament.id}}'
-            >{{'TOURNAMENT-PAGE.View-T'|translate}}
+            >{{'TOURNAMENT-PAGE.View-T'}}
             </button>
           </mat-card-actions>
         </mat-card>

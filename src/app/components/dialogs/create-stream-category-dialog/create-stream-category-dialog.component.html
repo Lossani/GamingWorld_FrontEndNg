@@ -2,16 +2,16 @@
   Add Stream Category
 </h2>
 <mat-dialog-content>
-  <form style="display: flex; flex-direction: column;" >
-    <mat-form-field class="form-field" appearance="fill">
-      <mat-label>Category</mat-label>
-      <mat-select required>
-        <mat-option >
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <form style="display: flex; flex-direction: column;" [formGroup]="formGroup">
+      <mat-form-field class="form-field">
+        <mat-label>Streaming Category name</mat-label>
+        <input matInput type="text"
+               appearance="fill"
+               formControlName="name"
+               required/>
+      </mat-form-field>
     <div style="display: flex; width: 100%; justify-content: space-evenly;">
-      <button mat-raised-button color="primary" type="submit">Create</button>
+      <button mat-raised-button color="primary" type="submit" (click)="submit()">Create</button>
       <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
     </div>
   </form>
