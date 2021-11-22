@@ -5,18 +5,20 @@ import {User} from "./user-entity";
 export interface Profile {
   id: number,
   user: User,
-  "game-experiences": GameExperience[],
-  "tournament-experiences": TournamentExperience[],
-  "favourite-games": FavoriteGame[],
-  "streamer-sponsors": StreamerSponsor[],
-  "streaming-category": StreamingCategory[],
+  "gameExperiences": GameExperience[],
+  "tournamentExperiences": TournamentExperience[],
+  "favoriteGames": FavoriteGame[],
+  "streamerSponsors": StreamerSponsor[],
+  "streamingCategories": StreamingCategory[],
 }
 
 export interface GameExperience{
   id?: number,
   gameId: number,
-  experienceLevel: number,
-  userId: number
+  experience: number,
+  userId: number,
+  editMode?: boolean,
+  gameName?: string
 }
 
 export interface Team
@@ -30,19 +32,20 @@ export interface Team
 }
 
 export interface TournamentExperience {
-  id: number,
+  id?: number,
   name: string,
-  date: string,
+  date?: string,
   position: string,
-  editMode: boolean,
-  nameFormController: FormControl,
-  positionFormController: FormControl
+  editMode?: boolean,
+  nameFormController?: FormControl,
+  positionFormController?: FormControl
 }
 
 export interface FavoriteGame {
   id?: number,
   userId: number,
   gameId: number,
+  gameName?: string
 }
 
 export interface StreamerSponsor {

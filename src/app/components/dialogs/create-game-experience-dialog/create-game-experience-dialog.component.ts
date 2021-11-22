@@ -15,8 +15,9 @@ export class CreateGameExperienceDialogComponent implements OnInit {
 
   formGroup = new FormGroup({
     experienceLevel: new FormControl(''),
-    gameId: new FormControl('')
   });
+
+  selectedGame: any;
 
   games!: Game[];
 
@@ -28,22 +29,40 @@ export class CreateGameExperienceDialogComponent implements OnInit {
     this.gameService.getGames().subscribe(resGames => {
       this.games = resGames;
     });
+    if (this.data.editData!=undefined){
+      this.formGroup.controls.experienceLevel.setValue(this.data.editData.experienceLevel);
+      this.formGroup.controls.gameId.setValue(this.data.editData.gameId);
+    }
+  }
+
+  receiveMessage($event:any) {
+    // this.registerForm.controls.game = $event;
+    if($event!=[]){
+      this.selectedGame = $event
+    }
+
+    console.log($event)
   }
 
   submit() {
     if (!this.formGroup.valid)
       return;
 
+    // let gameExperience: GameExperience = {
+    //   gameId: this.games[this.formGroup.controls.gameId.value].id,
+    //   gameName: this.games[this.formGroup.controls.gameId.value].name,
+    //   experience: this.formGroup.controls.experienceLevel.value,
+    //   userId: this.data.userId
+    // };
     let gameExperience: GameExperience = {
-      gameId: this.formGroup.controls.gameId.value,
-      experienceLevel: this.formGroup.controls.experienceLevel.value,
+      gameId: this.selectedGame.id,
+      gameName: this.selectedGame.name,
+      experience: this.formGroup.controls.experienceLevel.value,
       userId: this.data.userId
     };
-    this.profileService.postGameExperience(gameExperience)
-      .subscribe(val => {
-        this.data.next();
-        this.matData.closeAll();
-      });
+
+    this.data.next(gameExperience);
+    this.matData.closeAll();
   }
 
 }
