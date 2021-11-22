@@ -14,14 +14,22 @@
               <button
                 mat-raised-button
                 color="warn"
+<<<<<<< HEAD
                 (click)="endTournament()">{{'TOURNAMENT-VIEW-PAGE.End'}}</button>
+=======
+                (click)="endTournament()">End Tournament</button>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
               <button
                 mat-raised-button
                 color="primary"
                 (click)="registerPoints()"
                 style="margin-right: 10px"
                 [disabled]="participants.length<1"
+<<<<<<< HEAD
               >{{'TOURNAMENT-VIEW-PAGE.Set'}}</button>
+=======
+              >Set Scores</button>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </div>
           </mat-card-actions>
       </mat-card>
@@ -33,8 +41,13 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
+<<<<<<< HEAD
             <div *ngIf="this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Team-V'}}</div>
             <div *ngIf="!this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Participants-V'}}</div>
+=======
+            <div *ngIf="this.tournament.isTeamMode">Teams</div>
+            <div *ngIf="!this.tournament.isTeamMode">Participants</div>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
           </mat-card-title>
           <mat-card-content></mat-card-content>
         </mat-card-header>

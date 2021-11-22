@@ -10,7 +10,7 @@ import { LoginPageComponent } from './views/login-page/login-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsPageComponent } from './views/news-page/news-page.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { PremiumInformationDialogComponent } from './components/dialogs/premium-information-dialog/premium-information-dialog.component';
 import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.component';
@@ -36,14 +36,15 @@ import { CreateStreamSponsorDialogComponent } from './components/dialogs/create-
 import { CreateStreamCategoryDialogComponent } from './components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component';
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
+<<<<<<< HEAD
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchUsersComponent } from './components/searchers/search-users/search-users.component';
+=======
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
 
-export function HttpLoaderFactory(http: HttpClient){
-  return new TranslateHttpLoader(http);
-}
+
 
 @NgModule({
 
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient){
     FormsModule,
     HttpClientModule,
     MatDatepickerModule,
+<<<<<<< HEAD
     MatChipsModule,
     TranslateModule.forRoot({
       loader:{
@@ -97,6 +99,9 @@ export function HttpLoaderFactory(http: HttpClient){
       }
     }),
     NgbModule,
+=======
+    MatChipsModule
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
 
   ],
   providers: [SessionService],

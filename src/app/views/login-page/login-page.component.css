@@ -38,6 +38,7 @@
         align-items: center;
         justify-content: center;
     }
+<<<<<<< HEAD
 
   .login-image{
     width: 80vw;
@@ -66,3 +67,7 @@ select{
   margin-top: 100px;
 }
 
+=======
+    
+}
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)

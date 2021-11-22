@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from "../../services/session.service";
+<<<<<<< HEAD
 import { MatFormFieldModule} from "@angular/material/form-field";
+=======
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
 
 @Component({
   selector: 'app-navbar',

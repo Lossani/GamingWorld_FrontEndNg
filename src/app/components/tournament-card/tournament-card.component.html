@@ -11,11 +11,11 @@
     <mat-card-content>
 
       <p>{{tournament.description}}</p>
-      <p>{{'TOURNAMENT-CARD.Limit'|translate}} {{tournament.tournamentCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
-      <p>{{'TOURNAMENT-CARD.Prize-Pool'|translate}} {{tournament.prizePool}} $</p>
-      <p>{{'TOURNAMENT-CARD.Date'|translate}} {{this.tournamentDate}}</p>
-      <p>{{'TOURNAMENT-CARD.Hour'|translate}} {{this.tournamentHour}}</p>
-      <p>{{'TOURNAMENT-CARD.Game'|translate}} {{this.tournamentGameName}}</p>
+      <p>Limit: {{tournament.tournamentCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
+      <p>Prize Pool: {{tournament.prizePool}} $</p>
+      <p>Date: {{this.tournamentDate}}</p>
+      <p>Hour: {{this.tournamentHour}}</p>
+      <p>Game: {{this.tournamentGameName}}</p>
   </mat-card-content>
   <mat-chip-list *ngIf="tournament.tournamentStatus">
     <mat-chip selected color="primary" *ngIf="compareDates()" >Stand By</mat-chip>

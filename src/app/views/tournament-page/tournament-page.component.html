@@ -7,13 +7,22 @@
         <mat-card>
           <mat-card-header>
             <mat-card-title>
+<<<<<<< HEAD
               {{'TOURNAMENT-PAGE.Filter-2'}}
+=======
+              Filter By
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <mat-action-list>
+<<<<<<< HEAD
               <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'}}</button>
               <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'}}</button>
+=======
+              <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
+              <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </mat-action-list>
           </mat-card-content>
         </mat-card>
@@ -24,28 +33,48 @@
         <mat-expansion-panel [expanded]="panelOpenState">
           <mat-expansion-panel-header (click)="togglePanel()">
             <mat-panel-title>
+<<<<<<< HEAD
               {{'TOURNAMENT-PAGE.Post'}}
+=======
+              Post a tournament
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </mat-panel-title>
           </mat-expansion-panel-header>
           <form [formGroup]="registerForm" (submit)="submitForm()">
             <mat-form-field class="form-field">
+<<<<<<< HEAD
               <mat-label>{{'TOURNAMENT-PAGE.Title'}}</mat-label>
               <input type="text" matInput formControlName="title">
             </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>{{'TOURNAMENT-PAGE.Banner'}}</mat-label>
+=======
+              <mat-label>Tournament Title</mat-label>
+              <input type="text" matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Tournament Banner</mat-label>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
               <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
             <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
                  [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
             <mat-form-field class="form-field">
+<<<<<<< HEAD
               <mat-label>{{'TOURNAMENT-PAGE.Description'}}</mat-label>
+=======
+              <mat-label>Tournament Description</mat-label>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
               <textarea matInput rows="5" formControlName="description"></textarea>
             </mat-form-field>
 
 
             <mat-form-field class="form-field">
+<<<<<<< HEAD
               <mat-label>{{'TOURNAMENT-PAGE.Prize'}}</mat-label>
+=======
+              <mat-label>Prize Pool</mat-label>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
               <input type="number" matInput formControlName="prizePool">
             </mat-form-field>
             <mat-form-field>
@@ -54,10 +83,17 @@
 
             <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" ></app-search-games>
 
+<<<<<<< HEAD
             <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'}}</mat-slide-toggle>
             <div [hidden]="!registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
                 <mat-label>{{'TOURNAMENT-PAGE.Number-T'}}</mat-label>
+=======
+            <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
+            <div [hidden]="!registerForm.controls.isTeam.value">
+              <mat-form-field class="form-field">
+                <mat-label>Number of Teams</mat-label>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
                 <mat-select formControlName="tournamentCapacity">
                   <mat-option *ngFor="let val of [4, 8, 16, 32]"
                               [value]="val">{{val}}</mat-option>
@@ -66,6 +102,7 @@
             </div>
             <div [hidden]="registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
+<<<<<<< HEAD
                 <mat-label>{{'TOURNAMENT-PAGE.Number-P'}}</mat-label>
                 <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
                        max="100">
@@ -74,14 +111,30 @@
                 </mat-error>
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
                   {{'TOURNAMENT-PAGE.Error-2'}}
+=======
+                <mat-label>Number of Participants</mat-label>
+                <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
+                       max="100">
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
+                  * Minimum 2 participants
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
+                  * Maximum 100 participants
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
                 </mat-error>
               </mat-form-field>
 
             </div>
             <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
+<<<<<<< HEAD
               {{'TOURNAMENT-PAGE.Cancel'}}
             </button>
             <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">{{'TOURNAMENT-PAGE.Save'}}</button>
+=======
+              Cancel
+            </button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="submit">Save</button>
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
           </form>
 
         </mat-expansion-panel>
@@ -98,13 +151,21 @@
               color="primary"
               (click)="openConfirmRegistration(tournament)"
               [disabled]="!compareDates(tournament) || !tournament.tournamentStatus || tournament.inTournament"
+<<<<<<< HEAD
             >{{'TOURNAMENT-PAGE.Sign-In-T'}}
+=======
+            >Sign into the Tournament
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </button>
             <button
               mat-raised-button
               color="primary"
               routerLink='/tournaments/{{tournament.id}}'
+<<<<<<< HEAD
             >{{'TOURNAMENT-PAGE.View-T'}}
+=======
+            >View Tournament
+>>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
             </button>
           </mat-card-actions>
         </mat-card>

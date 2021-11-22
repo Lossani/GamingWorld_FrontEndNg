@@ -7,7 +7,6 @@ import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {HttpResponse} from "@angular/common/http";
 import {SessionService} from "../../services/session.service";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login-page',
@@ -23,13 +22,8 @@ export class LoginPageComponent implements OnInit {
 
   user!:User
 
-  constructor( private sessionService: SessionService, public formBuilder: FormBuilder,private router: Router, public translate: TranslateService ) {
+  constructor( private sessionService: SessionService, public formBuilder: FormBuilder,private router: Router ) {
     this.user = {} as User;
-
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('en');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en_US|es_ES/) ? browserLang : 'en')
   }
 
  async login() {
