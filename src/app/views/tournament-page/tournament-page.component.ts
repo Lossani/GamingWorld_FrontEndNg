@@ -118,9 +118,9 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.userId = this.sessionService.getCurrentSession().user.id;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
+    if(this.registerForm.controls.urlToImage.value != null)
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
     this.tournament.prizePool = this.registerForm.controls.prizePool.value;
-    console.log(this.registerForm.controls.urlToImage.value.toString());
     this.tournament.tournamentCapacity = this.registerForm.controls.tournamentCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
     this.tournament.tournamentDate = (new Date(tDate.getTime()));
@@ -139,8 +139,9 @@ export class TournamentPageComponent implements OnInit {
   addTournament() {
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
       this.tournament.id= response.id;
-      this.filterTournaments.push(this.tournament);
-      this.filterTournaments = this.sortTournaments(this.filterTournaments);
+      this.tournaments.push(this.tournament);
+      this.tournament = {} as Tournament;
+      this.tournaments = this.sortTournaments(this.tournaments);
     });
   }
 
@@ -182,6 +183,7 @@ export class TournamentPageComponent implements OnInit {
   }
   cancelButton()
   {
+
     this.selectedGame = {};
     this.resetSearchGame = true;
 
