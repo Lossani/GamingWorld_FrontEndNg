@@ -3,14 +3,8 @@
 </h2>
 <mat-dialog-content>
     <form style="display: flex; flex-direction: column;" [formGroup]="formGroup">
-        <mat-form-field class="form-field" *ngIf="games" appearance="fill">
-            <mat-label>Game</mat-label>
-            <mat-select formControlName="gameId" required>
-              <mat-option *ngFor="let game of games; index as i" [value]="i">
-                        {{game.name}}
-                    </mat-option>
-            </mat-select>
-        </mat-form-field>
+
+      <app-search-games (messageEvent)="receiveMessage($event)"></app-search-games>
         <mat-form-field class="form-field">
             <mat-label>Experience Level</mat-label>
             <input matInput type="number"

@@ -4,7 +4,7 @@ import {Observable, Subject} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {GameService} from "../../../services/game.service";
 import {Game} from "../../../entities/game-entity";
-import {RequireMatch} from "./required-match";
+import {RequireMatch} from "../validators/required-match";
 
 @Component({
   selector: 'app-search-games',
@@ -38,7 +38,7 @@ export class SearchGamesComponent implements OnInit {
 
   onOptionSelected(dataOption: any) {
     this.selectedGame=dataOption.option.value
-    console.log(dataOption.option.value.id);
+    console.log(dataOption.option.value);
     this.sendMessage();
     //set you model here so that your input box get selected value
   }
@@ -47,6 +47,7 @@ export class SearchGamesComponent implements OnInit {
   sendMessage() {
     this.messageEvent.emit(this.selectedGame)
   }
+
 
 
   public getDisplayFn(val:any) {

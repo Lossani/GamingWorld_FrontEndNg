@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from "../../services/session.service";
+import { MatFormFieldModule} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-navbar',

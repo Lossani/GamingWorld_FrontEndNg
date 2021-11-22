@@ -1,0 +1,15 @@
+<ng-container style="width: 100%" >
+  <input type="text"
+         placeholder="Find users"
+         aria-label="Games"
+         matInput
+         (input)="updateBox($event)"
+         [formControl]="myControl"
+         [matAutocomplete]="auto" />
+  <mat-autocomplete [(ngModel)]="this.options" name="options" ngDefaultControl [ngModelOptions]="{standalone: true}" autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"
+                    [displayWith]="getDisplayFn">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option.username}}
+    </mat-option>
+  </mat-autocomplete>
+</ng-container>

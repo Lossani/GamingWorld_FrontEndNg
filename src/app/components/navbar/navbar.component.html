@@ -1,11 +1,6 @@
 <mat-toolbar color="primary" style="position: fixed;">
     <span>Gamingworld</span>
-    <mat-form-field *ngIf="isInNews">
-        <input matInput id="search" [formControl]="searchQuery">
-        <button mat-icon-button matSuffix [disabled]="!searchQuery.value">
-            <mat-icon>search</mat-icon>
-        </button>
-    </mat-form-field>
+    <app-search-users></app-search-users>
     <div>
         <button routerLink='' matTooltip="News Page" mat-icon-button *ngIf="router.url != '/'">
             <mat-icon>dashboard</mat-icon>

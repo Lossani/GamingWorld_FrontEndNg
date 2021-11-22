@@ -15,8 +15,9 @@ export class CreateGameExperienceDialogComponent implements OnInit {
 
   formGroup = new FormGroup({
     experienceLevel: new FormControl(''),
-    gameId: new FormControl('')
   });
+
+  selectedGame: any;
 
   games!: Game[];
 
@@ -34,13 +35,28 @@ export class CreateGameExperienceDialogComponent implements OnInit {
     }
   }
 
+  receiveMessage($event:any) {
+    // this.registerForm.controls.game = $event;
+    if($event!=[]){
+      this.selectedGame = $event
+    }
+
+    console.log($event)
+  }
+
   submit() {
     if (!this.formGroup.valid)
       return;
 
+    // let gameExperience: GameExperience = {
+    //   gameId: this.games[this.formGroup.controls.gameId.value].id,
+    //   gameName: this.games[this.formGroup.controls.gameId.value].name,
+    //   experience: this.formGroup.controls.experienceLevel.value,
+    //   userId: this.data.userId
+    // };
     let gameExperience: GameExperience = {
-      gameId: this.games[this.formGroup.controls.gameId.value].id,
-      gameName: this.games[this.formGroup.controls.gameId.value].name,
+      gameId: this.selectedGame.id,
+      gameName: this.selectedGame.name,
       experience: this.formGroup.controls.experienceLevel.value,
       userId: this.data.userId
     };

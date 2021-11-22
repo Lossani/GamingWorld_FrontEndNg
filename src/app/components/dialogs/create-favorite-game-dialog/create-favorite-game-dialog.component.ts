@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Game} from "../../../entities/game-entity";
-import {FavoriteGame} from "../../../entities/profile-entity";
+import {FavoriteGame, GameExperience} from "../../../entities/profile-entity";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
 import {GameService} from "../../../services/game.service";
@@ -17,6 +17,8 @@ export class CreateFavoriteGameDialogComponent implements OnInit {
     favoriteGames: new FormControl(''),
     gameId: new FormControl('')
   });
+
+  selectedGame: any;
 
   games!: Game[];
 
@@ -35,14 +37,30 @@ export class CreateFavoriteGameDialogComponent implements OnInit {
 
   }
 
+  receiveMessage($event:any) {
+    // this.registerForm.controls.game = $event;
+    if($event!=[]){
+      this.selectedGame = $event
+    }
+
+    console.log($event)
+  }
+
   submit() {
     if (!this.formGroup.valid)
       return;
+    // let favoriteGame: FavoriteGame = {
+    //   gameId: this.games[this.formGroup.controls.gameId.value].id,
+    //   gameName: this.games[this.formGroup.controls.gameId.value].name,
+    //   userId: this.data.userId,
+    // };
+
     let favoriteGame: FavoriteGame = {
-      gameId: this.games[this.formGroup.controls.gameId.value].id,
-      gameName: this.games[this.formGroup.controls.gameId.value].name,
-      userId: this.data.userId,
+      gameId: this.selectedGame.id,
+      gameName: this.selectedGame.name,
+      userId: this.data.userId
     };
+
     this.data.next(favoriteGame);
     this.matData.closeAll();
 

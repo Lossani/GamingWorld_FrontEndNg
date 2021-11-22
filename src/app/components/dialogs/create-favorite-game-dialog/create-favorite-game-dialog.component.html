@@ -3,14 +3,7 @@ Add Favorite Games
 </h2>
 <mat-dialog-content>
   <form style="display: flex; flex-direction: column;" [formGroup]="formGroup">
-    <mat-form-field class="form-field" appearance="fill">
-      <mat-label>Game</mat-label>
-      <mat-select formControlName="gameId" required>
-        <mat-option *ngFor="let game of games; index as i" [value]="i">
-          {{game.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <app-search-games (messageEvent)="receiveMessage($event)"></app-search-games>
     <div style="display: flex; width: 100%; justify-content: space-evenly;">
       <button mat-raised-button color="primary" type="submit" (click)="submit()">Create</button>
       <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>

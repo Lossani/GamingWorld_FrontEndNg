@@ -31,12 +31,13 @@ import { ConfirmEndTournamentComponent } from './components/dialogs/confirm-end-
 import { RegisterMatchPointsComponent } from './components/dialogs/register-match-points/register-match-points.component';
 import { MatChipsModule } from "@angular/material/chips";
 import {SessionService} from "./services/session.service";
-import { SearchGamesComponent } from './components/search-games/search-games/search-games.component';
+import { SearchGamesComponent } from './components/searchers/search-games/search-games.component';
 import { CreateStreamSponsorDialogComponent } from './components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component';
 import { CreateStreamCategoryDialogComponent } from './components/dialogs/create-stream-category-dialog/create-stream-category-dialog.component';
 import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/login-or-signup/login-or-signup.component';
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchUsersComponent } from './components/searchers/search-users/search-users.component';
 
 
 
@@ -70,6 +71,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreateStreamCategoryDialogComponent,
     LoginOrSignupComponent,
     ConfirmUserRegistrationComponent,
+    SearchUsersComponent,
 
 
   ],
@@ -83,7 +85,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     MatDatepickerModule,
     MatChipsModule,
-    NgbModule
+    NgbModule,
 
   ],
   providers: [SessionService],

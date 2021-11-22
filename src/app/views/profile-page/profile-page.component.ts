@@ -152,7 +152,7 @@ export class ProfilePageComponent implements OnInit {
       this.profile.gameExperiences.push(element);
       this.gameExperiences.data = this.profile.gameExperiences;
     }
-    const dialogRef = this.dialog.open(CreateGameExperienceDialogComponent, {
+    this.dialog.open(CreateGameExperienceDialogComponent, {
       data: {
         userId: this.profileCode,
         next: addToList
