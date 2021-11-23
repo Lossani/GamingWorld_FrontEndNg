@@ -19,7 +19,8 @@
 }
 
 .login-image{
-  width: 40vw;
+  width: 35vw;
+  height: 80vh;
 }
 
 @media (max-width: 950px) {

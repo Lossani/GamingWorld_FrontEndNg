@@ -205,13 +205,13 @@ export class ProfilePageComponent implements OnInit {
     })
   }
 
-  openEditStreamSponsorDialog(element: FavoriteGame): void {
-    const index = this.profile.favoriteGames.indexOf(element)
-    const addToList = (element: FavoriteGame) => {
-      this.profile.favoriteGames[index]=element;
-      this.favoriteGames.data = this.profile.favoriteGames;
+  openEditStreamSponsorDialog(element: StreamerSponsor): void {
+    const index = this.profile.streamerSponsors.indexOf(element)
+    const addToList = (element: StreamerSponsor) => {
+      this.profile.streamerSponsors[index]=element;
+      this.streamerSponsors.data = this.profile.streamerSponsors;
     }
-    const dialogRef = this.dialog.open(CreateFavoriteGameDialogComponent, {
+    const dialogRef = this.dialog.open(CreateStreamSponsorDialogComponent, {
       data: {
         userId: this.profileCode,
         editData: element,
