@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +9,7 @@ import { LoginPageComponent } from './views/login-page/login-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsPageComponent } from './views/news-page/news-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { PremiumInformationDialogComponent } from './components/dialogs/premium-information-dialog/premium-information-dialog.component';
 import { TwitchBubbleComponent } from './components/twitch-bubble/twitch-bubble.component';
@@ -38,8 +37,12 @@ import { LoginOrSignupComponent } from './components/dialogs/login-or-signup/log
 import { ConfirmUserRegistrationComponent } from './components/dialogs/confirm-user-registration/confirm-user-registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchUsersComponent } from './components/searchers/search-users/search-users.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
-
+export function HttpLoaderFactory (http: HttpClient){
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
 
@@ -86,7 +89,13 @@ import { SearchUsersComponent } from './components/searchers/search-users/search
     MatDatepickerModule,
     MatChipsModule,
     NgbModule,
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [SessionService],
   bootstrap: [AppComponent]
