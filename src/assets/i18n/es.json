@@ -1,0 +1,131 @@
+{
+  "NAVBAR": {
+    "Profile": "Mi Perfil",
+    "Log-Out": "Cerrar Sesión",
+    "Log-In": "Iniciar Sesion"
+  },
+  "NEWS-PAGE": {
+    "Filter": "Filtrar Por",
+    "Games": "Videojuegos",
+    "Themes": "Categorias Populares de Twitch"
+  },
+  "NEWS-CARD": {
+    "MI": "Ver Más"
+  },
+  "PREMIUM-CARD": {
+    "Support": "Apoya GamingWorld",
+    "Text-1": "Conviértete en miembro premium y podrás crear torneos sin la necesidad de gestionarlos.",
+    "More-Info": "Más Información"
+  },
+  "PREMIUM-INFORMATION-DIALOG": {
+    "Subscribe": "Suscribete a GamingWorld",
+    "Question-1": "¿Estás cansado de tener que gestionar grandes torneos con muchos participantes?",
+    "Text-2": "No se preocupe, con nuestro servicio premium podemos administrar todos los detalles del torneo por usted. \nNo tendrá que hacer nada. Simplemente siéntese y relájese mientras nuestros administradores establecen las puntuaciones y otra información vital. ",
+    "Plan": "Plan Premium",
+    "Amount": "$5.00/Por mes",
+    "Close": "Cerrar",
+    "Purchase": "Comprar"
+  },
+  "LOGIN-OR-SIGNUP": {
+    "Join": "Unete a la comunidad de GamingWorld",
+    "Please": "Por favor inicia sesión o registrate a GamingWorld para que accedas a los torneos.",
+    "Log": "Inicia Sesión",
+    "Sign": "Registrate"
+  },
+  "TOURNAMENT-PAGE": {
+    "Filter-2": "Filtrar Por",
+    "Team": "Torneos por Equipos",
+    "Solo": "Torneos Solo",
+    "Post": "Crear un Torneo",
+    "Title": "Titulo del Torneo",
+    "Banner": "Portada del Torneo",
+    "Description": "Descripcion del Torneo",
+    "Prize": "Botin",
+    "Team-T": "Por Equipo",
+    "Number-T": "Numero de Equipos",
+    "Number-P": "Numero de Participantes",
+    "Error-1": "Minimo 2 participantes",
+    "Error-2": "Maximo 100 participantes",
+    "Cancel": "Cancelar",
+    "Save": "Guardar",
+    "Sign-In-T": "Registrarse en el Torneo",
+    "View-T": "Ver Torneo"
+  },
+  "TOURNAMENT-VIEW-PAGE": {
+    "End": "Finalizar Torneo",
+    "Set": "Establecer Puntajes",
+    "Team-V": "Equipos",
+    "Participants-V": "Participantes"
+  },
+  "TOURNAMENT-CARD": {
+    "Limit": "Límite: ",
+    "Prize-Pool": "Botín: ",
+    "Date": "Día: ",
+    "Hour": "Hora: ",
+    "Game": "Juego: ",
+    "Stand": "En Espera",
+    "Act": "Activo",
+    "End": "Finalizado"
+  },
+  "PROFILE-PAGE": {
+    "G-s": "Juegos",
+    "Add-Game": "Añadir Juego",
+    "Game-P": "Juego",
+    "Exp": "Experiencia",
+    "T-s": "Torneos",
+    "Add-Tournament": "Añadir Torneo",
+    "Tournament-P": "Torneo",
+    "Position": "Posición",
+    "Fav-Game": "Juegos Favoritos",
+    "Add-Fav-Game": "Añadir Juegos Favoritos",
+    "N-G": "Nombre del Juego",
+    "Cat": "Categorias de Stream",
+    "S-C": "Añadir Categoria de Stream",
+    "Category-Name": "Nombre de la Categoria",
+    "Sponsor": "Patrocinadores",
+    "Add-Sponsor": "Añdir Patrocinador de Stream",
+    "S-N": "Nombre de Patrocinador",
+    "S": "Guardar",
+    "Actions": "Accciones"
+  },
+  "FAVORITE-GAME-DIALOG": {
+    "Favorite-Games": "Añadir Juegos Favoritos",
+    "Cre": "Crear",
+    "Can": "Cancelar"
+  },
+  "GAME-EXPERIENCE-DIALOG": {
+    "Game-Experience": "Crear Experiencia de Juego",
+    "Exp-Lvl": "Nivel de Experiencia "
+  },
+  "STREAMING-CATEGORY-DIALOG": {
+    "Stream-Cat": "Añadir Categoria de Stream",
+    "Name-Cat": "Nombre de Categoria de Stream "
+  },
+  "STREAMING-SPONSOR-DIALOG": {
+    "Stream-Spo": "Añadir Patrocinadores de Stream",
+    "Name-Spo": "Nombre del Patrocinador"
+  },
+  "TOURNAMENT-DIALOG": {
+    "Add-Tour": "Añadir Torneo",
+    "Tourn": "Torneo",
+    "Position": "Posición"
+  },
+  "REGISTER-POINTS": {
+    "Register": "Registrar puntos para",
+    "RT": ".",
+    "Extra": "Puntos Extra",
+    "Points": "Puntos",
+    "Add-P": "Añadir participantes",
+    "Clo": "Cerrar",
+    "Con": "Confirmar"
+  },
+  "END-TOURNAMENT-DIALOG":{
+    "End-V": "¿Finalizar",
+    "T": " ?",
+    "Are-You-Sure": "¿Esta seguro que desea finalizar",
+    "T2": "?.",
+    "Action": "Esta accion no se puede revocar y ya no podra editarla",
+    "No": "No",
+    "Yes": "Si"
+  }
+}

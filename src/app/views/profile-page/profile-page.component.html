@@ -13,14 +13,14 @@
       <mat-card-content>
             <div class="profile-section">
                 <div class="section-title">
-                    <h2 class="center">Games</h2>
-                    <button mat-button color="primary" (click)="openAddGameDialog()" *ngIf="validateSession">Add Game</button>
+                    <h2 class="center">{{'PROFILE-PAGE.G-s'|translate}}</h2>
+                    <button mat-button color="primary" (click)="openAddGameDialog()" *ngIf="validateSession">{{'PROFILE-PAGE.Add-Game'|translate}}</button>
                 </div>
                 <mat-divider></mat-divider>
 
                 <table  mat-table *ngIf="gameExperiences" [dataSource]="gameExperiences" >
                     <ng-container  matColumnDef="name">
-                      <th style="width: 50%" mat-header-cell *matHeaderCellDef >Game</th>
+                      <th style="width: 50%" mat-header-cell *matHeaderCellDef >{{'PROFILE-PAGE.Game-P'|translate}}</th>
                       <td mat-cell *matCellDef="let element " >{{element.gameName}}</td>
                     </ng-container>
                     <ng-container  matColumnDef="experienceLevel">
@@ -28,7 +28,7 @@
                       <td mat-cell *matCellDef="let element"  >{{element.experience}}</td>
                     </ng-container>
                     <ng-container  matColumnDef="actions" >
-                      <th class="th-actions" mat-header-cell *matHeaderCellDef >Actions</th>
+                      <th class="th-actions" mat-header-cell *matHeaderCellDef >{{'PROFILE-PAGE.Actions'|translate}}</th>
                       <td mat-cell *matCellDef="let element" >
                         <button
                           mat-mini-fab color="primary"
@@ -52,13 +52,13 @@
                 </table>
                 <br>
                 <div class="section-title">
-                    <h2 class="center">Tournaments</h2>
-                    <button mat-button color="primary" (click)="openAddTournamentDialog()" *ngIf="validateSession">Add Tournament</button>
+                    <h2 class="center">{{'PROFILE-PAGE.T-s'|translate}}</h2>
+                    <button mat-button color="primary" (click)="openAddTournamentDialog()" *ngIf="validateSession">{{'PROFILE-PAGE.Add-Tournament'|translate}}</button>
                 </div>
                 <mat-divider></mat-divider>
               <table mat-table *ngIf="tournamentExperiences" [dataSource]="tournamentExperiences">
                 <ng-container matColumnDef="name">
-                  <th style="width: 50%" mat-header-cell *matHeaderCellDef >Tournament</th>
+                  <th style="width: 50%" mat-header-cell *matHeaderCellDef >{{'PROFILE-PAGE.Tournament-P'|translate}}</th>
                   <td  mat-cell *matCellDef="let element" >
                     <ng-container *ngIf="!element.editMode">
                       {{element.name}}
@@ -71,13 +71,13 @@
                   </td>
                 </ng-container>
                 <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef >Position</th>
+                  <th mat-header-cell *matHeaderCellDef >{{'PROFILE-PAGE.Position'|translate}}</th>
                   <td mat-cell *matCellDef="let element" >
                       {{element.position}}
                   </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
-                  <th class="th-actions" mat-header-cell *matHeaderCellDef >Actions</th>
+                  <th class="th-actions" mat-header-cell *matHeaderCellDef >{{'PROFILE-PAGE.Actions'|translate}}</th>
                   <td mat-cell *matCellDef="let element" >
                     <button
                       mat-mini-fab color="primary"
@@ -102,22 +102,22 @@
               <br>
               <br>
               <div class="section-title">
-                <h2 class="center">Favorite Games</h2>
+                <h2 class="center">{{'PROFILE-PAGE.Fav-Game'|translate}}</h2>
                 <button mat-button color="primary" (click)="openAddFavoriteGameDialog()"
-                        *ngIf="validateSession">Add Favorite Games</button>
+                        *ngIf="validateSession">{{'PROFILE-PAGE.Add-Fav-Game'|translate}}</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
               <table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">
                 <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef>Name Game</th>
+                  <th mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.N-G'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     {{ element.gameName }}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
-                  <th class="th-actions" mat-header-cell *matHeaderCellDef>Actions</th>
+                  <th class="th-actions" mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.Actions'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
@@ -140,21 +140,21 @@
 
               <br>
               <div class="section-title">
-                <h2 class="center">Streaming Category</h2>
+                <h2 class="center">{{'PROFILE-PAGE.Cat'|translate}}</h2>
                 <button mat-button color="primary" (click)="openAddStreamCategoryDialog()"
-                        *ngIf="validateSession">Add Streaming Category</button>
+                        *ngIf="validateSession">{{'PROFILE-PAGE.S-C'|translate}}</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
               <table mat-table *ngIf="streamingCategories" [dataSource]="streamingCategories">
                 <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef>Category Name</th>
+                  <th mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.Category-Name'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     {{ element.name }}
                   </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
-                  <th class="th-actions" mat-header-cell *matHeaderCellDef>Actions</th>
+                  <th class="th-actions" mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.Actions'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
@@ -175,21 +175,21 @@
 
               <br>
               <div class="section-title">
-                <h2 class="center">Streaming Sponsor</h2>
+                <h2 class="center">{{'PROFILE-PAGE.Sponsor'|translate}}</h2>
                 <button mat-button color="primary" (click)="openAddStreamSponsorDialog()"
-                        *ngIf="validateSession">Add Streaming Sponsor</button>
+                        *ngIf="validateSession">{{'PROFILE-PAGE.Add-Sponsor'|translate}}</button>
               </div>
               <mat-divider></mat-divider>
               <!--<table mat-table *ngIf="favoriteGames" [dataSource]="favoriteGames">-->
               <table mat-table *ngIf="streamerSponsors" [dataSource]="streamerSponsors">
                 <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef>Sponsor Name</th>
+                  <th mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.S-N'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     {{ element.name }}
                   </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
-                  <th class="th-actions" mat-header-cell *matHeaderCellDef>Actions</th>
+                  <th class="th-actions" mat-header-cell *matHeaderCellDef>{{'PROFILE-PAGE.Actions'|translate}}</th>
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-mini-fab color="primary"
@@ -215,7 +215,7 @@
           mat-raised-button color="primary"
           (click)="saveProfile()"
           *ngIf="validateSession">
-          Save
+          {{'PROFILE-PAGE.S'|translate}}
         </button>
       </mat-card-actions>
     </mat-card>
