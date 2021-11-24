@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ConfirmEndTournamentComponent } from './confirm-end-tournament.component';
+import {ConfirmEndTournamentComponent} from './confirm-end-tournament.component';
 
 describe('ConfirmEndTournamentComponent', () => {
   let component: ConfirmEndTournamentComponent;

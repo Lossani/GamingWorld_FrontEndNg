@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SessionService } from "../../services/session.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
+import {SessionService} from "../../services/session.service";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   user?: string;
   isLoggedIn?: Boolean;
+  selectedLang: string | null;
 
   @Input()
   public isInNews: boolean = false;
@@ -23,14 +24,18 @@ export class NavbarComponent implements OnInit {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('en');
     const browseLang = translate.getBrowserLang();
-    translate.use(browseLang?.match(/en_US|es_ES/) ? browseLang: 'en');
+
+    this.selectedLang = localStorage.getItem("SELECTED_LANG");
+
+    if (this.selectedLang != null && this.selectedLang != "" && (this.selectedLang == "en" ||this.selectedLang == "es"))
+      translate.use(this.selectedLang);
+    else
+      translate.use(browseLang?.match(/en_US|es_ES/) ? browseLang : 'en');
   }
 
   ngOnInit(): void {
     this.isLoggedIn = this.sessionService.getIsLoggedIn();
     this.user = this.sessionService.getCurrentSession().user.id.toString();
-    console.log(this.isLoggedIn);
-    console.log(this.user);
   }
 
   logout() {
@@ -39,5 +44,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/').then(() => {
       window.location.reload();
     });
+  }
+
+  changeLang(lang: string)
+  {
+    localStorage.setItem("SELECTED_LANG", lang);
+    this.translate.use(lang);
   }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { GameService } from 'src/app/services/game.service';
+import {GameService} from 'src/app/services/game.service';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,8 +11,6 @@ import {Subject} from "rxjs";
 import {SessionService} from "../../services/session.service";
 import {User} from "../../entities/user-entity";
 import {ProfileService} from "../../services/profile.service";
-
-
 
 
 @Component({
@@ -107,13 +105,11 @@ export class TournamentPageComponent implements OnInit {
     if($event!=[]){
       this.selectedGame = $event
     }
-
-    console.log($event)
   }
 
   submitForm() {
     let postedAt: Date = new Date();
-    console.log(this.registerForm.valid);
+
     this.submitted = true;
     this.tournament.userId = this.sessionService.getCurrentSession().user.id;
     this.tournament.title = this.registerForm.controls.title.value;
@@ -124,8 +120,6 @@ export class TournamentPageComponent implements OnInit {
     this.tournament.tournamentCapacity = this.registerForm.controls.tournamentCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
     this.tournament.tournamentDate = (new Date(tDate.getTime()));
-    console.log(this.registerForm.controls.date.value);
-    console.log(tDate.toString());
     this.tournament.gameId = this.selectedGame.id;
     this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
@@ -202,13 +196,12 @@ export class TournamentPageComponent implements OnInit {
         title: this.tournament?.title
       }
     }).afterClosed().subscribe((result: boolean) =>{
-      console.log(result);
 
       let user: User = this.sessionService.getCurrentSession().user;
       let profile: any;
       this.profileService.getProfileByUserId(user.id).subscribe(data=>{
         profile=data;
-        console.log(profile.id)
+
         if(result){this.tournamentService.registerInTournament(tournament.id, profile.id).subscribe(data => {
           tournament.inTournament=data;
         });}

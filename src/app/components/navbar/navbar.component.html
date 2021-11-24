@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" style="position: fixed;">
-    <span>GamingWorld</span>
+    <a class="navbar-name" [routerLink]="'/'">GamingWorld</a>
     <app-search-users></app-search-users>
     <div>
-      <select #langselect (change)="translate.use(langselect.value)">
-        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+      <select #langselect (change)="changeLang(langselect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang == this.selectedLang">{{lang}}</option>
       </select>
         <button routerLink='' matTooltip="News Page" mat-icon-button *ngIf="router.url != '/'">
             <mat-icon>dashboard</mat-icon>

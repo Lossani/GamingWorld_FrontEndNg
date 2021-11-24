@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
-import { Game } from '../entities/game-entity';
+import {Game} from '../entities/game-entity';
 import {ServiceConfiguration} from "./service-configuration";
 import {catchError, retry} from "rxjs/operators";
 

@@ -1,18 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { ConfirmDeleteDialogComponent } from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
-import { CreateGameExperienceDialogComponent } from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
-import { ProfileService } from 'src/app/services/profile.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute} from '@angular/router';
+import {ConfirmDeleteDialogComponent} from 'src/app/components/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
+import {CreateGameExperienceDialogComponent} from 'src/app/components/dialogs/create-game-experience-dialog/create-game-experience-dialog.component';
+import {ProfileService} from 'src/app/services/profile.service';
 import {CreateTournamentDialogComponent} from "../../components/dialogs/create-tournament-dialog/create-tournament-dialog.component";
 import {User} from "../../entities/user-entity";
 import {
-  FavoriteGame, GameExperience, Profile,
+  FavoriteGame,
+  GameExperience,
+  Profile,
   StreamerSponsor,
   StreamingCategory,
   Team,
   TournamentExperience,
-
 } from "../../entities/profile-entity";
 import {CreateFavoriteGameDialogComponent} from "../../components/dialogs/create-favorite-game-dialog/create-favorite-game-dialog.component";
 import {CreateStreamSponsorDialogComponent} from "../../components/dialogs/create-stream-sponsor-dialog/create-stream-sponsor-dialog.component";

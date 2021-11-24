@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../entities/user-entity";
-import {UsersService} from "../../services/users.service";
-import {Tournament} from "../../entities/tournament-entity";
-import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {HttpResponse} from "@angular/common/http";
 import {SessionService} from "../../services/session.service";
 
 @Component({
@@ -36,7 +32,9 @@ export class LoginPageComponent implements OnInit {
             window.location.reload();
           });
       }
-    );
+    ).catch(() => {
+        alert("Wrong login details.");
+    });
   }
 
 

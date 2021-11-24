@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { article } from 'src/app/entities/news-entity';
+import {Component, Input, OnInit} from '@angular/core';
+import {article} from 'src/app/entities/news-entity';
 
 @Component({
   selector: 'app-news-card',

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersService} from "../../services/users.service";
 import {User} from "../../entities/user-entity";
 import {Router} from "@angular/router";
@@ -43,8 +43,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   submitForm() {
-
-    console.log(this.registerForm.valid);
     this.submitted = true;
     this.user.username = this.registerForm.controls.username.value;
     this.user.name = this.registerForm.controls.name.value;
@@ -66,7 +64,6 @@ export class RegisterPageComponent implements OnInit {
 
   addUser() {
     this.usersService.postUser(this.user).subscribe((response: any) => {
-      console.log(response);
     });
 
   }

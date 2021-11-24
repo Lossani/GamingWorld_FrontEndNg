@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PremiumInformationDialogComponent} from "../dialogs/premium-information-dialog/premium-information-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 

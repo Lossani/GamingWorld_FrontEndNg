@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Tournament } from 'src/app/entities/tournament-entity';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Tournament} from 'src/app/entities/tournament-entity';
+import {Router} from '@angular/router';
 import {GameService} from "../../services/game.service";
 
 
@@ -29,12 +29,10 @@ export class TournamentCardComponent implements OnInit {
     this.getHour()
     if(this.tournament.gameId){
       this.gameService.getGameById(this.tournament.gameId).subscribe(data=>{
-        console.log(data)
+
         this.tournamentGameName = data.name;
       })
     }
-
-    console.log(this.tournamentGameName)
   }
 
   ngOnInit(): void {

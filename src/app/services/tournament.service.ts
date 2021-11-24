@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
-import { Tournament } from '../entities/tournament-entity';
+import {Tournament} from '../entities/tournament-entity';
 import {ServiceConfiguration} from "./service-configuration";
 import {ProfileService} from "./profile.service";
 import {User} from "../entities/user-entity";
@@ -16,10 +16,8 @@ export class TournamentService {
   private baseURL = "";
 
   constructor(private http: HttpClient, private serviceConfiguration: ServiceConfiguration, private profileService: ProfileService, private sessionService: SessionService) {
-    console.log(this.serviceConfiguration.httpOptions);
     this.baseURL = serviceConfiguration.baseUrl + "/tournaments";
     this.serviceConfiguration.httpOptions.headers.set('Authorization', "Bearer " + sessionService.getCurrentSession().token)
-    console.log(this.serviceConfiguration.httpOptions);
   }
 
   // API Error Handling

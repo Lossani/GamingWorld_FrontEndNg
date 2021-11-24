@@ -1,9 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {Observable, Subject} from "rxjs";
-import {map, startWith} from "rxjs/operators";
 import {GameService} from "../../../services/game.service";
-import {Game} from "../../../entities/game-entity";
 import {RequireMatch} from "../validators/required-match";
 
 @Component({
@@ -38,7 +35,7 @@ export class SearchGamesComponent implements OnInit {
 
   onOptionSelected(dataOption: any) {
     this.selectedGame=dataOption.option.value
-    console.log(dataOption.option.value);
+
     this.sendMessage();
     //set you model here so that your input box get selected value
   }

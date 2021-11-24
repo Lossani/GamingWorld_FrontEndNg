@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import { Game } from 'src/app/entities/game-entity';
+import {Game} from 'src/app/entities/game-entity';
 
-import { ProfileService } from 'src/app/services/profile.service';
-import { TournamentExperience} from "../../../entities/profile-entity";
+import {ProfileService} from 'src/app/services/profile.service';
+import {TournamentExperience} from "../../../entities/profile-entity";
 
 @Component({
   selector: 'app-create-game-experience-dialog',

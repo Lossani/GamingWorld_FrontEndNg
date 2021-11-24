@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {User} from "../entities/user-entity";
 import {ServiceConfiguration} from "./service-configuration";
-import {GameExperience, Profile, Team, TournamentExperience, UserGame} from "../entities/profile-entity";
+import {Profile, Team} from "../entities/profile-entity";
 
 @Injectable({
   providedIn: 'root'

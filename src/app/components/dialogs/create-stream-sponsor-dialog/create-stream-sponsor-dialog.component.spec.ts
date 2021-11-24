@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateStreamSponsorDialogComponent } from './create-stream-sponsor-dialog.component';
+import {CreateStreamSponsorDialogComponent} from './create-stream-sponsor-dialog.component';
 
 describe('CreateStreamSponsorDialogComponent', () => {
   let component: CreateStreamSponsorDialogComponent;

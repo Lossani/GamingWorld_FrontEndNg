@@ -73,7 +73,7 @@ export class RegisterMatchPointsComponent implements OnInit {
            value.points += value2.points;
          }
        })
-      this.tournamentService.updateTournamentPoints(this.tournamentId,this.tournamentType,value.id,value.points).subscribe(value=>{console.log(value)});
+      this.tournamentService.updateTournamentPoints(this.tournamentId,this.tournamentType,value.id,value.points).subscribe(()=>{});
      })
      this.searchParticipant = null;
      this.extraPoints = 0;

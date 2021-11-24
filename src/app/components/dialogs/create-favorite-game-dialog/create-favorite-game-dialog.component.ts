@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Game} from "../../../entities/game-entity";
-import {FavoriteGame, GameExperience} from "../../../entities/profile-entity";
+import {FavoriteGame} from "../../../entities/profile-entity";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
 import {GameService} from "../../../services/game.service";
@@ -42,8 +42,6 @@ export class CreateFavoriteGameDialogComponent implements OnInit {
     if($event!=[]){
       this.selectedGame = $event
     }
-
-    console.log($event)
   }
 
   submit() {

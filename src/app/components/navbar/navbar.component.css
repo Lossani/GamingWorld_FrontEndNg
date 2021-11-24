@@ -8,7 +8,12 @@ mat-toolbar {
     z-index: 100;
 }
 
-mat-form-field {
+.navbar-name {
+  color: #2D3142;
+}
+
+.navbar-name:hover {
+  text-decoration: none !important;
 }
 
 select{
