@@ -1,107 +1,120 @@
-<app-navbar [isInNews]="false"></app-navbar>
-<div class="navbar-separator"></div>
-<div style="width: 80%; margin-left: auto;margin-right: auto">
+<app-navbar style="margin-bottom: 20px" [isInNews]="false"></app-navbar>
+<div class="navbar-separator" style="margin-bottom: 10px"></div>
+<div *ngIf="sessionValid" style="width: 90%; margin-left: auto;margin-right: auto">
   <div id="PrincipalContainer">
     <div>
       <div>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            Filter By
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-action-list>
-            <button mat-list-item (click)="findTournaments(true)">Team Tournaments</button>
-            <button mat-list-item (click)="findTournaments(false)">Solo Tournaments</button>
-          </mat-action-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{'TOURNAMENT-PAGE.Filter-2'|translate}}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-action-list>
+              <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'|translate}}</button>
+              <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'|translate}}</button>
+            </mat-action-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
     <div id="TournamentsContainer">
       <mat-accordion>
         <mat-expansion-panel [expanded]="panelOpenState">
           <mat-expansion-panel-header (click)="togglePanel()">
             <mat-panel-title>
-              Post a tournament
+              {{'TOURNAMENT-PAGE.Post'|translate}}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <form [formGroup]="registerForm" (submit)="submitForm()">
-              <mat-form-field class="form-field">
-                <mat-label>Tournament Title</mat-label>
-                <input type="text" matInput formControlName="title">
-              </mat-form-field>
+          <form [formGroup]="registerForm">
             <mat-form-field class="form-field">
-              <mat-label>Tournament Banner</mat-label>
+              <mat-label>{{'TOURNAMENT-PAGE.Title'|translate}}</mat-label>
+              <input type="text" matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>{{'TOURNAMENT-PAGE.Banner'|translate}}</mat-label>
               <input type="url" matInput formControlName="urlToImage">
             </mat-form-field>
-            <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)" [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
+            <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
+                 [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
+            <mat-form-field class="form-field">
+              <mat-label>{{'TOURNAMENT-PAGE.Description'|translate}}</mat-label>
+              <textarea matInput rows="5" formControlName="description"></textarea>
+            </mat-form-field>
+
+
+            <mat-form-field class="form-field">
+              <mat-label>{{'TOURNAMENT-PAGE.Prize'|translate}}</mat-label>
+              <input type="number" matInput formControlName="prizePool">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date" min="{{date().toString()}}">
+            </mat-form-field>
+
+            <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" ></app-search-games>
+
+            <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'|translate}}</mat-slide-toggle>
+            <div [hidden]="!registerForm.controls.isTeam.value">
               <mat-form-field class="form-field">
-                <mat-label>Tournament Description</mat-label>
-                <textarea matInput rows="5" formControlName="description"></textarea>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput type="datetime-local" formControlName="date" placeholder="Start Date">
-              </mat-form-field>
-              <mat-form-field class="form-field">
-                <mat-label>Game</mat-label>
-                <mat-select formControlName="game">
-                  <mat-option *ngFor="let game of games"
-                              [value]="game.id">
-                    {{game.name}}
-                  </mat-option>
+                <mat-label>{{'TOURNAMENT-PAGE.Number-T'|translate}}</mat-label>
+                <mat-select formControlName="tournamentCapacity">
+                  <mat-option *ngFor="let val of [4, 8, 16, 32]"
+                              [value]="val">{{val}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-slide-toggle formControlName="isTeam">Team Tournament</mat-slide-toggle>
-              <div [hidden]="!registerForm.controls.isTeam.value" formGroupName="teamTournament">
-                <mat-form-field class="form-field">
-                  <mat-label  >Number of Teams</mat-label>
-                  <mat-select formControlName="teamQuantity">
-                    <mat-option  *ngFor="let val of [4, 8, 16, 32]"
-                                [value]="val">{{val}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div [hidden]="registerForm.controls.isTeam.value" formGroupName="soloTournament">
-                <mat-form-field class="form-field">
-                  <mat-label >Number of Participants</mat-label>
-                  <input type="number" formControlName="playerCapacity" matInput min="0" max="100">
-                </mat-form-field>
-              </div>
-                <button [disabled]="!registerForm.valid" mat-flat-button color="primary" type="submit">Save</button>
-                <button  mat-flat-button color="warn" type="button" (click)="cancelButton()">Cancel</button>
+            </div>
+            <div [hidden]="registerForm.controls.isTeam.value">
+              <mat-form-field class="form-field">
+                <mat-label>{{'TOURNAMENT-PAGE.Number-P'|translate}}</mat-label>
+                <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
+                       max="100">
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
+                  {{'TOURNAMENT-PAGE.Error-1'|translate}}
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['max']">
+                  {{'TOURNAMENT-PAGE.Error-2'|translate}}
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
+              {{'TOURNAMENT-PAGE.Cancel'|translate}}
+            </button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="button" (click)="submitForm()">Save</button>
           </form>
 
         </mat-expansion-panel>
 
       </mat-accordion>
 
-      <app-tournament-card *ngFor="let tournament of filterTournaments" [tournament]="tournament"></app-tournament-card>
+      <div *ngFor="let tournament of filterTournaments">
+        <mat-card>
+          <app-tournament-card [tournament]="tournament"></app-tournament-card>
+          <mat-card-actions align="end">
 
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openConfirmRegistration(tournament)"
+              [disabled]="!compareDates(tournament) || !tournament.tournamentStatus || tournament.inTournament"
+            >{{'TOURNAMENT-PAGE.Sign-In-T'|translate}}
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink='/tournaments/{{tournament.id}}'
+            >{{'TOURNAMENT-PAGE.View-T'|translate}}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
     <div id="StreamerInfo">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            Support GamingWorld
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p style="padding-bottom: 5vh">
-            Become a premium member and get access to exclusive tools to find
-            users with the same competitive level and interest than you for just 5$.
-          </p>
-          <div style="width: 100%; display: flex; justify-content: center;">
-            <mat-icon class="credit-card-icon">
-              credit_card
-            </mat-icon>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary"   class="full-length-button" (click)="openPremiumInfoDialog()">More Information</button>
-        </mat-card-actions>
-      </mat-card>
+      <app-premium-card></app-premium-card>
     </div>
   </div>
+</div>
+<div *ngIf="!sessionValid">
+  <app-login-or-signup></app-login-or-signup>
 </div>

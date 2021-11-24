@@ -1,6 +1,6 @@
 <div id="LoginGrid">
     <div class="login-grid-tile" *ngIf={}>
-        <img src="/assets/loginImage.png" alt="login Image" style="height: 80vh;">
+        <img class="login-image" src="/assets/loginImage.png" alt="login Image" >
     </div>
     <div class="login-grid-tile">
         <mat-card class="login-card card-secondary-background">
@@ -14,31 +14,23 @@
             <mat-divider></mat-divider>
             <br>
             <mat-card-content>
+              <form [formGroup]="loginForm">
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Username</mat-label>
-                    <input type="text" matInput>
+                    <mat-label style="color: white;">Username</mat-label>
+                    <input  style="color: white;" formControlName="username" type="text" matInput>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>
+                    <mat-label style="color: white;">
                         Password
                     </mat-label>
-                    <input type="password" matInput>
+                    <input style="color: white;" formControlName="password" type="password" matInput>
                 </mat-form-field>
+              </form>
             </mat-card-content>
             <mat-card-actions>
                 <p>
-                    <button mat-raised-button color="primary" class="full-length-button">
+                    <button [disabled]="!loginForm.valid" type="submit" mat-raised-button color="primary" class="full-length-button" (click)="login()">
                         Login
-                    </button>
-                </p>
-                <p>
-                    <button mat-raised-button class="full-length-button discord-button">
-                        Login with Discord
-                    </button>
-                </p>
-                <p>
-                    <button mat-raised-button class="full-length-button youtube-button">
-                        Login with Youtube
                     </button>
                 </p>
             </mat-card-actions>

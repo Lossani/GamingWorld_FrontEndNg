@@ -1,82 +1,36 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import {Competencia, GameExperience, Team, User, UserCompetencia, UserGame} from '../entities/user-entity';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from "../entities/user-entity";
+import {ServiceConfiguration} from "./service-configuration";
+import {Profile, Team} from "../entities/profile-entity";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private profileUrl = "https://json-test-server.herokuapp.com/usuarios/";
-  private URL = "https://json-test-server.herokuapp.com";
+  private profileUrl = "";
+  private URL = "";
 
-  constructor(private Http: HttpClient) { }
+  constructor(private Http: HttpClient, private serviceConfiguration: ServiceConfiguration) {
+    this.profileUrl = serviceConfiguration.baseUrl + "/profiles";
+    this.URL = serviceConfiguration.baseUrl;
+  }
 
   getProfileById(id: number): Observable<User>{
     const url = this.profileUrl + id.toString() + "?_embed=competencias&_embed=game-experiences"
     return this.Http.get<User>(url);
   }
 
-  getExperiencedGames(id: number): Observable<UserGame[]> {
-    const url = `${this.URL}/game-experiences?usuarioId=${id}&_expand=game`;
-    return this.Http.get<UserGame[]>(url);
+  getProfileByUserId(id: number): Observable<Profile>{
+    const url = this.profileUrl + "/user/" + id;
+    return this.Http.get<Profile>(url);
   }
 
-  postGameExperience(gameExperience: GameExperience): Observable<GameExperience> {
-    const url = `${this.URL}/game-experiences`;
-    return this.Http.post<GameExperience>(url, {
-      experienceLevel: gameExperience.experienceLevel,
-      gameId: gameExperience.gameId,
-      usuarioId: gameExperience.usuarioId
-    });
-  }
-
-  putGameExperience(element: UserGame, usuarioId: number): Observable<UserGame> {
-    const url = `${this.URL}/game-experiences/${element.id}`;
-    return this.Http.put<UserGame>(url, {
-      experienceLevel: element.experienceFormController.value,
-      gameId: element.game.id,
-      usuarioId: usuarioId
-    });
-  }
-
-  putTournament(element: Competencia, usuarioId: number): Observable<Competencia> {
-    const url = `${this.URL}/competencias/${element.id}`;
-    return this.Http.put<Competencia>(url, {
-      userId: usuarioId,
-      nombre: element.nombreFormController.value,
-      date: element.date,
-      puesto: element.puestoFormController.value
-    });
-  }
-
-
-  deleteGameExperience(id: number): Observable<any>{
-    const url = `${this.URL}/game-experiences/${id}`;
-    return this.Http.delete(url);
-  }
-
-  getTournaments(userId: number): Observable<Competencia[]> {
-    const url = `${this.URL}/competencias?usuarioId=${userId}`;
-    return this.Http.get<Competencia[]>(url);
-  }
-
-  postTournament(tournament: UserCompetencia, userId: number): Observable<Competencia> {
-    const url = `${this.URL}/competencias`;
-    return this.Http.post<Competencia>(url, {
-      usuarioId: userId,
-      nombre: tournament.nombre,
-      date: tournament.date,
-      puesto: tournament.puesto
-    });
-  }
-
-
-  deleteTournament(id: number): Observable<any>{
-    console.log("delete");
-    const url = `${this.URL}/competencias/${id}`;
-    return this.Http.delete(url);
+  updateProfileById(newProfile: Profile): Observable<Profile> {
+    const url = this.profileUrl + "/" + newProfile.id;
+    return this.Http.put<Profile>(url, newProfile);
   }
 
   // TEAMS
@@ -91,8 +45,8 @@ export class ProfileService {
   {
     const url = `${this.URL}/teams`;
     return this.Http.post<Team>(url, {
-      usuarioId: userId,
-      nombre: team.nombre,
+      userId: userId,
+      name: team.name,
       numeroMiembros: team.numeroMiembros
     });
   }

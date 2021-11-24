@@ -11,17 +11,18 @@
     <mat-card-content>
 
       <p>{{tournament.description}}</p>
-      <p *ngIf="game">{{game.name}}</p>
-      <p>Limit: {{tournament.teamTournament ? tournament.teamQuantity :  tournament.playerCapacity}} {{tournament.teamTournament ? " Teams" : " Participants"}}</p>
-      <p>Prize Pool: {{tournament.prizePool}} $</p>
-      <p>Date: {{tournament.tDate}}</p>
-      <p>Hour: {{tournament.tHour}}</p>
-
+      <p>{{'TOURNAMENT-CARD.Limit'|translate}}{{tournament.tournamentCapacity}} {{tournament.isTeamMode ? " Teams" : " Participants"}}</p>
+      <p>{{'TOURNAMENT-CARD.Prize-Pool'|translate}} {{tournament.prizePool}} $</p>
+      <p>{{'TOURNAMENT-CARD.Date'|translate}} {{this.tournamentDate}}</p>
+      <p>{{'TOURNAMENT-CARD.Hour'|translate}} {{this.tournamentHour}}</p>
+      <p>{{'TOURNAMENT-CARD.Game'|translate}}{{this.tournamentGameName}}</p>
   </mat-card-content>
-    <mat-card-actions>
-        <button class="full-length-button"
-            mat-raised-button
-            color="primary"
-            (click)="openConfirmRegistration()">Sign into the Tournament</button>
-    </mat-card-actions>
+  <mat-chip-list *ngIf="tournament.tournamentStatus">
+    <mat-chip selected color="primary" *ngIf="compareDates()" >{{'TOURNAMENT-CARD.Stand'|translate}}</mat-chip>
+    <mat-chip selected style="background-color: mediumseagreen" *ngIf="!compareDates()">{{'TOURNAMENT-CARD.Act'|translate}}</mat-chip>
+  </mat-chip-list>
+  <mat-chip-list *ngIf="!tournament.tournamentStatus">
+    <mat-chip selected color="warn">{{'TOURNAMENT-CARD.End'|translate}}</mat-chip>
+  </mat-chip-list>
+
 </mat-card>

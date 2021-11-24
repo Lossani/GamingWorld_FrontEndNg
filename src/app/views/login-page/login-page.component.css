@@ -13,8 +13,14 @@
 }
 
 .login-card {
-    width: 300px;
+    width: 30vw;
     padding: 4rem;
+    margin: 4rem;
+}
+
+.login-image{
+  width: 35vw;
+  height: 80vh;
 }
 
 @media (max-width: 950px) {
@@ -33,5 +39,14 @@
         align-items: center;
         justify-content: center;
     }
-    
+
+  .login-image{
+    width: 80vw;
+  }
+
+  .login-card {
+    width: 80vw;
+    padding: 4rem;
+  }
+
 }

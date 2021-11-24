@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TwitchGame } from 'src/app/entities/twitch-global-stats.entity';
+import {Component, Input, OnInit} from '@angular/core';
+import {TwitchGame} from 'src/app/entities/twitch-global-stats.entity';
 
 @Component({
   selector: 'app-twitch-bubble',
@@ -11,11 +11,11 @@ export class TwitchBubbleComponent implements OnInit {
   @Input()
   twitchGame!: TwitchGame;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit(): void {
-    
+
   }
 
 }

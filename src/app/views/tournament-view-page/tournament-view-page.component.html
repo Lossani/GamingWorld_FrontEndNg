@@ -1,0 +1,56 @@
+<app-navbar [isInNews]="false"></app-navbar>
+<div class="navbar-separator" style="margin-bottom: 10px"></div>
+<div style="width: 90%; margin-left: auto;margin-right: auto">
+  <div id="PrincipalContainer">
+
+    <div></div>
+
+    <div id="TournamentsContainer">
+
+      <mat-card>
+          <app-tournament-card [tournament]="tournament"></app-tournament-card>
+          <mat-card-actions align="end" *ngIf="userValid">
+            <div *ngIf="tournament.tournamentStatus">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="endTournament()">{{'TOURNAMENT-VIEW-PAGE.End'|translate}}</button>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="registerPoints()"
+                style="margin-right: 10px"
+                [disabled]="participants.length<1"
+              >{{'TOURNAMENT-VIEW-PAGE.Set'|translate}}</button>
+            </div>
+          </mat-card-actions>
+      </mat-card>
+
+
+
+    </div>
+    <div id="StreamerInfo">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <div *ngIf="this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Team-V'|translate}}</div>
+            <div *ngIf="!this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Participants-V'|translate}}</div>
+          </mat-card-title>
+          <mat-card-content></mat-card-content>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list  *ngFor="let participant of sortParticipants(participants)">
+
+            <div class="flex-box">
+              <div>{{participant.name}}</div>
+              <div>{{participant.points}}</div>
+            </div>
+          </mat-list>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+  </div>
+</div>

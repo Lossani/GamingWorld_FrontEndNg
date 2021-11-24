@@ -1,27 +1,28 @@
 <mat-toolbar color="primary" style="position: fixed;">
-    <span>Gamingworld</span>
-    <mat-form-field *ngIf="isInNews">
-        <input matInput id="search" [formControl]="searchQuery">
-        <button mat-icon-button matSuffix [disabled]="!searchQuery.value">
-            <mat-icon>search</mat-icon>
-        </button>
-    </mat-form-field>
+    <a class="navbar-name" [routerLink]="'/'">GamingWorld</a>
+    <app-search-users></app-search-users>
     <div>
+      <select #langselect (change)="changeLang(langselect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang == this.selectedLang">{{lang}}</option>
+      </select>
         <button routerLink='' matTooltip="News Page" mat-icon-button *ngIf="router.url != '/'">
             <mat-icon>dashboard</mat-icon>
         </button>
         <button routerLink='/tournaments' matTooltip="Tournaments" mat-icon-button>
             <mat-icon>emoji_events</mat-icon>
         </button>
-        <button mat-icon-button>
-            <mat-icon>group</mat-icon>
-        </button>
+
         <button mat-icon-button [matMenuTriggerFor]="profileMenu">
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #profileMenu="matMenu">
-            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>Profile</button>
-            <button  mat-menu-item matTooltip="Close session">Log out</button>
+          <div *ngIf="isLoggedIn; else elseBlock">
+            <button [routerLink]="'/profile/' + this.user" matTooltip="Profile of the user" mat-menu-item>{{'NAVBAR.Profile'|translate}}</button>
+            <button (click)="logout()" mat-menu-item matTooltip="Close session">{{'NAVBAR.Log-Out'|translate}}</button>
+          </div>
+          <ng-template #elseBlock>
+            <button [routerLink]="'/login/'" mat-menu-item matTooltip="Login">{{'NAVBAR.Log-In'|translate}}</button>
+          </ng-template>
         </mat-menu>
     </div>
 </mat-toolbar>

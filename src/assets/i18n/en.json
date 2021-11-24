@@ -1,0 +1,131 @@
+{
+  "NAVBAR": {
+    "Profile": "My Profile",
+    "Log-Out": "Log Out",
+    "Log-In": "Log In"
+  },
+  "NEWS-PAGE": {
+    "Filter": "Filter By",
+    "Games": "VideoGames",
+    "Themes": "Popular Twitch Themes"
+  },
+  "NEWS-CARD": {
+    "MI": "More Info"
+  },
+  "PREMIUM-CARD": {
+    "Support": "Support GamingWorld",
+    "Text-1": " Become a premium member and be able to create tournaments without the need to manage them.",
+    "More-Info": "More Information"
+  },
+  "PREMIUM-INFORMATION-DIALOG": {
+    "Subscribe": "Subscribe to GamingWorld",
+    "Question-1": "Tired of having to manage big tournaments with a lot of participants?",
+    "Text-2": "Dont worry, with our premium service we can manage all the details about the tournament for you.\nYou won't have to do anything. Just sit and relax while our admins sets the scores and other vital information.",
+    "Plan": "Premium Plan",
+    "Amount": "$5.00/Monthly",
+    "Close": "Close",
+    "Purchase": "Purchase"
+  },
+  "LOGIN-OR-SIGNUP": {
+    "Join": "Join in the GamingWorld Community",
+    "Please": "Please Log-in or Sing-up in GamingWorld to access the tournaments.",
+    "Log": "Log-In",
+    "Sign": "Sign-Up"
+  },
+  "TOURNAMENT-PAGE": {
+    "Filter-2": "Filter By",
+    "Team": "Team Tournaments",
+    "Solo": "Solo Tournaments",
+    "Post": "Post a tournament",
+    "Title": "Tournament Title",
+    "Banner": "Tournament Banner",
+    "Description": "Tournament Description",
+    "Prize": "Prize Pool",
+    "Team-T": "Team Tournament",
+    "Number-T": "Number of Teams",
+    "Number-P": "Number of Participants",
+    "Error-1": "Minium 2 participantes",
+    "Error-2": "Maximum 100 participants",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "Sign-In-T": "Sign into the Tournament",
+    "View-T": "View Tournament"
+  },
+  "TOURNAMENT-VIEW-PAGE": {
+    "End": "End Tournament",
+    "Set": "Set Scores",
+    "Team-V": "Teams",
+    "Participants-V": "Participants"
+  },
+  "TOURNAMENT-CARD": {
+    "Limit": "Limit: ",
+    "Prize-Pool": "Prize Pool: ",
+    "Date": "Date: ",
+    "Hour": "Hour: ",
+    "Game": "Game: ",
+    "Stand": "Stand By",
+    "Act": "Active",
+    "End": "Ended"
+  },
+  "PROFILE-PAGE": {
+    "G-s": "Games",
+    "Add-Game": "Add Game",
+    "Game-P": "Game",
+    "Exp": "Experience",
+    "T-s": "Tournaments",
+    "Add-Tournament": "Add Tournament",
+    "Tournament-P": "Tournament",
+    "Position": "Position",
+    "Fav-Game": "Favorite Games",
+    "Add-Fav-Game": "Add Favorite Games",
+    "N-G": "Name Game",
+    "Cat": "Streaming Category",
+    "S-C": "Add Streaming Category",
+    "Category-Name": "Category Name",
+    "Sponsor": "Stream Sponsor",
+    "Add-Sponsor": "Add Streaming Sponsor",
+    "S-N": "Sponsor Name",
+    "S": "Save",
+    "Actions": "Actions"
+  },
+  "FAVORITE-GAME-DIALOG": {
+    "Favorite-Games": "Add Favorite Games",
+    "Cre": "Create",
+    "Can": "Cancel"
+  },
+  "GAME-EXPERIENCE-DIALOG": {
+    "Game-Experience": "Create Game Experience",
+    "Exp-Lvl": "Experience Level"
+  },
+  "STREAMING-CATEGORY-DIALOG": {
+    "Stream-Cat": "Add Stream Category",
+    "Name-Cat": "Streaming Category Name "
+  },
+  "STREAMING-SPONSOR-DIALOG": {
+    "Stream-Spo": "Add Stream Sponsor",
+    "Name-Spo": "Sponsor Name"
+  },
+  "TOURNAMENT-DIALOG": {
+    "Add-Tour": "Add Tournament",
+    "Tourn": "Tournament",
+    "Position": "Position"
+  },
+  "REGISTER-POINTS": {
+    "Register": "Register points for",
+    "RT": "Tournament",
+    "Extra": "Extra Points",
+    "Points": "Points",
+    "Add-P": "Add participant",
+    "Clo": "Close",
+    "Con": "Confirm"
+  },
+  "END-TOURNAMENT-DIALOG":{
+    "End-V": "End",
+    "T": "Tournament ?",
+    "Are-You-Sure": "Are you sure you want to end",
+    "T2": "tournament?.",
+    "Action": "This action cannot be revoked and you won't be able to edit it any longer",
+    "No": "No",
+    "Yes": "Yes"
+  }
+}

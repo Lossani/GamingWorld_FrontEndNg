@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Team, UserCompetencia} from "../../../entities/user-entity";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";
+import {Team} from "../../../entities/profile-entity";
 
 @Component({
   selector: 'app-create-team-dialog',
@@ -27,7 +27,7 @@ export class CreateTeamDialogComponent implements OnInit {
 
     let newTeam: Team = {
       userId: this.data.userId,
-      nombre: this.formGroup.controls.nombre.value,
+      name: this.formGroup.controls.nombre.value,
       numeroMiembros: this.formGroup.controls.numeroMiembros.value
     }
 

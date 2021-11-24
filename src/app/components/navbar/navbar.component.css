@@ -8,5 +8,22 @@ mat-toolbar {
     z-index: 100;
 }
 
-mat-form-field {
+.navbar-name {
+  color: #2D3142;
+}
+
+.navbar-name:hover {
+  text-decoration: none !important;
+}
+
+select{
+  height: 30px;
+  padding: 5px;
+  line-height: 18px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  border: #36468F;
+  border-radius: 8px;
+  background: #36468F;
+  color: #FFFFFF;
 }

@@ -8,12 +8,7 @@
 #TournamentsContainer {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.credit-card-icon {
-  transform: scale(3);
-  padding: 0.5rem 0;
+  gap: 10px;
 }
 
 @media (max-width: 720px) {
