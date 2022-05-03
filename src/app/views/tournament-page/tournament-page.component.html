@@ -30,29 +30,29 @@
           <form [formGroup]="registerForm">
             <mat-form-field class="form-field">
               <mat-label>{{'TOURNAMENT-PAGE.Title'|translate}}</mat-label>
-              <input type="text" matInput formControlName="title">
+              <input type="text" matInput formControlName="title" id="tournamentTitle">
             </mat-form-field>
             <mat-form-field class="form-field">
               <mat-label>{{'TOURNAMENT-PAGE.Banner'|translate}}</mat-label>
-              <input type="url" matInput formControlName="urlToImage">
+              <input type="url" matInput formControlName="urlToImage" id="tournamentImageURL">
             </mat-form-field>
             <img *ngIf="isValidUrl(registerForm.controls.urlToImage.value)"
                  [src]="registerForm.controls.urlToImage.value" style="max-width: 100%" alt="">
             <mat-form-field class="form-field">
               <mat-label>{{'TOURNAMENT-PAGE.Description'|translate}}</mat-label>
-              <textarea matInput rows="5" formControlName="description"></textarea>
+              <textarea matInput rows="5" formControlName="description" id="tournamentDescription"></textarea>
             </mat-form-field>
 
 
             <mat-form-field class="form-field">
               <mat-label>{{'TOURNAMENT-PAGE.Prize'|translate}}</mat-label>
-              <input type="number" matInput formControlName="prizePool">
+              <input type="number" matInput formControlName="prizePool" id="tournamentPrize">
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date" min="{{date().toString()}}">
+              <input matInput type="datetime-local" formControlName="date" placeholder="Start Date" min="{{date().toString()}}" id="tournamentDate">
             </mat-form-field>
 
-            <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" ></app-search-games>
+            <app-search-games [resetFormSubject]="this.resetSearchGame" (messageEvent)="receiveMessage($event)" id="tournamentGameSelection"></app-search-games>
 
             <mat-slide-toggle formControlName="isTeam">{{'TOURNAMENT-PAGE.Team-T'|translate}}</mat-slide-toggle>
             <div [hidden]="!registerForm.controls.isTeam.value">
@@ -68,7 +68,7 @@
               <mat-form-field class="form-field">
                 <mat-label>{{'TOURNAMENT-PAGE.Number-P'|translate}}</mat-label>
                 <input type="number" formControlName="tournamentCapacity" id="tournamentCapacity" matInput min="0"
-                       max="100">
+                       max="100" >
                 <mat-error *ngIf="registerForm.controls.tournamentCapacity.errors?.['min']">
                   {{'TOURNAMENT-PAGE.Error-1'|translate}}
                 </mat-error>
@@ -78,10 +78,10 @@
               </mat-form-field>
 
             </div>
-            <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px">
+            <button mat-flat-button color="warn" type="button" (click)="cancelButton()" style="margin-right: 10px" id="cancelTournament">
               {{'TOURNAMENT-PAGE.Cancel'|translate}}
             </button>
-            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="button" (click)="submitForm()">Save</button>
+            <button [disabled]="!registerForm.valid || !this.selectedGame.id" mat-flat-button color="primary" type="button" (click)="submitForm()" id="saveTournament">Save</button>
           </form>
 
         </mat-expansion-panel>

@@ -17,19 +17,19 @@
               <form [formGroup]="loginForm">
                 <mat-form-field class="form-field" appearance="fill">
                     <mat-label style="color: white;">Username</mat-label>
-                    <input  style="color: white;" formControlName="username" type="text" matInput>
+                    <input  style="color: white;" formControlName="username" type="text" matInput id="usernameLogin">
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="fill">
                     <mat-label style="color: white;">
                         Password
                     </mat-label>
-                    <input style="color: white;" formControlName="password" type="password" matInput>
+                    <input style="color: white;" formControlName="password" type="password" matInput id="passwordLogin">
                 </mat-form-field>
               </form>
             </mat-card-content>
             <mat-card-actions>
                 <p>
-                    <button [disabled]="!loginForm.valid" type="submit" mat-raised-button color="primary" class="full-length-button" (click)="login()">
+                    <button [disabled]="!loginForm.valid" type="submit" mat-raised-button color="primary" class="full-length-button" (click)="login()" id="enterLogin">
                         Login
                     </button>
                 </p>
