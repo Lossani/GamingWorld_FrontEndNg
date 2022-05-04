@@ -6,7 +6,7 @@
          style="background-color: #FFFFFF; border: none; padding: unset; color: black"
          (input)="updateBox($event)"
          [formControl]="myControl"
-         [matAutocomplete]="auto" />
+         [matAutocomplete]="auto"/>
   <mat-autocomplete [(ngModel)]="this.options" name="options" ngDefaultControl [ngModelOptions]="{standalone: true}" autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)"
                     [displayWith]="getDisplayFn">
     <mat-option *ngFor="let option of options" [value]="option">

@@ -42,7 +42,7 @@ export class GameService {
   }
 
   getGamesByName(text: string): Observable<Game[]>{
-    return this.Http.get<Game[]>(`${this.URL}/find?name=${text}`, this.httpOptions)
+    return this.Http.get<Game[]>(`${this.URL}?find=${text}&limit=10`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

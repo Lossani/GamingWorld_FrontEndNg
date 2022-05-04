@@ -6,7 +6,7 @@ import {HttpHeaders} from "@angular/common/http";
 })
 export class ServiceConfiguration {
 
-  baseUrl: string = 'https://api.aos.gamingworld.xempre.com/api/v1';
+  baseUrl: string = 'https://api.gworld.xempre.com/api/v1/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
