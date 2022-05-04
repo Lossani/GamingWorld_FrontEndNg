@@ -11,9 +11,9 @@
       </mat-card-header>
       <mat-card-content>
         <mat-action-list>
-          <button mat-list-item (click)="findNews('videogames')">{{'NEWS-PAGE.Games'|translate}}</button>
-          <button mat-list-item (click)="findNews('steam')">Steam</button>
-          <button mat-list-item (click)="findNews('twitch')">Twitch</button>
+          <button id="filterGamesNewsButton" mat-list-item (click)="findNews('videogames')">{{'NEWS-PAGE.Games'|translate}}</button>
+          <button id="filterSteamNewsButton" mat-list-item (click)="findNews('steam')">Steam</button>
+          <button id="filterTwitchNewsButton" mat-list-item (click)="findNews('twitch')">Twitch</button>
         </mat-action-list>
       </mat-card-content>
     </mat-card>

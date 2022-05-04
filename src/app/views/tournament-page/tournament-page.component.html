@@ -12,8 +12,8 @@
           </mat-card-header>
           <mat-card-content>
             <mat-action-list>
-              <button mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'|translate}}</button>
-              <button mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'|translate}}</button>
+              <button id="soloTournamentFilterButton" mat-list-item (click)="findTournaments(true)">{{'TOURNAMENT-PAGE.Team'|translate}}</button>
+              <button id="teamTournamentFilterButton" mat-list-item (click)="findTournaments(false)">{{'TOURNAMENT-PAGE.Solo'|translate}}</button>
             </mat-action-list>
           </mat-card-content>
         </mat-card>

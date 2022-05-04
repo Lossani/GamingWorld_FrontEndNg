@@ -9,7 +9,7 @@ import {TopGames} from '../entities/twitch-global-stats.entity';
 })
 export class NewsService {
 
-  private NEWS_URL = "https://api.aos.gamingworld.xempre.com/api/v1";
+  private NEWS_URL = "https://api.gworld.xempre.com/api/v1/";
 
   constructor(private http: HttpClient) { }
 
