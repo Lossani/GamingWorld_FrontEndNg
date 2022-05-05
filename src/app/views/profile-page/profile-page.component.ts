@@ -88,7 +88,7 @@ export class ProfilePageComponent implements OnInit {
       userId = this.profileId;
     }
     await this.profileService.getProfileByUserId(userId)
-      .toPromise().then((profile: Profile) => {
+      .subscribe((profile: Profile) => {
         this.gameExperiences = new MatTableDataSource(profile.gameExperiences);
         this.favoriteGames = new MatTableDataSource(profile.favoriteGames);
         this.tournamentExperiences = new MatTableDataSource(profile.tournamentExperiences);
