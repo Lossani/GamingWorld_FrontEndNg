@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RegisterMatchPointsComponent } from './register-match-points.component';
+import {RegisterMatchPointsComponent} from './register-match-points.component';
 
 describe('RegisterMatchPointsComponent', () => {
   let component: RegisterMatchPointsComponent;

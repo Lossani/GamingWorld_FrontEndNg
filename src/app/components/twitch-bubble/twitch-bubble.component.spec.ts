@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TwitchBubbleComponent } from './twitch-bubble.component';
+import {TwitchBubbleComponent} from './twitch-bubble.component';
 
 describe('TwitchBubbleComponent', () => {
   let component: TwitchBubbleComponent;

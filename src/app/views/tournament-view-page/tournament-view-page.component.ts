@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {ActivatedRoute} from "@angular/router";
@@ -6,7 +6,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {ConfirmEndTournamentComponent} from "../../components/dialogs/confirm-end-tournament/confirm-end-tournament.component";
 import {RegisterMatchPointsComponent} from "../../components/dialogs/register-match-points/register-match-points.component";
 import {SessionService} from "../../services/session.service";
-
 
 
 @Component({
@@ -33,13 +32,8 @@ export class TournamentViewPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.tournamentService.getTournamentById(this.tournamentId).subscribe((data: any) => {
-      console.log(this.tournamentId)
       this.tournament=data;
-      console.log(this.tournament);
-      console.log(data)
       this.userValid = this.sessionService.getCurrentSession().user.id == data.user.id;
-      console.log(this.sessionService.getCurrentSession().user.id);
-      console.log(this.tournament.userId);
     });
 
     this.tournamentService.getParticipantsByTournamentId(this.tournamentId).subscribe(
@@ -49,7 +43,6 @@ export class TournamentViewPageComponent implements OnInit {
             {id: value.id, name: value.participantProfile.user.username, points: value.points}
           )
         })
-        console.log(this.participants);
       }
     )
 
@@ -61,7 +54,6 @@ export class TournamentViewPageComponent implements OnInit {
         title: this.tournament.title
       }
     }).afterClosed().subscribe((result: boolean) =>{
-      console.log(result);
       if(result){this.tournamentService.endTournament(this.tournamentId).subscribe(data => {
         this.tournament = data;
       });}

@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
-import { Game } from '../entities/game-entity';
+import {Game} from '../entities/game-entity';
 import {ServiceConfiguration} from "./service-configuration";
 import {catchError, retry} from "rxjs/operators";
 
@@ -42,7 +42,7 @@ export class GameService {
   }
 
   getGamesByName(text: string): Observable<Game[]>{
-    return this.Http.get<Game[]>(`${this.URL}/find?name=${text}`, this.httpOptions)
+    return this.Http.get<Game[]>(`${this.URL}?find=${text}&limit=10`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

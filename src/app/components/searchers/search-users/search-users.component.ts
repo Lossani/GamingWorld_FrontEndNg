@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {GameService} from "../../../services/game.service";
 import {RequireMatch} from "../validators/required-match";
 import {UsersService} from "../../../services/users.service";
-import {MatInputModule} from "@angular/material/input";
 import {Router} from "@angular/router";
 
 
@@ -38,7 +37,7 @@ export class SearchUsersComponent implements OnInit {
 
   onOptionSelected(dataOption: any) {
     this.selectedGame=dataOption.option.value
-    console.log(dataOption.option.value.id);
+
     this.router.navigateByUrl('/profile/'+dataOption.option.value.id).then(() => {
       window.location.reload();
     });

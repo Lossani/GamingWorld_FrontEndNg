@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateStreamCategoryDialogComponent } from './create-stream-category-dialog.component';
+import {CreateStreamCategoryDialogComponent} from './create-stream-category-dialog.component';
 
 describe('CreateStreamCategoryDialogComponent', () => {
   let component: CreateStreamCategoryDialogComponent;

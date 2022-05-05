@@ -19,7 +19,8 @@
 }
 
 .login-image{
-  width: 40vw;
+  width: 35vw;
+  height: 80vh;
 }
 
 @media (max-width: 950px) {
@@ -38,8 +39,6 @@
         align-items: center;
         justify-content: center;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   .login-image{
     width: 80vw;
@@ -67,12 +66,3 @@ select{
   margin-left: 100px;
   margin-top: 100px;
 }
-
-=======
-    
-}
->>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
-=======
-    
-}
->>>>>>> parent of e77cbdd (feature: add Internationalization in the rest of App)

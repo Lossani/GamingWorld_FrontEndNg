@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { GameService } from 'src/app/services/game.service';
+import {GameService} from 'src/app/services/game.service';
 import {TournamentService} from "../../services/tournament.service";
 import {Tournament} from "../../entities/tournament-entity";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,8 +11,6 @@ import {Subject} from "rxjs";
 import {SessionService} from "../../services/session.service";
 import {User} from "../../entities/user-entity";
 import {ProfileService} from "../../services/profile.service";
-
-
 
 
 @Component({
@@ -107,25 +105,21 @@ export class TournamentPageComponent implements OnInit {
     if($event!=[]){
       this.selectedGame = $event
     }
-
-    console.log($event)
   }
 
   submitForm() {
     let postedAt: Date = new Date();
-    console.log(this.registerForm.valid);
+
     this.submitted = true;
     this.tournament.userId = this.sessionService.getCurrentSession().user.id;
     this.tournament.title = this.registerForm.controls.title.value;
     this.tournament.description = this.registerForm.controls.description.value;
+    if(this.registerForm.controls.urlToImage.value != null)
     this.tournament.urlToImage = this.registerForm.controls.urlToImage.value.toString();
     this.tournament.prizePool = this.registerForm.controls.prizePool.value;
-    console.log(this.registerForm.controls.urlToImage.value.toString());
     this.tournament.tournamentCapacity = this.registerForm.controls.tournamentCapacity.value;
     let tDate: Date = new Date(this.registerForm.controls.date.value);
     this.tournament.tournamentDate = (new Date(tDate.getTime()));
-    console.log(this.registerForm.controls.date.value);
-    console.log(tDate.toString());
     this.tournament.gameId = this.selectedGame.id;
     this.tournament.tournamentStatus = true;
     this.tournament.createdAt = postedAt.toISOString();
@@ -139,8 +133,9 @@ export class TournamentPageComponent implements OnInit {
   addTournament() {
     this.tournamentService.postTournament(this.tournament).subscribe((response: any) => {
       this.tournament.id= response.id;
-      this.filterTournaments.push(this.tournament);
-      this.filterTournaments = this.sortTournaments(this.filterTournaments);
+      this.tournaments.push(this.tournament);
+      this.tournament = {} as Tournament;
+      this.tournaments = this.sortTournaments(this.tournaments);
     });
   }
 
@@ -182,6 +177,7 @@ export class TournamentPageComponent implements OnInit {
   }
   cancelButton()
   {
+
     this.selectedGame = {};
     this.resetSearchGame = true;
 
@@ -200,13 +196,12 @@ export class TournamentPageComponent implements OnInit {
         title: this.tournament?.title
       }
     }).afterClosed().subscribe((result: boolean) =>{
-      console.log(result);
 
       let user: User = this.sessionService.getCurrentSession().user;
       let profile: any;
       this.profileService.getProfileByUserId(user.id).subscribe(data=>{
         profile=data;
-        console.log(profile.id)
+
         if(result){this.tournamentService.registerInTournament(tournament.id, profile.id).subscribe(data => {
           tournament.inTournament=data;
         });}

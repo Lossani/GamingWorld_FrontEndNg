@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
@@ -6,7 +6,7 @@ import {HttpHeaders} from "@angular/common/http";
 })
 export class ServiceConfiguration {
 
-  baseUrl: string = 'http://localhost:8080/api/v1';
+  baseUrl: string = 'https://api.gworld.xempre.com/api/v1/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

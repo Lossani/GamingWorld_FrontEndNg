@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateFavoriteGameDialogComponent } from './create-favorite-game-dialog.component';
+import {CreateFavoriteGameDialogComponent} from './create-favorite-game-dialog.component';
 
 describe('CreateFavoriteGameDialogComponent', () => {
   let component: CreateFavoriteGameDialogComponent;

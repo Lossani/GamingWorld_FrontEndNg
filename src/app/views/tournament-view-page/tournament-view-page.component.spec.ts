@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TournamentViewPageComponent } from './tournament-view-page.component';
+import {TournamentViewPageComponent} from './tournament-view-page.component';
 
 describe('TournamentViewPageComponent', () => {
   let component: TournamentViewPageComponent;

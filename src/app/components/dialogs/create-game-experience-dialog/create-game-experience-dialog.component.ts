@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import { Game } from 'src/app/entities/game-entity';
-import { GameService } from 'src/app/services/game.service';
-import { ProfileService } from 'src/app/services/profile.service';
+import {Game} from 'src/app/entities/game-entity';
+import {GameService} from 'src/app/services/game.service';
+import {ProfileService} from 'src/app/services/profile.service';
 import {GameExperience} from "../../../entities/profile-entity";
 
 @Component({
@@ -40,8 +40,6 @@ export class CreateGameExperienceDialogComponent implements OnInit {
     if($event!=[]){
       this.selectedGame = $event
     }
-
-    console.log($event)
   }
 
   submit() {

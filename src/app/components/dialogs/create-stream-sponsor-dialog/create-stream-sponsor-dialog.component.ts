@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { StreamerSponsor} from "../../../entities/profile-entity";
+import {StreamerSponsor} from "../../../entities/profile-entity";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ProfileService} from "../../../services/profile.service";

@@ -35,10 +35,10 @@
 
                 </mat-form-field>
             </mat-card-content>
-          <button [routerLink]="'/login/'" mat-raised-button color="warn" (click)="cancelButton()" style="margin-right: 10px">
+          <button [routerLink]="'/login/'" mat-raised-button color="warn" (click)="cancelButton()" style="margin-right: 10px" id="cancelRegistration">
             Cancel
           </button>
-          <button [disabled]="!registerForm.valid" mat-raised-button color="primary" type="button" (click)="submitForm()">
+          <button [disabled]="!registerForm.valid" mat-raised-button color="primary" type="button" (click)="submitForm()" id="register">
             Register
           </button>
 

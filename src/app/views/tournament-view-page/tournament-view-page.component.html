@@ -14,30 +14,14 @@
               <button
                 mat-raised-button
                 color="warn"
-<<<<<<< HEAD
-<<<<<<< HEAD
-                (click)="endTournament()">{{'TOURNAMENT-VIEW-PAGE.End'}}</button>
-=======
-                (click)="endTournament()">End Tournament</button>
->>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
-=======
-                (click)="endTournament()">End Tournament</button>
->>>>>>> parent of e77cbdd (feature: add Internationalization in the rest of App)
+                (click)="endTournament()">{{'TOURNAMENT-VIEW-PAGE.End'|translate}}</button>
               <button
                 mat-raised-button
                 color="primary"
                 (click)="registerPoints()"
                 style="margin-right: 10px"
                 [disabled]="participants.length<1"
-<<<<<<< HEAD
-<<<<<<< HEAD
-              >{{'TOURNAMENT-VIEW-PAGE.Set'}}</button>
-=======
-              >Set Scores</button>
->>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
-=======
-              >Set Scores</button>
->>>>>>> parent of e77cbdd (feature: add Internationalization in the rest of App)
+              >{{'TOURNAMENT-VIEW-PAGE.Set'|translate}}</button>
             </div>
           </mat-card-actions>
       </mat-card>
@@ -49,18 +33,8 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <div *ngIf="this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Team-V'}}</div>
-            <div *ngIf="!this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Participants-V'}}</div>
-=======
-            <div *ngIf="this.tournament.isTeamMode">Teams</div>
-            <div *ngIf="!this.tournament.isTeamMode">Participants</div>
->>>>>>> parent of 8957698 (Merge branch 'feature/internationalization' into develop)
-=======
-            <div *ngIf="this.tournament.isTeamMode">Teams</div>
-            <div *ngIf="!this.tournament.isTeamMode">Participants</div>
->>>>>>> parent of e77cbdd (feature: add Internationalization in the rest of App)
+            <div *ngIf="this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Team-V'|translate}}</div>
+            <div *ngIf="!this.tournament.isTeamMode">{{'TOURNAMENT-VIEW-PAGE.Participants-V'|translate}}</div>
           </mat-card-title>
           <mat-card-content></mat-card-content>
         </mat-card-header>

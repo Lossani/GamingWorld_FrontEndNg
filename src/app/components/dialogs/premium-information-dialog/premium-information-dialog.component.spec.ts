@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PremiumInformationDialogComponent } from './premium-information-dialog.component';
+import {PremiumInformationDialogComponent} from './premium-information-dialog.component';
 
 describe('PremiumInformationDialogComponent', () => {
   let component: PremiumInformationDialogComponent;
