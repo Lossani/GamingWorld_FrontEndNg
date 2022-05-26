@@ -24,7 +24,7 @@
   </div>
 
   <div id="NewsContainer" *ngIf="headlinesLoaded">
-    <app-news-card *ngFor="let article of TopHeadlines.articles; index as i" [class]="i == 0 ? 'main-new':''"
+    <app-news-card id="visibleNew{{i}}" *ngFor="let article of TopHeadlines.articles; index as i" [class]="i == 0 ? 'main-new':''"
                   [article]="article"></app-news-card>
   </div>
   <div>

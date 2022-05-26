@@ -88,8 +88,8 @@
 
       </mat-accordion>
 
-      <div *ngFor="let tournament of filterTournaments">
-        <mat-card>
+      <div id="tournamentsList" *ngFor="let tournament of filterTournaments">
+        <mat-card class="tournament-card" id="tournament-{{tournament.id}}" [attr.data-tournament-type]="tournament.isTeamMode ? 'team' : 'solo'">
           <app-tournament-card [tournament]="tournament"></app-tournament-card>
           <mat-card-actions align="end">
 
