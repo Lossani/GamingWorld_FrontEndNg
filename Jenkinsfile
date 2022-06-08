@@ -10,7 +10,9 @@ pipeline {
       steps { bat 'npm run-script build' }
     }
     stage('Deploy') {
-          steps { bat 'npm run-script build' }
+          steps { bat 'sftp gworld@xempre.com'
+                  bat 'GWorldTest'
+                  }
         }
   }
 }
