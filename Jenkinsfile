@@ -12,6 +12,7 @@ pipeline {
     stage('Deploy') {
           steps { bat 'sftp gworld@xempre.com'
                   bat 'GWorldTest'
+                  bat 'exit'
                   }
         }
   }
