@@ -20,8 +20,7 @@ pipeline {
             remote.user = 'gworld'
             remote.password = 'GWorldTest'
             remote.allowAnyHosts = true
-            writeFile file: 'Jenkinsfile'
-                    sshPut remote: remote, from: 'C:\\Users\\Fjorpa\\.jenkins\\workspace\\GW-1-CICD-FR-1.0-060622\\Jenkinsfile', into: '/upload'
+            sshPut remote: remote, from: 'C:\\Users\\Fjorpa\\.jenkins\\workspace\\GW-1-CICD-FR-1.0-060622\\Jenkinsfile', into: '/upload'
       }
       }
       }
