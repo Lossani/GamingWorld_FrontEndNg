@@ -9,11 +9,19 @@ pipeline {
     stage('Build') {
       steps { bat 'npm run-script build' }
     }
-    stage('Deploy') {
-          steps { bat '''sftp gworld@xempre.com
-          GWorldTest
-          exit'''
-                  }
-        }
+    node {
+      def remote = [:]
+      remote.name = 'Deployment'
+      remote.host = 'xempre.com'
+      remote.user = 'gworld'
+      remote.password = 'GWorldTest'
+      remote.allowAnyHosts = true
+      stage('Deployment') {
+        writeFile file: 'Jenkinsfile'
+        sshPut remote: remote, from: 'Jenkinsfile', into: '/upload'
+      }
+    }
   }
 }
+
+
