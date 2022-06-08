@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       steps { bat 'npm run-script build' }
     }
-    node {
+
       def remote = [:]
       remote.name = 'Deployment'
       remote.host = 'xempre.com'
@@ -20,7 +20,6 @@ pipeline {
         writeFile file: 'Jenkinsfile'
         sshPut remote: remote, from: 'Jenkinsfile', into: '/upload'
       }
-    }
   }
 }
 
